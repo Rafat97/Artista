@@ -1,3 +1,5 @@
+<img src="https://avatars1.githubusercontent.com/u/4284691?v=3&s=200" title="artista" alt="artista">
+
 # Artista
  A platform for selling or displaying art contents and hiring freelance artists.
 
