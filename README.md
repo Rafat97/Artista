@@ -1,6 +1,7 @@
 <p align="center"><img src="https://i.imgur.com/RR7JnZW.png?v=3&s=200" title="artista" alt="artista"></p>
 
-# Artista
+
+# Artista 
  A platform for selling or displaying art contents and hiring freelance artists.
 
 # cmd
