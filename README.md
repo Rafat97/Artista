@@ -9,6 +9,7 @@
 
 # Dependency (depends on your python version)
 1. Django 
+2. djangorestframework
 
 
 # Software
