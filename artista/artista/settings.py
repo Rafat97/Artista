@@ -79,7 +79,7 @@ ASGI_APPLICATION = "artista.routing.application" # for asynchronous call  web se
 #     'default': {
 #         'BACKEND': 'channels_redis.core.RedisChannelLayer',
 #         'CONFIG': {
-#             "hosts": [('127.0.0.1', 6379)],
+#             "hosts": [('redis-15871.c14.us-east-1-2.ec2.cloud.redislabs.com', 15871)],
 #         },
 #     },
 # }
