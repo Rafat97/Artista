@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'channels',
+    'chat',
     'rest_framework',
     'getstart',
     'api',
@@ -71,9 +73,16 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'artista.wsgi.application'
-
-
+#WSGI_APPLICATION = 'artista.wsgi.application'
+ASGI_APPLICATION = "artista.routing.application" # for asynchronous call  web server
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             "hosts": [('127.0.0.1', 6379)],
+#         },
+#     },
+# }
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
