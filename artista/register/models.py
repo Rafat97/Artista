@@ -1,18 +1,24 @@
 from django.db import models
+from django import forms
 
-# Create your models here.
 
-class Role(models.Model):
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
 
 class User(models.Model):
-    display_name = models.CharField(max_length=30)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=30)
-    user_role = models.ForeignKey(Role, on_delete=models.CASCADE)
+    CLIENT = 'client'
+    ARTIST = 'artist'
+
+    ROLE = (
+        (ARTIST, 'Client'),
+        (CLIENT, 'Artist')
+    )
+    display_name = models.CharField(max_length=30,blank=False)
+    email = models.EmailField(unique=True,blank=False)
+    password = models.CharField(max_length=255,blank=False)
+    phoneNumber = models.CharField(max_length=20,null=True)
+    address = models.CharField(max_length=255,null=True)
+    # user_role = models.ForeignKey(Role, on_delete=models.CASCADE,null=False)
+    user_role = models.CharField(max_length=10,choices=ROLE,default=ARTIST)
+    is_active = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

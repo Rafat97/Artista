@@ -1,1 +1,22 @@
 <h1>Client Register</h1>
+<br>
+<br>
+<br>
+{{ form.non_field_errors }}
+<form action='.' method='POST'>{% csrf_token %}
+
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }}: {{ field }}
+        </div>
+    {% endfor %}
+    <!-- {{ form.as_p }} -->
+    <!-- <p><label for="id_display_name">Display name:</label> <input type="text" name="display_name" maxlength="30" required id="id_display_name"></p>
+    <p><label for="id_email">Email:</label> <input type="email" name="email" maxlength="254" required id="id_email"></p>
+    <p><label for="id_address">Address:</label> <input type="text" name="address" maxlength="255" required id="id_address"></p>
+    <p><label for="id_phoneNumber">PhoneNumber:</label> <input type="text" name="phoneNumber" maxlength="20" required id="id_phoneNumber"></p>
+    <p><label for="id_password">Password:</label> <input type="password" name="password" required id="id_password"></p>
+    <p><label for="id_confirm_password">Confirm password:</label> <input type="password" name="confirm_password" required id="id_confirm_password"></p> -->
+    <input type='submit' value='Save' />
+</form>
