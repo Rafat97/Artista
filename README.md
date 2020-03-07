@@ -5,7 +5,9 @@
  A platform for selling or displaying art contents and hiring freelance artists.
 
 # cmd
-1. python manage.py runserver
+1. python manage.py runserver   (server run)
+2. python manage.py makemigrations (database)
+3. python manage.py migrate     (database)
 
 # Dependency (depends on your python version)
 1. Django 
@@ -14,6 +16,7 @@
 
 # Software
 1. (DB Browser for SQLite) https://sqlitebrowser.org/dl/
+
 
 
 # super user

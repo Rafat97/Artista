@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'chat',
     'rest_framework',
     'getstart',
+    'login',
+    'register',
     'api',
 ]
 
