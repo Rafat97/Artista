@@ -22,6 +22,7 @@ from register.views import register_client
 
 urlpatterns = [
     path('', home_view, name='home'), #landing page url
+    path('api/',include('api.urls')), #api page url
 
     # path('register_artist/', register_artist), #artist register page url
     path('register_client/', register_client), #client register page url
