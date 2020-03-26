@@ -1,1 +1,8 @@
 <h1> ARTISTA! </h1>
+Hello, {{ request.session.user_id  }}
+<p>
+    <a href="{% url 'register_client' %}">Client register</a>
+</p>
+<p>
+    <a href="{% url 'register_artist' %}">Artist register</a>
+</p>
