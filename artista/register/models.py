@@ -8,8 +8,8 @@ class User(models.Model):
     ARTIST = 'artist'
 
     ROLE = (
-        (ARTIST, 'Client'),
-        (CLIENT, 'Artist')
+        (CLIENT, 'Client'),
+        (ARTIST, 'Artist')
     )
     display_name = models.CharField(max_length=30,blank=False)
     email = models.EmailField(unique=True,blank=False)
@@ -17,8 +17,8 @@ class User(models.Model):
     phoneNumber = models.CharField(max_length=20,null=True)
     address = models.CharField(max_length=255,null=True)
     # user_role = models.ForeignKey(Role, on_delete=models.CASCADE,null=False)
-    user_role = models.CharField(max_length=10,choices=ROLE,default=ARTIST)
-    is_active = models.BooleanField(default=False)
+    user_role = models.CharField(max_length=255,null=False,choices=ROLE)
+    is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
