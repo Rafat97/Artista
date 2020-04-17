@@ -17,17 +17,19 @@ from django.contrib import admin
 from django.urls import path ,include
 
 from getstart.views import home_view
-from login.views import login
-from register.views import register_client,register_artist
+from register.views import register_client,register_artist,thank_you
+from login.views import login_user
 
 urlpatterns = [
     path('', home_view, name='home'), #landing page url
     path('api/',include('api.urls')), #api page url
 
-    path('register/artist/', register_artist,name='register_artist'), #artist register page url
-    path('register/client/', register_client,name='register_client'), #client register page url
+    path('login/', login_user,name='login_user'), #artist login page url app (login)
+
+    path('register/artist/', register_artist,name='register_artist'), #artist register page url  app (register)
+    path('register/client/', register_client,name='register_client'), #client register page url app (register)
+    path('register/thankyou/',thank_you ,name='register_thank_you'), #artist register page url app (register)
     
-    # path('login/', login),  #login page url
 
     path('chat/', include('chat.urls')),
     path('admin/', admin.site.urls),

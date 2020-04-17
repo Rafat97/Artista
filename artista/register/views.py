@@ -1,5 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render,redirect,reverse
+
 # from .myform import ClientUserForm
 from .forms import ClientUserForm,ArtistUserForm
 from pprint import pprint
@@ -10,12 +11,10 @@ def register_client(request, *args, **kwargs):
     form = ClientUserForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid() :
-            print(form.cleaned_data)
-            save = form.save()
-            request.session['user_id'] = save.id
-        else:
-            print( form.errors )
-
+            form.save(commit=True)
+            response = redirect('register_thank_you')
+            return response
+        
     context = {
         "form" : form
     }
@@ -23,16 +22,20 @@ def register_client(request, *args, **kwargs):
 
 
 def register_artist(request, *args, **kwargs): 
-    
     form = ArtistUserForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid() :
-            print(form.cleaned_data)
-            form.save()
-        else:
-            print( form.errors )
-
+            form.save(commit=True)
+            redirect('register_thank_you')
+        
     context = {
         "form" : form
     }
     return render(request, 'register_artist.html', context)
+
+
+def thank_you(request, *args, **kwargs): 
+    print(kwargs)
+    context = {}
+    return render(request, 'thank_you.html', context)
+
