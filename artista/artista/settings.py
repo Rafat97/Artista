@@ -37,15 +37,31 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
-    'channels',
-    'chat',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # 'channels', #need asynchronous web server
+    # 'chat',  #need asynchronous web server
     'rest_framework',
     'getstart',
     'login',
     'register',
     'api',
 ]
+
+SITE_ID = 1
+
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,7 +72,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'artista.middleware.MainMiddleware',
+
+    'artista.middleware.MainMiddleware'
 ]
 
 ROOT_URLCONF = 'artista.urls'
@@ -77,8 +94,8 @@ TEMPLATES = [
     },
 ]
 
-#WSGI_APPLICATION = 'artista.wsgi.application'
-ASGI_APPLICATION = "artista.routing.application" # for asynchronous call  web server
+WSGI_APPLICATION = 'artista.wsgi.application'
+# ASGI_APPLICATION = "artista.routing.application" # for asynchronous call  web server
 # CHANNEL_LAYERS = {
 #     'default': {
 #         'BACKEND': 'channels_redis.core.RedisChannelLayer',

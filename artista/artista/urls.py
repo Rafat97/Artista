@@ -16,12 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path ,include
 
-from getstart.views import home_view
+from getstart.views import home_view,HomePageView
 from register.views import register_client,register_artist,thank_you
 from login.views import login_user
 
+
+admin.site.site_header = "ARTISTA Admin"
+admin.site.site_title = "ARTISTA Admin Portal"
+admin.site.index_title = "Welcome to ARTISTA Portal"
+
 urlpatterns = [
-    path('', home_view, name='home'), #landing page url
+    path('', HomePageView.as_view(), name='home'), #landing page url
     path('api/',include('api.urls')), #api page url
 
     path('login/', login_user,name='login_user'), #artist login page url app (login)
@@ -32,6 +37,8 @@ urlpatterns = [
     
 
     path('chat/', include('chat.urls')),
+    
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     
 ]

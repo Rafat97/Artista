@@ -17,7 +17,8 @@
 # Software
 1. (DB Browser for SQLite) https://sqlitebrowser.org/dl/
 
-
+# Learn
+https://books.agiliq.com/projects/django-admin-cookbook/en/latest/uneditable_existing.html
 
 # super user
 link : {url}/admin/

@@ -26,7 +26,8 @@ def register_artist(request, *args, **kwargs):
     if request.method == 'POST':
         if form.is_valid() :
             form.save(commit=True)
-            redirect('register_thank_you')
+            response = redirect('register_thank_you')
+            return response
         
     context = {
         "form" : form
