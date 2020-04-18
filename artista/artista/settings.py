@@ -72,8 +72,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-
-    'artista.middleware.MainMiddleware'
+    # own Middleware
+    'artista.middleware.MainMiddleware',
+    'artista.middleware.CustomAuthMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'artista.urls'

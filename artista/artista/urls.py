@@ -36,9 +36,13 @@ urlpatterns = [
     path('register/thankyou/',thank_you ,name='register_thank_you'), #artist register page url app (register)
     
 
-    path('chat/', include('chat.urls')),
+    path('dashboard/', include('dashboard.urls')),
+    path('dashboard/artist', include('artist.urls')),
+    path('dashboard/client', include('client.urls')),
+   
+    path('chat/', include('chat.urls')), # must need asynchronous server 
     
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
+    # path('accounts/', include('allauth.urls')),
     
 ]
