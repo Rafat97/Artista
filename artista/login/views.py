@@ -16,3 +16,8 @@ def login_user(request, *args, **kwargs):
     }
     return render(request, 'login.html', context)
 
+def logout_user(request, *args, **kwargs): 
+    if request.session.has_key('user'):
+        del request.session['user']
+    response = redirect('home')
+    return response

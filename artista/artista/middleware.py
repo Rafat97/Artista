@@ -1,3 +1,9 @@
+from register.models import User
+import re
+from django.shortcuts import render,redirect
+from django.http import Http404 ,HttpResponse
+from django.core.exceptions import PermissionDenied
+
 class MainMiddleware:
 
     def __init__(self, get_response):
@@ -33,12 +39,16 @@ class MainMiddleware:
         It could alter the given response by changing `response.template_name` and `response.context_data`,
         or it could create and return a brand-new TemplateResponse or equivalent
         '''
-        print("process_template_response")
+        # print("process_template_response")
         return response    
 
 
 
 class CustomAuthMiddleware:
+
+    LOG_REQUIRED_URL = [
+        "/dashboard/"
+    ]
 
     def __init__(self, get_response):
         self.get_response = get_response
@@ -47,7 +57,23 @@ class CustomAuthMiddleware:
     def __call__(self, request):
         # Code to be executed for each request before
         # the view (and later middleware) are called.
+        user_uuid = None
+        if request.session.has_key('user'):
+            user_uuid = request.session['user']
+            user = User.objects.filter(uuid__exact=user_uuid)
+            if not user:
+                response = redirect('logout_user')
+                return response
 
+        else:
+            for url in self.LOG_REQUIRED_URL:
+                # print(url,request.path,re.search(url, request.path))
+                    if re.search(url, request.path):
+                        raise Http404("Page not found")
+                       
+
+
+        
         response = self.get_response(request)
         # print(response)
         # Code to be executed for each request/response after
@@ -57,11 +83,11 @@ class CustomAuthMiddleware:
     
     def process_view(self,request, view_func, view_args, view_kwargs):
         #  request.session['user_id']
-        print(view_func.__name__)
+        # print(view_func.__name__)
         # print(view_args)
         # print(view_kwargs)
-        print(request.path)
-        print(request.resolver_match)
+        # print(request.path)
+        # print(request.resolver_match)
         pass
         
     def process_exception(self,request, exception):
@@ -74,7 +100,7 @@ class CustomAuthMiddleware:
         It could alter the given response by changing `response.template_name` and `response.context_data`,
         or it could create and return a brand-new TemplateResponse or equivalent
         '''
-        print("process_template_response")
+        # print("process_template_response")
         return response    
 
 

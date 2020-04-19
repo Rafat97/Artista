@@ -4,5 +4,5 @@ from .views import DashboardArtistView
 
 app_name="artist"
 urlpatterns = [
-    #path('', DashboardArtistView.as_view(), name='home'), #landing page url
+    path('', DashboardArtistView.as_view(), name='home'), #landing page url
 ]

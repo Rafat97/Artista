@@ -26,7 +26,8 @@ class ClientUserForm(forms.ModelForm):
             
     def save(self, commit=True):
         client_user = super(ClientUserForm, self).save(commit=False)
-
+        password = make_password(self.cleaned_data["password"])
+        client_user.password = password
         if commit:
             client_user.save()
 
@@ -64,6 +65,8 @@ class ArtistUserForm(forms.ModelForm):
 
     def save(self, commit=True):
         artist_user = super(ArtistUserForm, self).save(commit=False)
+        password = make_password(self.cleaned_data["password"])
+        artist_user.password = password
         if commit:
             artist_user.save()
         return artist_user
@@ -90,9 +93,9 @@ class AdminUserForm(forms.ModelForm):
         (CLIENT, 'Client'),
         (ARTIST, 'Artist')
     )
-    # display_name=forms.CharField(widget=forms.TextInput())
-    # email=forms.CharField(widget=forms.EmailInput())
-    # password=forms.CharField(widget=forms.PasswordInput())
+    #display_name=forms.CharField(widget=forms.TextInput() ,required=True)
+    #email=forms.CharField(widget=forms.EmailInput(),required=True)
+    password=forms.CharField(widget=forms.PasswordInput())
     # password = ReadOnlyPasswordHashField(
     #     label=_("Password"),
     #     help_text=_(
@@ -101,10 +104,10 @@ class AdminUserForm(forms.ModelForm):
     #         '<a href="{}">this form</a>.'
     #     ),
     # )
-    # confirm_password=forms.CharField(widget=forms.PasswordInput())
-    address=forms.CharField(widget=forms.TextInput())
-    phoneNumber=forms.CharField(label="Phone Number", widget=forms.TextInput())
-    user_role = forms.ChoiceField(label="Role", choices=ROLE ,  required=True)
+    confirm_password=forms.CharField(widget=forms.PasswordInput())
+    #address=forms.CharField(widget=forms.TextInput())
+    #phoneNumber=forms.CharField(label="Phone Number", widget=forms.TextInput())
+    #user_role = forms.ChoiceField(label="Role", choices=ROLE ,  required=True)
     # is_active = forms.CharField(widget=forms.CheckboxInput())
 
     def clean_confirm_password(self):
@@ -125,13 +128,14 @@ class AdminUserForm(forms.ModelForm):
             artist_user.save()
         return artist_user      
 
-    # class Meta:
-    #     model = User
-    #     fields = [
-    #         'display_name',
-    #         'email',
-    #         'address',
-    #         'phoneNumber',
-    #         'password',
-    #         'user_role',
-    #     ]
+    class Meta:
+        model = User
+        fields = [
+            'display_name',
+            'email',
+            'password',
+            'confirm_password',
+            'address',
+            'phoneNumber',
+            'user_role',
+        ]

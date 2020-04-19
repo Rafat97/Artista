@@ -18,8 +18,9 @@ from django.urls import path ,include
 
 from getstart.views import home_view,HomePageView
 from register.views import register_client,register_artist,thank_you
-from login.views import login_user
-
+from login.views import login_user,logout_user
+from django.conf import settings
+from django.conf.urls.static import static
 
 admin.site.site_header = "ARTISTA Admin"
 admin.site.site_title = "ARTISTA Admin Portal"
@@ -30,6 +31,7 @@ urlpatterns = [
     path('api/',include('api.urls')), #api page url
 
     path('login/', login_user,name='login_user'), #artist login page url app (login)
+    path('logout/', logout_user,name='logout_user'), #artist login page url app (login)
 
     path('register/artist/', register_artist,name='register_artist'), #artist register page url  app (register)
     path('register/client/', register_client,name='register_client'), #client register page url app (register)
@@ -46,3 +48,5 @@ urlpatterns = [
     # path('accounts/', include('allauth.urls')),
     
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
