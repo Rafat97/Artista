@@ -21,15 +21,41 @@
 
   <body>
     <header>
-        <nav class="navbar navbar-light bg-light">
 
-            <a href="{% url 'home'%}" class="navbar-brand"><h1>Artista</h1></a>
-            <div class="form-inline my-2 my-lg-0">
-              <a href="{% url 'home'%}#get-start" class="navbar-brand">Get Started</a>
-              <a href="{% url 'home'%}#artist" class="navbar-brand">Artist</a>
-              <a href="{% url 'home'%}#client" class="navbar-brand">Client</a>
-            </div>
-        </nav>
+      
+      <nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
+        <a class="navbar-brand" href="{% url 'home' %}"><h2>ARTISTA</h2></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav mr-auto"></ul>
+          <div class="form-inline my-2 my-lg-0 nav-item">
+            <a class=" nav-link " href="{% url 'home' %}#get-start">
+              <span class="navbar-text">
+                GET STARTED
+              </span>
+            </a>
+          </div>
+          <div class="form-inline my-2 my-lg-0 nav-item">
+            <a class="nav-link " href="{% url 'home' %}#artist">
+              <span class="navbar-text">
+                ARTIST
+              </span>
+            </a>
+          </div>
+          <div class="form-inline my-2 my-lg-0 nav-item">
+              <a class="nav-link " href="{% url 'home' %}#client">
+                <span class="navbar-text">
+                  CLIENT
+                </span>
+              </a>
+          </div>
+         
+           
+        </div>
+      </nav>
+
     </header>
     <section>
       <div>
