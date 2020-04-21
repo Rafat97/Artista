@@ -5,8 +5,15 @@ from django.utils.translation import gettext, gettext_lazy as _
 
 class LoginFrom(forms.Form):
 
-    email=forms.CharField(label="Email", widget=forms.EmailInput(),max_length=100 ,required=False)
-    password=forms.CharField(label="Password", widget=forms.PasswordInput(),required=False)
+    email=forms.CharField(label="Email" ,
+    widget=forms.EmailInput(
+        attrs={'class':'form-control cnr-rounded',}
+    ),
+    max_length=100 ,required=True)
+    
+    password=forms.CharField(label="Password", widget=forms.PasswordInput(
+        attrs={'class':'form-control cnr-rounded',}
+    ),required=True)
 
     __user = None
 

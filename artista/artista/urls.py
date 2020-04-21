@@ -21,6 +21,7 @@ from register.views import register_client,register_artist,thank_you
 from login.views import login_user,logout_user
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 admin.site.site_header = "ARTISTA Admin"
 admin.site.site_title = "ARTISTA Admin Portal"
@@ -47,6 +48,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('accounts/', include('allauth.urls')),
     
-]
+] 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += staticfiles_urlpatterns()

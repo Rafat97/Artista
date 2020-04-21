@@ -1,13 +1,21 @@
-<h1> ARTISTA! </h1>
-Hello, {{ request.session.user }}
+{% extends 'base_header.html' %}
+{% load static %}
 
-<p>
-    <a href="{% url 'login_user' %}">Login</a>
-</p>
+{% block page_title %} Artista Get Started  {% endblock %}
 
-<p>
-    <a href="{% url 'register_client' %}">Client register</a>
-</p>
-<p>
-    <a href="{% url 'register_artist' %}">Artist register</a>
-</p>
+{% block content %}
+
+    Hello, {{ request.session.user }}
+
+    <!-- <img src="{% static 'path.png' %}" alt="My image"> -->
+    <p>
+        <a href="{% url 'login_user' %}">Login</a>
+    </p>
+
+    <p>
+        <a href="{% url 'register_client' %}">Client register</a>
+    </p>
+    <p>
+        <a href="{% url 'register_artist' %}">Artist register</a>
+    </p>
+{% endblock %}

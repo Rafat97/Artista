@@ -1,28 +1,44 @@
-<h1>Login From login app</h1>
-<br>
-<br>
-<br>
-{{ form.non_field_errors }}
-<form action='' method='POST'>
+{% extends 'base_header.html' %} {% load static %} 
+{% block page_title %}
+Login Page 
+{% endblock %} 
+ 
+{% block content %}
 
-    {% for field in form %}
-        <div class="fieldWrapper">
-            {{ field.errors }}
-            {{ field.label_tag }}: {{ field }}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6"></div>
+    <div class="col-md-6 my-5">
+      <h4 class="text-center">Login User</h4>
+
+      {% for error in form.non_field_errors %}
+      <div class="alert alert-danger" role="alert">
+        {{error}}
+      </div>
+      {% endfor %}
+
+      <form action="" method="POST">
+        {% for field in form.visible_fields %}
+        <div class="form-group">
+           <label for="exampleInputEmail1">{{ field.label_tag }}</label>  
+          {{ field }} 
+          {% for error in field.errors %}
+          <small id="emailHelp" class="form-text text-danger">{{ error }}</small>
+          {% endfor %}
         </div>
-    {% endfor %}
+        {% endfor %}
 
-    <!-- {{ form.as_p }} -->
-    {% csrf_token %}
-    <!-- <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email"  name="email"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        {% csrf_token %}
+
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+        <div class="text-center"> 
+            <button class="btn btn-primary cnr-rounded " style="width: 150px;" type="submit" >Submit</button>
+        </div>
+      </form>
     </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password"  name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div> -->
-    
-    <input type='submit' value='Save' />
-</form>
+  </div>
+</div>
+
+{% endblock %}

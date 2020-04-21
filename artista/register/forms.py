@@ -5,11 +5,21 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 class ClientUserForm(forms.ModelForm):
-    # display_name=forms.CharField(widget=forms.TextInput())
-    # email=forms.CharField(widget=forms.EmailInput())
-    password=forms.CharField(widget=forms.PasswordInput())
-    confirm_password=forms.CharField(widget=forms.PasswordInput())
-    user_role = forms.CharField(label="", widget=forms.HiddenInput(), required = False, initial="client")
+    display_name=forms.CharField(widget=forms.TextInput(
+        attrs={'class':'form-control cnr-rounded',}
+    ))
+    email=forms.CharField(widget=forms.EmailInput(
+        attrs={'class':'form-control cnr-rounded',}
+    ))
+    password=forms.CharField(widget=forms.PasswordInput(
+        attrs={'class':'form-control cnr-rounded',}
+    ))
+    confirm_password=forms.CharField(widget=forms.PasswordInput(
+        attrs={'class':'form-control cnr-rounded',}
+    ))
+    user_role = forms.CharField(label="", widget=forms.HiddenInput(
+        attrs={'class':'form-control',}
+    ), required = False, initial="client")
     # address=forms.CharField(widget=forms.TextInput(), required=False)
     # phone=forms.CharField(widget=forms.TextInput(), required=False)
     # is_active = forms.CharField(widget=forms.CheckboxInput())
@@ -44,13 +54,27 @@ class ClientUserForm(forms.ModelForm):
         ]
 
 class ArtistUserForm(forms.ModelForm):
-    # display_name=forms.CharField(widget=forms.TextInput())
-    # email=forms.CharField(widget=forms.EmailInput())
-    password=forms.CharField(widget=forms.PasswordInput())
-    confirm_password=forms.CharField(widget=forms.PasswordInput())
-    address=forms.CharField(widget=forms.TextInput(),required = False)
-    phoneNumber=forms.CharField(label="Phone Number", widget=forms.TextInput(),required = False )
-    user_role = forms.CharField(label="", widget=forms.HiddenInput(), required = False, initial="artist")
+    display_name=forms.CharField(widget=forms.TextInput(
+        attrs={'class':'form-control cnr-rounded',}
+    ))
+    email=forms.CharField(widget=forms.EmailInput(
+        attrs={'class':'form-control cnr-rounded',}
+    ))
+    password=forms.CharField(widget=forms.PasswordInput(
+        attrs={'class':'form-control cnr-rounded',}
+    ))
+    confirm_password=forms.CharField(widget=forms.PasswordInput(
+        attrs={'class':'form-control cnr-rounded',}
+    ))
+    address=forms.CharField(widget=forms.TextInput(
+        attrs={'class':'form-control cnr-rounded',}
+    ),required = False)
+    phoneNumber=forms.CharField(label="Phone Number", widget=forms.TextInput(
+        attrs={'class':'form-control cnr-rounded',}
+    ),required = False )
+    user_role = forms.CharField(label="", widget=forms.HiddenInput(
+        attrs={'class':'form-control cnr-rounded',}
+    ), required = False, initial="artist")
     # is_active = forms.CharField(widget=forms.CheckboxInput())
 
     def clean_confirm_password(self):
