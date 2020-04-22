@@ -1,2 +1,12 @@
+{% extends 'base_header.html' %} {% load static %} 
+{% block page_title %}
+Thank you
+{% endblock %} 
+
+
+{% block content %}
+
 Thank you
 <a href="{% url 'login_user' %}">Go to Login</a>
+
+{% endblock %}

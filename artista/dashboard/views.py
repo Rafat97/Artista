@@ -5,4 +5,8 @@ from django.views import View
 # Create your views here.
 class DashboardView(View):
     def get(self, request, *args, **kwargs):
-        return HttpResponse("Dashboard")
+        context = {}
+        return render(request, "dashboard_home.html", context)
+
+    def post(self, request, *args, **kwargs):
+        pass

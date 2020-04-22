@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'login',
     'register',
     'api',
+    'dashboard'
 ]
 
 SITE_ID = 1

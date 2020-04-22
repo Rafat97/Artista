@@ -1,15 +1,19 @@
 {% extends 'base_header.html' %} {% load static %} 
 {% block page_title %}
-Client Register Page 
+ Artist Register Page 
  {% endblock %} 
  
 {% block content %}
 
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-6"></div>
-    <div class="col-md-6 my-5">
-      <h4 class="text-center">Client Register</h4>
+    
+    <div class="col-md-4 p-5">
+      <div class="text-center">
+        <!-- <img src="{% static 'images/Artista-logo.png' %}" width="168"  height="150"> -->
+      </div>
+      <h5 class="text-center mb-5 text-uppercase font-weight-bold">Create Account </h5>
+      <h5 class="text-center pb-4 text-uppercase font-weight-bold">Hi Client </h5>
 
       {% for error in form.non_field_errors %}
       <div class="alert alert-danger" role="alert">
@@ -20,7 +24,7 @@ Client Register Page
       <form action="" method="POST">
         {% for field in form.visible_fields %}
         <div class="form-group">
-           <label for="exampleInputEmail1">{{ field.label_tag }}</label>  
+           <label class="font-weight-bold" for="exampleInputEmail1">{{ field.label_tag }}</label>  
           {{ field }} 
           {% for error in field.errors %}
           <small id="emailHelp" class="form-text text-danger">{{ error }}</small>
@@ -38,6 +42,7 @@ Client Register Page
         </div>
       </form>
     </div>
+    <div class="col-md-7"></div>
   </div>
 </div>
 
