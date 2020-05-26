@@ -39,3 +39,7 @@ link : {url}/admin/
 user : admin
 
 pass : admin
+
+
+# importent
+1. must merge dev-final when you start working.
