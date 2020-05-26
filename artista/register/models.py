@@ -36,6 +36,7 @@ class User(models.Model):
     address = models.CharField(max_length=255,null=True,blank=True)
     # user_role = models.ForeignKey(Role, on_delete=models.CASCADE,null=False)
     user_role = models.CharField(max_length=255,null=False,choices=ROLE)
+    refresh_token = models.CharField(max_length=255,null=True)
     avatar = models.ImageField(upload_to=user_directory_path,default="avatar/default.jpg")
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)

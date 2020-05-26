@@ -11,6 +11,15 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import environ
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+# reading .env file
+environ.Env.read_env()
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,6 +35,10 @@ SECRET_KEY = 'oixxgi10byo%y)^l0a2f4omgidkvca!@#c=m*hiit^1qyv^1dh'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+
+
+SITE_URL='http://127.0.0.1:8000/'
+SITE_NAME='Artista'
 
 
 # Application definition
@@ -49,6 +62,7 @@ INSTALLED_APPS = [
     'getstart',
     'login',
     'register',
+    'forgotPass',
     'api',
     'dashboard'
 ]
@@ -179,3 +193,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'stroage/media/upload/')
 MEDIA_URL = "/media/"
 
 STATIC_URL = '/static/'
+
+
+## Email Setup 
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '342d440685e0fb'
+EMAIL_HOST_PASSWORD = '4982cfbd5f4f1c'
+EMAIL_PORT = '2525'
+
+## Email Setup with file
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'stroage/tmp/emails/') # change this to a proper location

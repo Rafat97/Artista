@@ -26,6 +26,8 @@
 
 3. allauth
 
+4. django-environ
+
 # Software
 1. (DB Browser for SQLite) https://sqlitebrowser.org/dl/
 
