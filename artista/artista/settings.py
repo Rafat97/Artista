@@ -161,6 +161,10 @@ USE_L10N = True
 USE_TZ = True
 
 
+# SESSION files
+SESSION_ENGINE = "django.contrib.sessions.backends.file"
+SESSION_FILE_PATH =  os.path.join(BASE_DIR, 'stroage/tmp/sessions/')
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 

@@ -7,6 +7,8 @@ from django.views import View
 # class base view
 class HomePageView(View):
     def get(self, request, *args, **kwargs):
+        request.session['app_name'] = "Artista"
+        # del request.session['app_name']
         return render(request, 'landing_page.html', {})
 
 # function base view
