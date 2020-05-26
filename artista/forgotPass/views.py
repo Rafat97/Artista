@@ -26,7 +26,7 @@ class ForgotPassword(View):
             html_message = render_to_string('email/forgot_password_email.html', {'user': user,"site_url" : settings.SITE_URL})
             
             mail = send_mail(
-                'That’s your subject' ,
+                'Password Recovery' ,
                 "",
                 'no-reply@artista.com',
                 [user.email],
