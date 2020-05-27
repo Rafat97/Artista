@@ -22,7 +22,7 @@ from login.views import login_user,logout_user
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from forgotPass.views import ForgotPassword
+# from forgotPass.views import ForgotPassword
 
 admin.site.site_header = "ARTISTA Admin"
 admin.site.site_title = "ARTISTA Admin Portal"
@@ -34,7 +34,7 @@ urlpatterns = [
 
     path('login/', login_user,name='login_user'), #artist login page url app (login)
     path('logout/', logout_user,name='logout_user'), #artist login page url app (login)
-    path('forgot_password/', ForgotPassword.as_view(),name='forgot_password_user'), #artist login page url app (login)
+    path('forgot_password/', include('forgotPass.urls')),
 
     path('register/artist/', register_artist,name='register_artist'), #artist register page url  app (register)
     path('register/client/', register_client,name='register_client'), #client register page url app (register)
