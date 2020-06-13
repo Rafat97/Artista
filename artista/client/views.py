@@ -5,4 +5,5 @@ from django.views import View
 # Create your views here.
 class DashboardClientView(View):
     def get(self, request, *args, **kwargs):
-        return HttpResponse("asdasd")
+        context = {}
+        return render(request, "home.html", context)

@@ -1,7 +1,7 @@
 from django.urls import path ,include
 from .views import DashboardClientView
 
-app_name="client"
+
 urlpatterns = [
-    #path('', DashboardClientView.as_view(), name='home'), #landing page url
+    path('', DashboardClientView.as_view(), name='client_dashboard'), #landing page url
 ]
