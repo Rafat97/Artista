@@ -66,7 +66,8 @@ INSTALLED_APPS = [
     'api',
     'dashboard',
     'artist',
-    'client'
+    'client',
+    'artistArt'
 ]
 
 SITE_ID = 1

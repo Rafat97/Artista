@@ -1,0 +1,16 @@
+[
+    {
+    "model": "artistArt.ArtCategory",
+    "pk": 1,
+    "fields": {
+      "category_name": "Architecture"
+    }
+  },
+  {
+    "model": "artistArt.ArtCategory",
+    "pk": 2,
+    "fields": {
+        "category_name": "Ceramics"
+    }
+  }
+]
