@@ -192,7 +192,7 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'stroage/media/upload/')  
-MEDIA_URL = "/media/"
+MEDIA_URL = "/media/upload/"
 
 STATIC_URL = '/static/'
 

@@ -5,7 +5,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block page_title %} {% endblock %}</title>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script> -->
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link
       rel="stylesheet"
@@ -29,11 +36,66 @@
       <div class="d-flex" id="wrapper">
       {% block Sidebar %}
         <div class="bg-light border-right" id="sidebar-wrapper">
-          <div class="sidebar-heading">Artista</div>
+          <div class="sidebar-heading text-center">Artista</div>
+           <!-- Profile info -->
           <div class="list-group list-group-flush">
-            <a href="#" class="list-group-item list-group-item-action bg-light">HOME</a>
+            <div>
+              <div href="#" class="mt-5 list-group-item list-group-item-action bg-light">
+                <div class="row mb-5">
+                  <div class="col-sm-12 text-center">
+                    <img src="{{ user_info.avatar.url }}" class="rounded-circle" alt="Avatar" width="103px" height="103px" class="avatar">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 text-center mb-5">
+                    {{ user_info.display_name | upper  }}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+           <!-- end Profile info -->
+
+            <!-- Side bar menu -->
+          <div>
+            <div class="list-group list-group-flush text-center">
+              <a href="#" class="list-group-item list-group-item-action bg-light">HOME</a>
+            </div>
+            <div class="list-group list-group-flush text-center">
+              <a href="#" class="list-group-item list-group-item-action bg-light">FOLLOWING</a>
+            </div>
+            <div class="list-group list-group-flush text-center">
+              <a href="#" class="list-group-item list-group-item-action bg-light">LOVED ART</a>
+            </div>
+            <div class="list-group list-group-flush text-center">
+              <a href="#" class="list-group-item list-group-item-action bg-light">CATEGORY</a>
+            </div>
+          </div>
+            <!-- end Side bar menu -->
+
+          <!-- Logout menu -->
+          <div style="bottom: 0px;position: absolute;">  
+            <div class="list-group list-group-flush">
+              
+              <div class="row my-2">
+                <div class="col-sm-3">
+                  <img src="{{ user_info.avatar.url }}" class="rounded-circle" alt="Avatar" width="45px" height="45px" class="avatar">
+                </div>
+                <div class="col-sm-5 p-0 text-center my-auto">
+                  {{ user_info.display_name | upper }}
+                </div>
+                <div class="col-sm-4 p-0 my-auto">
+                  <a href="{% url 'logout_user' %}" class="btn btn-primary">
+                    Logout
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- end Logout menu -->
+
         </div>
+       
       {% endblock %}
       <div id="page-content-wrapper">
 
@@ -47,12 +109,6 @@
           </div>
         </div>
       </div>
-
-
-
-
-     
-
     </div>
      
     </section>

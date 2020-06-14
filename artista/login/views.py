@@ -10,7 +10,7 @@ def user_login_redirect(view_func):
         return view_func(request, *args, **kwargs)
     return decorated_view_func
 
-@user_login_redirect
+# @user_login_redirect
 def login_user(request, *args, **kwargs):   
     form = LoginFrom(request.POST or None)
     if request.method == 'POST':

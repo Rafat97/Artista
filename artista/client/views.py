@@ -1,9 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.views import View
+from django.utils.decorators import method_decorator
+from artista.utils import get_current_user
 
-# Create your views here.
+
 class DashboardClientView(View):
+
+    USER_INFO = None
+
     def get(self, request, *args, **kwargs):
-        context = {}
+        self.USER_INFO = get_current_user(request)
+        
+        if self.USER_INFO == None:
+            return redirect('/logout')
+
+        context = {
+            'user_info' : self.USER_INFO
+        }
         return render(request, "home.html", context)

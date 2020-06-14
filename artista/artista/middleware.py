@@ -3,6 +3,7 @@ import re
 from django.shortcuts import render,redirect
 from django.http import Http404 ,HttpResponse
 from django.core.exceptions import PermissionDenied
+from django.urls import resolve
 
 class MainMiddleware:
 
@@ -49,6 +50,11 @@ class CustomAuthMiddleware:
     LOG_REQUIRED_URL = [
         "/dashboard/"
     ]
+    USER_LOGIN_REDIRECT_NAME = [
+        "login_user",
+        "register_client",
+        "register_artist",
+    ]
 
     def __init__(self, get_response):
         self.get_response = get_response
@@ -57,6 +63,8 @@ class CustomAuthMiddleware:
     def __call__(self, request):
         # Code to be executed for each request before
         # the view (and later middleware) are called.
+        print(resolve( request.path_info ).url_name)
+        exit
         user_uuid = None
         if request.session.has_key('user'):
             user_uuid = request.session['user']
@@ -64,6 +72,11 @@ class CustomAuthMiddleware:
             if not user:
                 response = redirect('logout_user')
                 return response
+            else:
+                for url in self.USER_LOGIN_REDIRECT_NAME:
+                    if url == resolve( request.path_info ).url_name :
+                        # print("TRUE")
+                        return redirect('/dashboard')
 
         else:
             for url in self.LOG_REQUIRED_URL:

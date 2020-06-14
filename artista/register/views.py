@@ -12,7 +12,7 @@ def user_login_redirect(view_func):
         return view_func(request, *args, **kwargs)
     return decorated_view_func
 
-@user_login_redirect
+# @user_login_redirect
 def register_client(request, *args, **kwargs): 
     if request.session.has_key('user_id'):
         print(request.session['user_id'])
@@ -28,7 +28,7 @@ def register_client(request, *args, **kwargs):
     }
     return render(request, 'register_client.html', context)
 
-@user_login_redirect
+# @user_login_redirect
 def register_artist(request, *args, **kwargs): 
     form = ArtistUserForm(request.POST or None)
     if request.method == 'POST':
