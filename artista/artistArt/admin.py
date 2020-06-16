@@ -8,4 +8,6 @@ class ArtCategory(admin.ModelAdmin):
 
 @admin.register(ArtistArt)
 class ArtistArt(admin.ModelAdmin):
+    list_display = ('uuid','title','user', 'category', 'created_at','updated_at','id',)
+    search_fields = ['title','short_description','long_description']
     pass

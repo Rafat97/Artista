@@ -70,6 +70,11 @@
             <div class="list-group list-group-flush text-center">
               <a href="#" class="list-group-item list-group-item-action bg-light">CATEGORY</a>
             </div>
+            {% if user_info.user_role == 'artist' %}
+            <div class="list-group list-group-flush text-center">
+              <a href="{% url 'artist_art_upload' %}" class="list-group-item list-group-item-action bg-light">ADD NEW ART</a>
+            </div>
+            {% endif %}
           </div>
             <!-- end Side bar menu -->
 

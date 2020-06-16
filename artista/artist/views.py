@@ -12,8 +12,8 @@ class DashboardArtistView(View):
         
         if self.USER_INFO == None:
             return redirect('/logout')
-
         context = {
             'user_info' : self.USER_INFO
         }
         return render(request, "home.html", context)
+

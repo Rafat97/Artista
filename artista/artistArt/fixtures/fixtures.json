@@ -12,5 +12,40 @@
     "fields": {
         "category_name": "Ceramics"
     }
+  },
+  {
+    "model": "artistArt.ArtCategory",
+    "pk": 3,
+    "fields": {
+        "category_name": "Conceptual art"
+    }
+  },
+  {
+    "model": "artistArt.ArtCategory",
+    "pk": 4,
+    "fields": {
+        "category_name": "Drawing"
+    }
+  },
+  {
+    "model": "artistArt.ArtCategory",
+    "pk": 5,
+    "fields": {
+        "category_name": "Painting"
+    }
+  },
+  {
+    "model": "artistArt.ArtCategory",
+    "pk": 6,
+    "fields": {
+        "category_name": "Photography"
+    }
+  },
+  {
+    "model": "artistArt.ArtCategory",
+    "pk": 7,
+    "fields": {
+        "category_name": "Sculpture"
+    }
   }
 ]

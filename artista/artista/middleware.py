@@ -63,8 +63,8 @@ class CustomAuthMiddleware:
     def __call__(self, request):
         # Code to be executed for each request before
         # the view (and later middleware) are called.
-        print(resolve( request.path_info ).url_name)
-        exit
+        # print(resolve( request.path_info ).url_name)
+        # exit
         user_uuid = None
         if request.session.has_key('user'):
             user_uuid = request.session['user']
@@ -86,7 +86,6 @@ class CustomAuthMiddleware:
                        
 
 
-        
         response = self.get_response(request)
         # print(response)
         # Code to be executed for each request/response after
