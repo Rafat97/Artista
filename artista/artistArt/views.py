@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.views import View
 from artista.utils import get_current_user
 from .forms import ArtistArtViewForm
+from htmlmin.decorators import minified_response
+
 
 class ArtistArtUploadNew(View):
 
@@ -26,12 +28,12 @@ class ArtistArtUploadNew(View):
         if self.USER_INFO == None:
             return redirect('/logout')
 
-        form = ArtistArtViewForm(request.POST or None)
+        form = ArtistArtViewForm(request.POST,request.FILES or None)
         form.setUser(current_user = self.USER_INFO)
         if form.is_valid() :
             data = form.save()
             print(data)
-            return HttpResponse("Thank you to upload a new art")
+            return HttpResponse("Thank you to upload a new art code is = "+str(data.uuid))
 
         context = {
             'user_info' : self.USER_INFO,

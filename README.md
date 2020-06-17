@@ -28,6 +28,10 @@
 
 4. django-environ
 
+5. django-htmlmin
+
+6. sorl-thumbnail
+
 # Software
 1. (DB Browser for SQLite) https://sqlitebrowser.org/dl/
 

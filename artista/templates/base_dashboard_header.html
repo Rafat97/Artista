@@ -1,4 +1,5 @@
 {% load static %}
+{% load thumbnail %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -28,6 +29,8 @@
       rel="stylesheet"
       href="{% static 'css/sample-sidebar.css' %}"
     />
+    {% block css_cdn %} {% endblock %}
+    {% block js_cdn %} {% endblock %}
   </head>
 
   <body>
@@ -43,7 +46,11 @@
               <div href="#" class="mt-5 list-group-item list-group-item-action bg-light">
                 <div class="row mb-5">
                   <div class="col-sm-12 text-center">
-                    <img src="{{ user_info.avatar.url }}" class="rounded-circle" alt="Avatar" width="103px" height="103px" class="avatar">
+
+                    {% thumbnail user_info.avatar "104x104" as im %}
+                        <img src="{{ im.url }}" class="rounded-circle" alt="Avatar" >
+                    {% endthumbnail %}
+
                   </div>
                 </div>
                 <div class="row">

@@ -56,6 +56,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
+    'sorl.thumbnail',
+
     # 'channels', #need asynchronous web server
     # 'chat',  #need asynchronous web server
     'rest_framework',
@@ -89,7 +91,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
+    # 'django.middleware.gzip.GZipMiddleware'
+    'htmlmin.middleware.HtmlMinifyMiddleware',
+    'htmlmin.middleware.MarkRequestMiddleware',
     # own Middleware
     'artista.middleware.MainMiddleware',
     'artista.middleware.CustomAuthMiddleware',
