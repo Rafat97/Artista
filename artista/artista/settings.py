@@ -61,6 +61,9 @@ INSTALLED_APPS = [
     # 'channels', #need asynchronous web server
     # 'chat',  #need asynchronous web server
     'rest_framework',
+    'rest_framework.authtoken',
+
+
     'getstart',
     'login',
     'register',
@@ -137,7 +140,11 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
-    
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',  # <-- And here
+    ],
 }
 
 
