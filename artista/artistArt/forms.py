@@ -10,7 +10,6 @@ class ArtistArtViewForm(forms.ModelForm):
     long_description = forms.CharField(max_length=500, widget=forms.Textarea(attrs={'class':'form-control cnr-rounded',}), required=True )
     image = forms.ImageField(required=True)
 
-
     __user = None
 
     def clean_image(self):
@@ -25,8 +24,11 @@ class ArtistArtViewForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         user = self.__user
-        if user.user_role != 'artist':
-            raise forms.ValidationError(_('You are not allow upload a new art'))
+        if user:
+            if user.user_role != 'artist':
+                raise forms.ValidationError(_('You are not allow upload a new art'))
+        else:
+            raise forms.ValidationError(_('You must logged in to upload a new art'))
 
   
     def save(self, commit=True):

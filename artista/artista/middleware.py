@@ -32,7 +32,9 @@ class MainMiddleware:
         
     def process_exception(self,request, exception):
         print("process_exception")
-        pass
+        print(exception)
+        raise exception
+        # raise Http404(exception)
 
     def process_template_response(self,request, response):
         '''
@@ -103,7 +105,7 @@ class CustomAuthMiddleware:
         pass
         
     def process_exception(self,request, exception):
-        print("process_exception")
+        # print("process_exception")
         pass
 
     def process_template_response(self,request, response):

@@ -24,13 +24,15 @@
 
 2. djangorestframework
 
-3. allauth
+3. django-filter
 
-4. django-environ
+4. allauth
 
-5. django-htmlmin
+5. django-environ
 
-6. sorl-thumbnail
+6. django-htmlmin
+
+7. sorl-thumbnail
 
 # Software
 1. (DB Browser for SQLite) https://sqlitebrowser.org/dl/

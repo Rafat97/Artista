@@ -44,7 +44,7 @@ urlpatterns = [
     path('dashboard/', include('dashboard.urls')),
     path('dashboard/artist/', include('artist.urls')),
     path('dashboard/client/', include('client.urls')),
-    path('dashboard/artist/art_artist/', include('artistArt.urls')),
+    path('dashboard/art_artist/', include('artistArt.urls')),
     path('dashboard/artist/api/art_artist/', include('artistArt.url_apis')),
    
     path('chat/', include('chat.urls')), # must need asynchronous server 

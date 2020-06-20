@@ -2,6 +2,7 @@ from django.db import models
 import uuid
 from datetime import datetime
 from register.models import User
+from artista.utils import get_current_user
 
 # Create your models here.
 class ArtCategory(models.Model):
@@ -26,6 +27,8 @@ class ArtistArt(models.Model):
     title=models.CharField(max_length=100,blank=False)
     short_description=models.CharField(max_length=300,blank=False)
     long_description=models.CharField(max_length=500,blank=False)
+    tags=models.CharField(max_length=1000,blank=True)
+    view_count=models.BigIntegerField(default=0)
     post_status = models.CharField(max_length=20,null=False,choices=STATUS,default='private')
     category = models.ForeignKey(ArtCategory, on_delete=models.CASCADE,null=False,blank=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE,null=False,blank=False)
@@ -38,3 +41,51 @@ class ArtistArt(models.Model):
 
     def __str__(self):
         return self.title
+
+    @property
+    def number_of_likes(self):
+        find = ArtLikeDislike.objects.filter(artist_art=self,like_dislike=True)
+        return find.count()
+
+    @property
+    def number_of_dislikes(self):
+        find = ArtLikeDislike.objects.filter(artist_art=self,like_dislike=False)
+        return find.count()
+
+
+class ArtLikeDislike(models.Model):
+
+    artist_art = models.ForeignKey(ArtistArt, on_delete=models.CASCADE,null=False,blank=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=False,blank=False)
+    like_dislike = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.artist_art.title
+    
+    def save(self, *args, **kwargs):
+        find = ArtLikeDislike.objects.filter(user=self.user , artist_art=self.artist_art)
+        if find:
+            get_data = find.get()
+            if get_data.like_dislike !=  self.like_dislike:
+                find.update(like_dislike = self.like_dislike)
+            else:
+                # Same value as previous like
+                pass
+        else:
+            super().save(*args, **kwargs)
+            
+        
+
+class ArtComment(models.Model):
+
+    artist_art = models.ForeignKey(ArtistArt, on_delete=models.CASCADE,null=False,blank=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=False,blank=False)
+    comment_message = models.CharField(max_length=255,blank=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.comment_message
+

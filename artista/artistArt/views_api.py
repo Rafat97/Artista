@@ -3,14 +3,16 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import ArtistArt,ArtCategory
+from .models import ArtistArt,ArtCategory,ArtComment,ArtLikeDislike
 from register.models import User
-from rest_framework import serializers
+from rest_framework import serializers,viewsets
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import permissions
 from rest_framework.pagination import PageNumberPagination
 from rest_framework import generics
 from rest_framework import mixins
+from django_filters.rest_framework import DjangoFilterBackend, FilterSet
+from rest_framework import filters
 
 class ArtistArtCategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -28,8 +30,21 @@ class ArtistArtSerializer(serializers.ModelSerializer):
     user = ArtistArtUserSerializer(many=False, read_only=True)
     class Meta:
         model = ArtistArt
-        fields = ['id','title','uuid','short_description','long_description','post_status','image','user','category','created_at']
-        
+        fields = [
+            'id',
+            'title',
+            'uuid',
+            'short_description',
+            'long_description',
+            'view_count',
+            'post_status',
+            'number_of_likes',
+            'number_of_dislikes',
+            'image',
+            'user',
+            'category',
+            'created_at'
+        ]
 
 
 class StandardResultsSetPagination(PageNumberPagination):
@@ -51,21 +66,20 @@ class StandardResultsSetPagination(PageNumberPagination):
         })
 
 
-class ArtistArtApi_all(generics.GenericAPIView
-                        ,mixins.ListModelMixin
-                        ,mixins.CreateModelMixin
-                        ):
+class ArtistArtApi_all(generics.ListAPIView):
     queryset = ArtistArt.objects.all()
     serializer_class = ArtistArtSerializer
-    pagination_class = StandardResultsSetPagination
-    class Meta:
-        ordering = ['-id']
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    search_fields = ['title', 'tags',]
+    ordering_fields = ['view_count',]
+    filterset_fields = ['post_status',]
+    
+    # def get(self, request, *args, **kwargs):
+    #     return self.list(request)
 
-    def get(self, request, *args, **kwargs):
-        return self.list(request)
-
-    def post(self, request, *args, **kwargs):
-        return self.list(request)
+    # Not used post request
+    # def post(self, request, *args, **kwargs):
+    #     return self.list(request)
 
 class ArtistArtApi_single(generics.RetrieveUpdateDestroyAPIView):
     queryset = ArtistArt.objects.all()
