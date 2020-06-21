@@ -6,4 +6,15 @@ Artist Home
 
 {% block content %}
 Artist Home
+
+<div id="app-react"></div>
+<div id="app-vue"></div>
+{% endblock %}
+
+
+
+
+{% block add_js %} 
+<script src="{% static 'js/public/app-react.js' %}"></script>
+<script src="{% static 'js/public/app-vue.js' %}"></script>
 {% endblock %}
