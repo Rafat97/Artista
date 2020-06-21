@@ -57,7 +57,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     'sorl.thumbnail',
-
     # 'channels', #need asynchronous web server
     # 'chat',  #need asynchronous web server
     'rest_framework',
@@ -74,6 +73,7 @@ INSTALLED_APPS = [
     'client',
     'artistArt'
 ]
+
 
 SITE_ID = 1
 
@@ -97,10 +97,10 @@ MIDDLEWARE = [
     # 'django.middleware.gzip.GZipMiddleware'
     'htmlmin.middleware.HtmlMinifyMiddleware',
     'htmlmin.middleware.MarkRequestMiddleware',
+
     # own Middleware
     'artista.middleware.MainMiddleware',
     'artista.middleware.CustomAuthMiddleware',
-    
 ]
 
 ROOT_URLCONF = 'artista.urls'

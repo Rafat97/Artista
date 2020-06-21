@@ -36,6 +36,9 @@ class ArtistArt(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+
+    __user_like_dislike = None
+
     class Meta:
         ordering = ['id']
 
@@ -51,6 +54,14 @@ class ArtistArt(models.Model):
     def number_of_dislikes(self):
         find = ArtLikeDislike.objects.filter(artist_art=self,like_dislike=False)
         return find.count()
+    
+    def current_user_like_dislike(self,user_info):
+        find = ArtLikeDislike.objects.filter(artist_art=self,user=user_info)
+        if not find:
+            find = None
+            pass
+        self.__user_like_dislike = find
+        return find
 
 
 class ArtLikeDislike(models.Model):

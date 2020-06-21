@@ -67,13 +67,14 @@ class ArtistArtPreview(View):
         if self.USER_INFO == None:
             return redirect('/logout')
             
-        current_user_liked = False
-        find = ArtLikeDislike.objects.filter(user=self.USER_INFO, artist_art=self.ART_INFO)
-        if find:
-            current_user_liked = True
+        is_liked = None
+        data =  self.ART_INFO.current_user_like_dislike(self.USER_INFO)
+        if data:
+            is_liked = data.get().like_dislike
+
         context = {
             'user_info': self.USER_INFO,
             'art_info': self.ART_INFO,
-            'current_user_liked': current_user_liked,
+            'current_user_liked': is_liked,
         }
         return render(request, 'artist_art_preview.html', context)

@@ -5,7 +5,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import ArtistArt,ArtCategory,ArtComment,ArtLikeDislike
 from register.models import User
+from artista.utils import get_current_user
 from rest_framework import serializers,viewsets
+from django.core import serializers as django_core_serializers
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import permissions
 from rest_framework.pagination import PageNumberPagination
@@ -13,6 +15,8 @@ from rest_framework import generics
 from rest_framework import mixins
 from django_filters.rest_framework import DjangoFilterBackend, FilterSet
 from rest_framework import filters
+from django.http import JsonResponse
+import json
 
 class ArtistArtCategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,9 +29,10 @@ class ArtistArtUserSerializer(serializers.ModelSerializer):
         fields = ['display_name','id','uuid','avatar',]
 
 class ArtistArtSerializer(serializers.ModelSerializer):
-    # category = serializers.StringRelatedField(many=False)
     category = ArtistArtCategorySerializer(many=False, read_only=True)
     user = ArtistArtUserSerializer(many=False, read_only=True)
+    current_custom_user_liked = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = ArtistArt
         fields = [
@@ -40,11 +45,30 @@ class ArtistArtSerializer(serializers.ModelSerializer):
             'post_status',
             'number_of_likes',
             'number_of_dislikes',
+            'current_custom_user_liked',
             'image',
             'user',
             'category',
             'created_at'
         ]
+    
+    def get_current_custom_user_liked(self, obj):
+        '''
+        response  
+        null : current user have no data like & no dislike 
+        true : current user liked this post
+        false : current user disliked this post
+        '''
+        is_liked = None
+        request = self.context.get('request')
+        current_user = get_current_user(request)
+        if current_user:
+            data =  obj.current_user_like_dislike(current_user)
+            if data:
+                is_liked = data.get().like_dislike  
+
+        return is_liked
+
 
 
 class StandardResultsSetPagination(PageNumberPagination):
@@ -73,6 +97,11 @@ class ArtistArtApi_all(generics.ListAPIView):
     search_fields = ['title', 'tags',]
     ordering_fields = ['view_count',]
     filterset_fields = ['post_status',]
+
+    # def get_serializer_context(self):
+    #     return  {
+    #         'request': self.request,
+    #     }
     
     # def get(self, request, *args, **kwargs):
     #     return self.list(request)
