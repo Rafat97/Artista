@@ -4,6 +4,16 @@ from django.http import HttpResponse
 from django.views import View
 from htmlmin.decorators import minified_response
 
+
+def blaBla(request, *args, **kwargs):
+    return render(request, 'blabla.html', {})
+def blaBlaadd(request, *args, **kwargs):
+    print(request.GET)
+    x1 =  request.GET.get('num1', 0)
+    x2 =  request.GET.get('num2', 0)
+    Y = int(x1) + int(x2)
+    return HttpResponse(Y)
+
 # class base view
 class HomePageView(View):
     @minified_response

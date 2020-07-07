@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path ,include
 
-from getstart.views import home_view,HomePageView
+from getstart.views import home_view,HomePageView,blaBla,blaBlaadd
 from register.views import register_client,register_artist,thank_you
 from login.views import login_user,logout_user
 from django.conf import settings
@@ -50,6 +50,9 @@ urlpatterns = [
     path('chat/', include('chat.urls')), # must need asynchronous server 
     
     path('admin/', admin.site.urls),
+    # path('bla-bla/', blaBla, name="bla-bla"),
+    # path('add/', blaBlaadd, name="bla-bla-add"),
+
     # path('accounts/', include('allauth.urls')),
     
 ] 
