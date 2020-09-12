@@ -2,8 +2,13 @@ from django.contrib import admin
 import csv
 from django.http import HttpResponse
 # Register your models here.
-from .models import User
+from .models import User,Role
 from .forms import AdminUserForm
+
+@admin.register(Role)
+class UserRole(admin.ModelAdmin):
+    list_display = ('uuid','role_name','id',)
+
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):

@@ -11,10 +11,10 @@ class DashboardView(View):
 
         uuid = request.session['user']
         user = User.objects.filter(uuid__exact=uuid).get()
-        if user.user_role == 'client':
+        if user.user_role.role_name == 'Client':
             return redirect('/dashboard/client')
             
-        elif user.user_role == 'artist':
+        elif user.user_role.role_name == 'Artist':
             return redirect('/dashboard/artist')
             
         else:

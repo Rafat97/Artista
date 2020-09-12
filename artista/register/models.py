@@ -19,6 +19,13 @@ def user_directory_path(instance, filename):
     return path
 
 
+class Role(models.Model):
+    uuid = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
+    role_name = models.CharField(max_length=30,blank=False)
+
+    def __str__(self):
+        return self.role_name
+
 class User(models.Model):
     CLIENT = 'client'
     ARTIST = 'artist'
@@ -34,9 +41,10 @@ class User(models.Model):
     # current_password = models.CharField(max_length=255,blank=False)
     phoneNumber = models.CharField(max_length=20,null=True,blank=True)
     address = models.CharField(max_length=255,null=True,blank=True)
+    # user_role = models.CharField(max_length=255,null=False,choices=ROLE)
     # user_role = models.ForeignKey(Role, on_delete=models.CASCADE,null=False)
-    user_role = models.CharField(max_length=255,null=False,choices=ROLE)
-    refresh_token = models.CharField(max_length=255,null=True)
+    user_role = models.ForeignKey(Role, on_delete=models.SET_NULL,null=True)
+    refresh_token = models.CharField(max_length=255,null=True,blank=True)
     avatar = models.ImageField(upload_to=user_directory_path,default="avatar/default.jpg")
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -59,25 +67,10 @@ class User(models.Model):
 
             return False
 
-    def artist_validaiton_role(self):
-        if self.user_role == "artist":
-            error = {}
-            if not self.phoneNumber :
-                error['phoneNumber'] = ValidationError(_('Missing artist phone.'))
-            if not self.address :
-                error['address'] = ValidationError(_('Missing artist address.'))
-            if error:
-                raise ValidationError(error)
-            pass
 
     def clean(self):
-        if not self.user_role:
-            raise ValidationError({
-                'user_role': ValidationError(_('Missing user role.')),
-            })
-        self.artist_validaiton_role()
         if self.is_active == False:
-           self.is_active = True
+            self.is_active = True
         
 
     def save(self, *args, **kwargs):

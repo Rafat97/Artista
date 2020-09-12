@@ -9,7 +9,10 @@ class DashboardArtistView(View):
 
     def get(self, request, *args, **kwargs):
         self.USER_INFO = get_current_user(request)
-        
+
+        if self.USER_INFO.user_role.role_name != 'Artist':
+            return redirect('/dashboard')
+
         if self.USER_INFO == None:
             return redirect('/logout')
         context = {

@@ -1,0 +1,23 @@
+[
+    {
+    "model": "register.Role",
+    "pk": 1,
+    "fields": {
+      "role_name": "Artist"
+    }
+  },
+  {
+    "model": "register.Role",
+    "pk": 2,
+    "fields": {
+      "role_name": "Client"
+    }
+  },
+  {
+    "model": "register.Role",
+    "pk": 3,
+    "fields": {
+      "role_name": "Banned"
+    }
+  }
+]

@@ -1,5 +1,5 @@
 from django import forms
-from .models import User
+from .models import User,Role
 from django.contrib.auth.hashers import make_password,check_password
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
@@ -17,9 +17,6 @@ class ClientUserForm(forms.ModelForm):
     confirm_password=forms.CharField(widget=forms.PasswordInput(
         attrs={'class':'form-control cnr-rounded',}
     ))
-    user_role = forms.CharField(label="", widget=forms.HiddenInput(
-        attrs={'class':'form-control',}
-    ), required = False, initial="client")
     # address=forms.CharField(widget=forms.TextInput(), required=False)
     # phone=forms.CharField(widget=forms.TextInput(), required=False)
     # is_active = forms.CharField(widget=forms.CheckboxInput())
@@ -36,6 +33,8 @@ class ClientUserForm(forms.ModelForm):
             
     def save(self, commit=True):
         client_user = super(ClientUserForm, self).save(commit=False)
+        clientRole,created  = Role.objects.get_or_create(role_name = "Client")
+        client_user.user_role = clientRole
         password = make_password(self.cleaned_data["password"])
         client_user.password = password
         if commit:
@@ -50,7 +49,6 @@ class ClientUserForm(forms.ModelForm):
             'display_name',
             'email',
             'password',
-            'user_role',
         ]
 
 class ArtistUserForm(forms.ModelForm):
@@ -72,9 +70,6 @@ class ArtistUserForm(forms.ModelForm):
     phoneNumber=forms.CharField(label="Phone Number", widget=forms.TextInput(
         attrs={'class':'form-control cnr-rounded',}
     ),required = False )
-    user_role = forms.CharField(label="", widget=forms.HiddenInput(
-        attrs={'class':'form-control cnr-rounded',}
-    ), required = False, initial="artist")
     # is_active = forms.CharField(widget=forms.CheckboxInput())
 
     def clean_confirm_password(self):
@@ -88,11 +83,15 @@ class ArtistUserForm(forms.ModelForm):
             )
 
     def save(self, commit=True):
+       
         artist_user = super(ArtistUserForm, self).save(commit=False)
         password = make_password(self.cleaned_data["password"])
+        artistRole,created  = Role.objects.get_or_create(role_name = "Artist")
+        artist_user.user_role = artistRole
         artist_user.password = password
+
         if commit:
-            artist_user.save()
+           artist_user.save()
         return artist_user
 
     class Meta:
@@ -104,8 +103,10 @@ class ArtistUserForm(forms.ModelForm):
             'confirm_password',
             'address',
             'phoneNumber',
-            'user_role',
         ]
+
+
+
 
 
 
