@@ -6,7 +6,7 @@ from artista.utils import get_current_user
 from .forms import ArtistArtViewForm
 from htmlmin.decorators import minified_response
 from .models import ArtCategory, ArtistArt, ArtComment, ArtLikeDislike
-
+from django.shortcuts import get_object_or_404
 
 class ArtistArtUploadNew(View):
 
@@ -16,7 +16,7 @@ class ArtistArtUploadNew(View):
         self.USER_INFO = get_current_user(request)
         if self.USER_INFO == None:
             return redirect('/logout')
-        form = ArtistArtViewForm()
+        form = ArtistArtViewForm(None)
         context = {
             'user_info': self.USER_INFO,
             'form': form
@@ -34,7 +34,8 @@ class ArtistArtUploadNew(View):
         if form.is_valid():
             data = form.save()
             print(data)
-            return HttpResponse("Thank you to upload a new art code is = "+str(data.uuid))
+            # return HttpResponse("Thank you to upload a new art code is = "+str(data.uuid))
+            return redirect('artist_own_all_art')
 
         context = {
             'user_info': self.USER_INFO,
@@ -52,10 +53,17 @@ class ArtistArtPreview(View):
         uid = kwargs.get('uuid')
         if not uid:
             raise Http404("Page not found")
-        art = ArtistArt.objects.get(
-            uuid=uid,
-            post_status='public'
+        
+        art = get_object_or_404(
+            ArtistArt,  uuid=uid,post_status='public'
         )
+        
+        # ArtistArt.objects.get(
+        #     uuid=uid,
+        #     post_status='public'
+        # ) 
+        print("sadasdasdasd")
+        
         if not art:
             raise Http404("Page not found")
 
@@ -78,3 +86,93 @@ class ArtistArtPreview(View):
             'current_user_liked': is_liked,
         }
         return render(request, 'artist_art_preview.html', context)
+
+
+class ArtistArtUploadEdit(View):
+
+    USER_INFO = None
+
+    def get(self, request, *args, **kwargs):
+        uid = kwargs.get('uuid')
+        if not uid:
+            raise Http404("Page not found")
+        self.USER_INFO = get_current_user(request)
+        if self.USER_INFO == None:
+            return redirect('/logout')
+
+        art = get_object_or_404(
+            ArtistArt,  uuid=uid,user=self.USER_INFO
+        )   
+
+        form = ArtistArtViewForm(instance=art)
+        context = {
+            'user_info': self.USER_INFO,
+            'form': form
+        }
+        return render(request, 'artist_art_upload_form.html', context)
+
+    def post(self, request, *args, **kwargs):
+        uid = kwargs.get('uuid')
+        if not uid:
+            raise Http404("Page not found")
+        self.USER_INFO = get_current_user(request)
+
+        if self.USER_INFO == None:
+            return redirect('/logout')
+        art = get_object_or_404(
+            ArtistArt,  uuid=uid,user=self.USER_INFO
+        ) 
+
+        form = ArtistArtViewForm(request.POST, request.FILES or None, instance=art)
+        form.setUser(current_user=self.USER_INFO)
+        if form.is_valid():
+            data = form.save()
+            return redirect('artist_own_all_art')
+
+        context = {
+            'user_info': self.USER_INFO,
+            'form': form
+        }
+        return render(request, 'artist_art_upload_form.html', context)
+
+
+class ArtistArtUploadedDelete(View):
+
+    USER_INFO = None
+
+    def get(self, request, *args, **kwargs):
+        uid = kwargs.get('uuid')
+        if not uid:
+            raise Http404("Page not found")
+        self.USER_INFO = get_current_user(request)
+
+        if self.USER_INFO == None:
+            return redirect('/logout')
+        art = get_object_or_404(
+            ArtistArt,  uuid=uid,user=self.USER_INFO
+        ) 
+        art.delete()
+        return redirect('artist_own_all_art')
+
+        
+class ArtistArtPreviewAll(View):
+
+    USER_INFO = None
+    ART_INFO = None
+
+    def get(self, request, *args, **kwargs):
+
+        self.USER_INFO = get_current_user(request)
+
+        if self.USER_INFO == None:
+            return redirect('/logout')
+
+        art = ArtistArt.objects.filter( user=self.USER_INFO)  
+        self.ART_INFO = art
+
+        context = {
+            'user_info': self.USER_INFO,
+            'arts_info': self.ART_INFO,
+        }
+        return render(request, 'artist_all_art_preview.html', context)
+

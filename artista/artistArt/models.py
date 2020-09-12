@@ -3,6 +3,8 @@ import uuid
 from datetime import datetime
 from register.models import User
 from artista.utils import get_current_user
+import os
+import uuid
 
 # Create your models here.
 class ArtCategory(models.Model):
@@ -12,9 +14,11 @@ class ArtCategory(models.Model):
         return self.category_name
 
 def art_directory_stor_path(instance, filename):
+    name, extension = os.path.splitext(filename)
     myDate = datetime.now()
+    currentFilename = str(uuid.uuid4().hex)+ extension
     formatedDate = myDate.strftime("%Y-%m-%d")
-    path = 'art_image/{0}/{1}'.format(formatedDate, filename)
+    path = 'art_image/{0}/{1}'.format(formatedDate, currentFilename)
     return path
 
 class ArtistArt(models.Model):

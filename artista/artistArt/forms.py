@@ -5,11 +5,11 @@ from django.utils.translation import gettext, gettext_lazy as _
 
 class ArtistArtViewForm(forms.ModelForm):
 
+    image = forms.ImageField(required=True)
     title=forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':'form-control cnr-rounded',}) , required=True )
     short_description = forms.CharField(max_length=299, widget=forms.Textarea(attrs={'class':'form-control cnr-rounded',}), required=True )
     long_description = forms.CharField(max_length=500, widget=forms.Textarea(attrs={'class':'form-control cnr-rounded',}), required=True )
-    image = forms.ImageField(required=True)
-
+  
     __user = None
 
     def clean_image(self):
@@ -25,7 +25,7 @@ class ArtistArtViewForm(forms.ModelForm):
         cleaned_data = super().clean()
         user = self.__user
         if user:
-            if user.user_role != 'artist':
+            if user.user_role.role_name != 'Artist':
                 raise forms.ValidationError(_('You are not allow upload a new art'))
         else:
             raise forms.ValidationError(_('You must logged in to upload a new art'))
@@ -47,5 +47,13 @@ class ArtistArtViewForm(forms.ModelForm):
 
     class Meta:
         model = ArtistArt
-        fields = '__all__'
-        exclude = ['user']
+        fields = [
+            'image',
+            'title',
+            'short_description',
+            'long_description',
+            'tags',
+            'category',
+            'post_status'
+        ]
+        exclude = ['user','view_count']
