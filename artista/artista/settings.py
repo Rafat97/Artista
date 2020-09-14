@@ -74,6 +74,9 @@ INSTALLED_APPS = [
     'artistArt',
     'artistArtCategory'
 ]
+INSTALLED_APPS += [
+    "app_artInfo"
+]
 
 
 SITE_ID = 1

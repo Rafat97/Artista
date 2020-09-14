@@ -1,0 +1,6 @@
+1. DJANGO
+2. DJANGO rest framework
+3. ALLAUTH
+4. SORL 
+5. Pillow
+6. HTMLMIN
