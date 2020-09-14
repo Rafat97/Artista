@@ -1,65 +1,53 @@
-{% extends 'base_dashboard_header.html' %} {% load static %} 
-
-
-{% block page_title %}
-Artist Upload Art
-{% endblock %} 
-
-
-{% block js_cdn %}
-  <script 
+{% extends 'base_dashboard_header.html' %} {% load static %} {% block page_title
+%} Artist Upload Art {% block js_cdn %}
+<script
   src="https://cdn.tiny.cloud/1/qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc/tinymce/5/tinymce.min.js"
   crossorigin="anonymous"
-  ></script>
-{% endblock %} 
-
-
-{% block content %}
+></script>
+{% endblock %} {% block content %}
 
 <div class="container my-5">
   <div class="text-center mb-5">
     <h2>ADD A NEW ARTICLE</h2>
   </div>
-  
+
   <!-- add article form -->
   <div>
     {% for error in form.non_field_errors %}
-      <div class="alert alert-danger" role="alert">
-        {{error}}
+    <div class="alert alert-danger" role="alert">
+      {{error}}
+    </div>
+    {% endfor %}
+
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% for field in form.visible_fields %}
+      <div class="form-group">
+        <label class="font-weight-bold" for="exampleInputEmail1"
+          >{{ field.label_tag }}</label
+        >
+        {{ field }} {% for error in field.errors %}
+        <small id="emailHelp" class="form-text text-danger">{{ error }}</small>
+        {% endfor %}
       </div>
-      {% endfor %}
-
-      <form action="" method="POST" enctype="multipart/form-data">
-        {% for field in form.visible_fields %}
-        <div class="form-group">
-           <label class="font-weight-bold" for="exampleInputEmail1">{{ field.label_tag }}</label>  
-          {{ field }} 
-          {% for error in field.errors %}
-          <small id="emailHelp" class="form-text text-danger">{{ error }}</small>
-          {% endfor %}
-        </div>
-        {% endfor %}
-
-        {% csrf_token %}
-
-        {% for hidden in form.hidden_fields %}
-            {{ hidden }}
-        {% endfor %}
-        <div class="text-center"> 
-            <button class="btn btn-primary cnr-rounded " style="width: 150px;" type="submit" >Submit</button>
-        </div>
-      </form>
+      {% endfor %} {% csrf_token %} {% for hidden in form.hidden_fields %} {{
+      hidden }} {% endfor %}
+      <div class="text-center">
+        <button
+          class="btn btn-primary cnr-rounded "
+          style="width: 150px;"
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
   </div>
   <!-- end add article form -->
-
 </div>
-{% endblock %}
-
-
-{% block add_js %}
-  <script>
-    // tinymce.init({
-    // selector: 'textarea#id_short_description',
-    // });
-  </script>
+{% endblock %} {% block add_js %}
+<script>
+  // tinymce.init({
+  // selector: 'textarea#id_short_description',
+  // });
+</script>
 {% endblock %}

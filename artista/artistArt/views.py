@@ -8,6 +8,7 @@ from htmlmin.decorators import minified_response
 from .models import ArtCategory, ArtistArt, ArtComment, ArtLikeDislike
 from django.shortcuts import get_object_or_404
 
+
 class ArtistArtUploadNew(View):
 
     USER_INFO = None
@@ -53,17 +54,17 @@ class ArtistArtPreview(View):
         uid = kwargs.get('uuid')
         if not uid:
             raise Http404("Page not found")
-        
+
         art = get_object_or_404(
-            ArtistArt,  uuid=uid,post_status='public'
+            ArtistArt,  uuid=uid, post_status='public'
         )
-        
+
         # ArtistArt.objects.get(
         #     uuid=uid,
         #     post_status='public'
-        # ) 
+        # )
         print("sadasdasdasd")
-        
+
         if not art:
             raise Http404("Page not found")
 
@@ -74,9 +75,9 @@ class ArtistArtPreview(View):
 
         if self.USER_INFO == None:
             return redirect('/logout')
-            
+
         is_liked = None
-        data =  self.ART_INFO.current_user_like_dislike(self.USER_INFO)
+        data = self.ART_INFO.current_user_like_dislike(self.USER_INFO)
         if data:
             is_liked = data.get().like_dislike
 
@@ -101,8 +102,8 @@ class ArtistArtUploadEdit(View):
             return redirect('/logout')
 
         art = get_object_or_404(
-            ArtistArt,  uuid=uid,user=self.USER_INFO
-        )   
+            ArtistArt,  uuid=uid, user=self.USER_INFO
+        )
 
         form = ArtistArtViewForm(instance=art)
         context = {
@@ -120,10 +121,11 @@ class ArtistArtUploadEdit(View):
         if self.USER_INFO == None:
             return redirect('/logout')
         art = get_object_or_404(
-            ArtistArt,  uuid=uid,user=self.USER_INFO
-        ) 
+            ArtistArt,  uuid=uid, user=self.USER_INFO
+        )
 
-        form = ArtistArtViewForm(request.POST, request.FILES or None, instance=art)
+        form = ArtistArtViewForm(
+            request.POST, request.FILES or None, instance=art)
         form.setUser(current_user=self.USER_INFO)
         if form.is_valid():
             data = form.save()
@@ -149,12 +151,12 @@ class ArtistArtUploadedDelete(View):
         if self.USER_INFO == None:
             return redirect('/logout')
         art = get_object_or_404(
-            ArtistArt,  uuid=uid,user=self.USER_INFO
-        ) 
+            ArtistArt,  uuid=uid, user=self.USER_INFO
+        )
         art.delete()
         return redirect('artist_own_all_art')
 
-        
+
 class ArtistArtPreviewAll(View):
 
     USER_INFO = None
@@ -167,7 +169,7 @@ class ArtistArtPreviewAll(View):
         if self.USER_INFO == None:
             return redirect('/logout')
 
-        art = ArtistArt.objects.filter( user=self.USER_INFO)  
+        art = ArtistArt.objects.filter(user=self.USER_INFO)
         self.ART_INFO = art
 
         context = {
@@ -175,4 +177,3 @@ class ArtistArtPreviewAll(View):
             'arts_info': self.ART_INFO,
         }
         return render(request, 'artist_all_art_preview.html', context)
-

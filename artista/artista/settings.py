@@ -37,8 +37,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
-SITE_URL='http://127.0.0.1:8000/'
-SITE_NAME='Artista'
+SITE_URL = 'http://127.0.0.1:8000/'
+SITE_NAME = 'Artista'
 
 
 # Application definition
@@ -71,7 +71,8 @@ INSTALLED_APPS = [
     'dashboard',
     'artist',
     'client',
-    'artistArt'
+    'artistArt',
+    'artistArtCategory'
 ]
 
 
@@ -195,7 +196,7 @@ USE_TZ = True
 
 # SESSION files
 SESSION_ENGINE = "django.contrib.sessions.backends.file"
-SESSION_FILE_PATH =  os.path.join(BASE_DIR, 'stroage/tmp/sessions/')
+SESSION_FILE_PATH = os.path.join(BASE_DIR, 'stroage/tmp/sessions/')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
@@ -207,13 +208,13 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'stroage/media/upload/')  
+MEDIA_ROOT = os.path.join(BASE_DIR, 'stroage/media/upload/')
 MEDIA_URL = "/media/upload/"
 
 STATIC_URL = '/static/'
 
 
-## Email Setup 
+# Email Setup
 # EMAIL_HOST = 'smtp.mailtrap.io'
 # EMAIL_HOST_USER = '342d440685e0fb'
 # EMAIL_HOST_PASSWORD = '4982cfbd5f4f1c'
@@ -225,6 +226,6 @@ EMAIL_HOST_USER = 'postmaster@sandboxd3381ef9db1b44b49660f116c3b8f8bc.mailgun.or
 EMAIL_HOST_PASSWORD = 'c2c4282dccedb83a581e01836a77657e-46ac6b00-638ce906'
 EMAIL_PORT = '587'
 
-## Email Setup with file
+# Email Setup with file
 # EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 # EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'stroage/tmp/emails/') # change this to a proper location

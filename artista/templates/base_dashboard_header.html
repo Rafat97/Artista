@@ -1,5 +1,4 @@
-{% load static %}
-{% load thumbnail %}
+{% load static %} {% load thumbnail %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,77 +22,101 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
-    <link
-      rel="stylesheet"
-      href="{% static 'css/style.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      href="{% static 'css/sample-sidebar.css' %}"
-    />
-    {% block css_cdn %} {% endblock %}
-    {% block js_cdn %} {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/sample-sidebar.css' %}" />
+    {% block css_cdn %} {% endblock %} {% block js_cdn %} {% endblock %}
   </head>
 
   <body>
     <header></header>
     <section>
       <div class="d-flex" id="wrapper">
-      {% block Sidebar %}
+        {% block Sidebar %}
         <div class="bg-light border-right" id="sidebar-wrapper">
           <div class="sidebar-heading text-center">Artista</div>
-           <!-- Profile info -->
+          <!-- Profile info -->
           <div class="list-group list-group-flush">
             <div>
-              <div href="#" class="mt-5 list-group-item list-group-item-action bg-light">
+              <div
+                href="#"
+                class="mt-5 list-group-item list-group-item-action bg-light"
+              >
                 <div class="row mb-5">
                   <div class="col-sm-12 text-center">
-
                     {% thumbnail user_info.avatar "104x104" as im %}
-                        <img src="{{ im.url }}" class="rounded-circle" alt="Avatar" >
+                    <img
+                      src="{{ im.url }}"
+                      class="rounded-circle"
+                      alt="Avatar"
+                    />
                     {% endthumbnail %}
-
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-sm-12 text-center mb-5">
-                    {{ user_info.display_name | upper  }}
+                    {{ user_info.display_name | upper }}
                   </div>
                 </div>
               </div>
             </div>
           </div>
-           <!-- end Profile info -->
+          <!-- end Profile info -->
 
-            <!-- Side bar menu -->
+          <!-- Side bar menu -->
           <div>
             <div class="list-group list-group-flush text-center">
-              <a href="#" class="list-group-item list-group-item-action bg-light">HOME</a>
+              <a
+                href="#"
+                class="list-group-item list-group-item-action bg-light"
+                >HOME</a
+              >
             </div>
             <div class="list-group list-group-flush text-center">
-              <a href="#" class="list-group-item list-group-item-action bg-light">FOLLOWING</a>
+              <a
+                href="#"
+                class="list-group-item list-group-item-action bg-light"
+                >FOLLOWING</a
+              >
             </div>
             <div class="list-group list-group-flush text-center">
-              <a href="#" class="list-group-item list-group-item-action bg-light">LOVED ART</a>
+              <a
+                href="#"
+                class="list-group-item list-group-item-action bg-light"
+                >LOVED ART</a
+              >
             </div>
             <div class="list-group list-group-flush text-center">
-              <a href="#" class="list-group-item list-group-item-action bg-light">CATEGORY</a>
+              <a
+                href="{% url 'category' %}"
+                class="list-group-item list-group-item-action bg-light"
+                >CATEGORY</a
+              >
             </div>
             {% if user_info.user_role.role_name == 'Artist' %}
             <div class="list-group list-group-flush text-center">
-              <a href="{% url 'artist_own_all_art' %}" class="list-group-item list-group-item-action bg-light">ALL MY ART</a>
+              <a
+                href="{% url 'artist_own_all_art' %}"
+                class="list-group-item list-group-item-action bg-light"
+                >ALL MY ART</a
+              >
             </div>
             {% endif %}
           </div>
-            <!-- end Side bar menu -->
+          <!-- end Side bar menu -->
 
           <!-- Logout menu -->
-          <div style="bottom: 0px;position: absolute;">  
+          <div style="bottom: 0px;position: absolute;">
             <div class="list-group list-group-flush">
-              
               <div class="row my-2">
                 <div class="col-sm-3">
-                  <img src="{{ user_info.avatar.url }}" class="rounded-circle" alt="Avatar" width="45px" height="45px" class="avatar">
+                  <img
+                    src="{{ user_info.avatar.url }}"
+                    class="rounded-circle"
+                    alt="Avatar"
+                    width="45px"
+                    height="45px"
+                    class="avatar"
+                  />
                 </div>
                 <div class="col-sm-5 p-0 text-center my-auto">
                   {{ user_info.display_name | upper }}
@@ -106,25 +129,26 @@
               </div>
             </div>
           </div>
-        <!-- end Logout menu -->
-
+          <!-- end Logout menu -->
         </div>
-       
-      {% endblock %}
-      <div id="page-content-wrapper">
 
-        <nav class="d-md-none navbar navbar-expand-lg navbar-light bg-light border-bottom">
-          <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
-        </nav>
-  
-        <div class="container-fluid">
-          <div>
-            {% block content %}{% endblock %}
+        {% endblock %}
+        <div id="page-content-wrapper">
+          <nav
+            class="d-md-none navbar navbar-expand-lg navbar-light bg-light border-bottom"
+          >
+            <button class="btn btn-primary" id="menu-toggle">
+              Toggle Menu
+            </button>
+          </nav>
+
+          <div class="container-fluid">
+            <div>
+              {% block content %}{% endblock %}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-     
     </section>
   </body>
   <script
