@@ -27,7 +27,7 @@ def login_user(request, *args, **kwargs):
 def logout_user(request, *args, **kwargs): 
     if request.session.has_key('user'):
         del request.session['user']
-    response = redirect('home')
+    response = redirect('/')
     return response
 
 

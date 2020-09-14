@@ -33,6 +33,8 @@
     />
     {% block css_cdn %} {% endblock %}
     {% block js_cdn %} {% endblock %}
+
+    {% block add_style %} {% endblock %}
   </head>
 
   <body>
@@ -68,7 +70,7 @@
             <!-- Side bar menu -->
           <div>
             <div class="list-group list-group-flush text-center">
-              <a href="#" class="list-group-item list-group-item-action bg-light">HOME</a>
+              <a href="{% url 'app_artInfo:home' %}" class="list-group-item list-group-item-action bg-light">HOME</a>
             </div>
             <div class="list-group list-group-flush text-center">
               <a href="#" class="list-group-item list-group-item-action bg-light">FOLLOWING</a>

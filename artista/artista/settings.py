@@ -73,6 +73,9 @@ INSTALLED_APPS = [
     'client',
     'artistArt'
 ]
+INSTALLED_APPS += [
+    "app_artInfo"
+]
 
 
 SITE_ID = 1
