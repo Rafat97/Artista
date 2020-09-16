@@ -29,6 +29,7 @@ All ARTS
                       <div class="card-body">
                       <h5 class="card-title">{{ data.title }}</h5>
                       <p class="card-text">{{ data.short_description }}</p>
+                      <a href="{% url 'app_artInfo:artist_single_art_page'  data.uuid %}"  class="card-link" >View Art</a>
                       </div>
                   </div>
               </div>

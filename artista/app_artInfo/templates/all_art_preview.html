@@ -13,8 +13,28 @@ Artist All Arts
 
 {% block content %}
 All ARTS
-<br>
-<a href="{% url 'app_artInfo:all_art_searching_page' %}"  class="btn btn-primary" >Search Page</a>
+<div class="container text-center">
+  <a href="{% url 'app_artInfo:all_art_searching_page' %}"  class="btn btn-primary" >Search Page</a>
+</div>
+
+
+<div class="container my-5">
+  <div class="row">
+        {% for data in allArts %}
+          <div class="col-md-3 ">
+              <div class="card mx-1" >
+                  <img class="card-img-top" src="{{ data.image.url }}" alt="Card image cap">
+                  <div class="card-body">
+                  <h5 class="card-title">{{ data.title }}</h5>
+                  <p class="card-text">{{ data.short_description }}</p>
+                  <p class="card-text">view Count : {{ data.view_count }}</p>
+                  <a href="{% url 'app_artInfo:artist_single_art_page'  data.uuid %}"  class="card-link" >View Art</a>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}  
+  </div>
+</div>
 {% endblock %}
 
 

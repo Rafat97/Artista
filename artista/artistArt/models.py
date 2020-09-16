@@ -67,6 +67,13 @@ class ArtistArt(models.Model):
         self.__user_like_dislike = find
         return find
 
+    def current_art_comment(self):
+        find = ArtComment.objects.filter(artist_art=self)
+        if not find:
+            find = None
+            pass
+        return find
+
 
 class ArtLikeDislike(models.Model):
 
