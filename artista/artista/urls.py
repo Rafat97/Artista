@@ -14,11 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path ,include
+from django.urls import path, include
 
-from getstart.views import home_view,HomePageView,blaBla,blaBlaadd
-from register.views import register_client,register_artist,thank_you
-from login.views import login_user,logout_user
+from getstart.views import home_view, HomePageView, blaBla, blaBlaadd
+from register.views import register_client, register_artist, thank_you
+from login.views import login_user, logout_user
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -29,17 +29,22 @@ admin.site.site_title = "ARTISTA Admin Portal"
 admin.site.index_title = "Welcome to ARTISTA Portal"
 
 urlpatterns = [
-    path('', HomePageView.as_view(), name='home'), #landing page url
-    path('api/',include('api.urls')), #api page url
+    path('', HomePageView.as_view(), name='home'),  # landing page url
+    path('api/', include('api.urls')),  # api page url
 
-    path('login/', login_user,name='login_user'), #artist login page url app (login)
-    path('logout/', logout_user,name='logout_user'), #artist login page url app (login)
+    # artist login page url app (login)
+    path('login/', login_user, name='login_user'),
+    # artist login page url app (login)
+    path('logout/', logout_user, name='logout_user'),
     path('forgot_password/', include('forgotPass.urls')),
 
-    path('register/artist/', register_artist,name='register_artist'), #artist register page url  app (register)
-    path('register/client/', register_client,name='register_client'), #client register page url app (register)
-    path('register/thankyou/',thank_you ,name='register_thank_you'), #artist register page url app (register)
-    
+    # artist register page url  app (register)
+    path('register/artist/', register_artist, name='register_artist'),
+    # client register page url app (register)
+    path('register/client/', register_client, name='register_client'),
+    # artist register page url app (register)
+    path('register/thankyou/', thank_you, name='register_thank_you'),
+
 
     path('dashboard/', include('dashboard.urls')),
     path('dashboard/artist/', include('artist.urls')),
@@ -47,17 +52,19 @@ urlpatterns = [
     path('dashboard/art/', include('app_artInfo.urls')),
     #path('dashboard/art_artist/', include('artistArt.urls')),
     #path('dashboard/artist/api/art_artist/', include('artistArt.url_apis')),
-   
-    path('chat/', include('chat.urls')), # must need asynchronous server 
-    
+
+    path('category/', include('artistArtCategory.urls')),
+
+    path('chat/', include('chat.urls')),  # must need asynchronous server
+
     path('admin/', admin.site.urls),
     # path('bla-bla/', blaBla, name="bla-bla"),
     # path('add/', blaBlaadd, name="bla-bla-add"),
 
     # path('accounts/', include('allauth.urls')),
     path('dumy/', include('artistArt.url_apis')),
-    
-] 
+
+]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
