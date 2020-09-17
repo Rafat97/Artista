@@ -1,3 +1,376 @@
-.cnr-rounded {
-    border-radius: 40px;
+/*Sidebar CSS*/
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -20vw;
+  -webkit-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
 }
+
+@media (max-width: 767px) {
+  #sidebar-wrapper {
+    margin-left: -40vw;
+  }
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.4rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 20vw;
+}
+
+@media (max-width: 767px) {
+  #sidebar-wrapper .list-group {
+    width: 40vw;
+  }
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -40vw;
+  }
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  min-height: 100vh;
+  font-size: 62.5%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  font-size: 1.6rem;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+header,
+section,
+footer,
+main {
+  position: relative;
+  display: block;
+}
+
+sidebar {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+}
+
+a:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+main {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+@media (min-width: 768px) {
+  main {
+    margin-left: 20vw;
+  }
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder,
+select::-webkit-input-placeholder {
+  color: #dddddd;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder,
+select::-moz-placeholder {
+  opacity: 1;
+  color: #dddddd;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder,
+select:-ms-input-placeholder {
+  color: #dddddd;
+}
+
+.color1-btn {
+  background: #5433FF;
+  color: white;
+  display: inline-block;
+  padding: 14px 20px;
+  border-radius: 30px;
+  border: 2px solid #5433FF;
+  -webkit-transition: all 500ms ease-out 1s;
+  transition: all 500ms ease-out 1s;
+}
+
+.color1-btn:hover {
+  background: transparent;
+  color: #5433FF;
+}
+
+.color2-btn {
+  background: #20BDFF;
+  color: white;
+  display: inline-block;
+  padding: 14px 20px;
+  border-radius: 30px;
+  border: 2px solid #20BDFF;
+  -webkit-transition: all 500ms ease-out 1s;
+  transition: all 500ms ease-out 1s;
+}
+
+.color2-btn:hover {
+  background: transparent;
+  color: #20BDFF;
+}
+
+.color1-overlay {
+  position: relative;
+}
+
+.color1-overlay:before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 100%;
+  background-color: #5433FF;
+  top: 0;
+  left: 0;
+}
+
+.color2-overlay {
+  position: relative;
+}
+
+.color2-overlay:before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 100%;
+  background-color: #20BDFF;
+  top: 0;
+  left: 0;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+h2 {
+  font-size: 4.2rem;
+}
+
+h3 {
+  font-size: 3.6rem;
+}
+
+h4 {
+  font-size: 2.8rem;
+}
+
+h5 {
+  font-size: 2.4rem;
+}
+
+h6 {
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1.8rem;
+}
+
+.color1 {
+  color: #5433FF;
+}
+
+.color2 {
+  color: #20BDFF;
+}
+
+.color1-bg {
+  background-color: #5433FF;
+}
+
+.color2 {
+  background-color: #20BDFF;
+}
+
+.bg-regular {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.post-img {
+  position: relative;
+  border-radius: 30px;
+  overflow: hidden;
+  -webkit-transition: height 0.3s;
+  transition: height 0.3s;
+}
+
+.post-img a:hover {
+  text-decoration: none;
+}
+
+.post-img img {
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+.post-img .user-profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.post-img .user-profile img {
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  border-radius: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+.post-img .post-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: rgba(255, 255, 255, 0.7);
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: height 0.3s;
+  transition: height 0.3s;
+}
+
+.post-img .user-info {
+  padding: 10px;
+}
+
+.post-img:hover .post-info {
+  height: 100%;
+}
+
+@media (max-width: 767px) {
+  .post-img .post-info {
+    height: 60%;
+    bottom: 0;
+    top: auto;
+  }
+}
+
+.grid-sizer,
+.grid-item {
+  width: 100%;
+  padding: 5px;
+}
+
+@media (min-width: 768px) {
+  .grid-sizer,
+  .grid-item {
+    width: 50%;
+    padding: 10px;
+  }
+}
+
+@media (min-width: 992px) {
+  .grid-sizer,
+  .grid-item {
+    width: 33.33%;
+  }
+}
+
+@media (min-width: 1299px) {
+  .grid-sizer,
+  .grid-item {
+    width: 25%;
+  }
+}
+
+.fas:before {
+  margin-right: 15px;
+}
+
+@media (max-width: 767px) {
+  html {
+    font-size: 50%;
+  }
+}
+/*# sourceMappingURL=style.css.map */

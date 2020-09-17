@@ -1,52 +1,100 @@
 {% extends 'base_dashboard_header.html' %} {% load static %} {% block js_cdn %}
-<script
-  src="https://cdn.tiny.cloud/1/qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc/tinymce/5/tinymce.min.js"
-  crossorigin="anonymous"
-></script>
-{% endblock %} {% block content %}
+<script src="https://cdn.tiny.cloud/1/qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc/tinymce/5/tinymce.min.js"
+  crossorigin="anonymous"></script>
+{% endblock %}
 
+{% block content %}
+<style>
+  .category-item{
+    display: flex;
+    height: 200px;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    border-radius: 25px;
+    overflow: hidden;
+    margin-bottom:15px;
+  }
+  .category-item:before{
+    opacity:0.5;
+  }
+  .category-item h4{
+    color:white;
+    text-transform: uppercase;
+    position: relative;
+    text-align: center;
+    padding:15px;
+  }
+  
+</style>
 <h1>Hello Category</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4 ">
+      <a href="{% url 'architecture' %}">
+        <div class="category-item bg-regular color1-overlay" style="background-image:url(https://picsum.photos/300)">
+            <h4>Architecture</h4>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-6 col-lg-4 ">
+      <a href="{% url 'ceramics' %}">
+        <div class="category-item bg-regular color1-overlay" style="background-image:url(https://picsum.photos/300)">
+            <h4>Ceramics</h4>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-6 col-lg-4 ">
+      <a href="{% url 'conceptualArt' %}">
+        <div class="category-item bg-regular color1-overlay" style="background-image:url(https://picsum.photos/300)">
+            <h4>conceptual Art</h4>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-6 col-lg-4 ">
+      <a href="{% url 'drawing' %}">
+        <div class="category-item bg-regular color1-overlay" style="background-image:url(https://picsum.photos/300)">
+            <h4>drawing</h4>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-6 col-lg-4 ">
+      <a href="{% url 'painting' %}">
+        <div class="category-item bg-regular color1-overlay" style="background-image:url(https://picsum.photos/300)">
+            <h4>painting</h4>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-6 col-lg-4 ">
+      <a href="{% url 'photography' %}">
+        <div class="category-item bg-regular color1-overlay" style="background-image:url(https://picsum.photos/300)">
+            <h4>photography</h4>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-6 col-lg-4 ">
+      <a href="{% url 'sclpture' %}">
+        <div class="category-item bg-regular color1-overlay" style="background-image:url(https://picsum.photos/300)">
+            <h4>Sculpture</h4>
+        </div>
+      </a>
+    </div>
+  </div>
 
-<a
-  href="{% url 'architecture' %}"
-  class="list-group-item list-group-item-action bg-light"
-  >Architecture</a
->
+</div>
+<!--<a href="{% url 'architecture' %}" class="list-group-item list-group-item-action bg-light">Architecture</a>
 
-<a
-  href="{% url 'ceramics' %}"
-  class="list-group-item list-group-item-action bg-light"
-  >Ceramics</a
->
+<a href="{% url 'ceramics' %}" class="list-group-item list-group-item-action bg-light">Ceramics</a>
 
-<a
-  href="{% url 'conceptualArt' %}"
-  class="list-group-item list-group-item-action bg-light"
-  >Conceptual Art</a
->
+<a href="{% url 'conceptualArt' %}" class="list-group-item list-group-item-action bg-light">Conceptual Art</a>
 
-<a
-  href="{% url 'drawing' %}"
-  class="list-group-item list-group-item-action bg-light"
-  >Drawing</a
->
+<a href="{% url 'drawing' %}" class="list-group-item list-group-item-action bg-light">Drawing</a>
 
-<a
-  href="{% url 'painting' %}"
-  class="list-group-item list-group-item-action bg-light"
-  >Painting</a
->
-<a
-  href="{% url 'photography' %}"
-  class="list-group-item list-group-item-action bg-light"
-  >Photography</a
->
+<a href="{% url 'painting' %}" class="list-group-item list-group-item-action bg-light">Painting</a>
+<a href="{% url 'photography' %}" class="list-group-item list-group-item-action bg-light">Photography</a>
 
-<a
-  href="{% url 'sclpture' %}"
-  class="list-group-item list-group-item-action bg-light"
-  >Sclpture</a
->
+<a href="{% url 'sclpture' %}" class="list-group-item list-group-item-action bg-light">Sclpture</a>
+-->
 
 {% endblock %} {% block add_js %}
 <script>
