@@ -27,6 +27,10 @@ class Role(models.Model):
         return self.role_name
 
 class User(models.Model):
+    """
+    Stores a single User entry.This is main User table .
+    It's related to :model:`Role` 
+    """
     CLIENT = 'client'
     ARTIST = 'artist'
 
@@ -34,20 +38,20 @@ class User(models.Model):
         (CLIENT, 'Client'),
         (ARTIST, 'Artist')
     )
-    uuid = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
-    display_name = models.CharField(max_length=30,blank=False)
-    email = models.EmailField(unique=True,blank=False)
-    password = models.CharField(max_length=255,blank=False)
+    uuid = models.UUIDField(default=uuid.uuid4, unique=True, editable=False ,help_text="Auto Genarate Universally unique identifier ")
+    display_name = models.CharField(max_length=30,blank=False, help_text="User display name")
+    email = models.EmailField(unique=True,blank=False,  help_text="User Email")
+    password = models.CharField(max_length=255,blank=False, help_text="User password")
     # current_password = models.CharField(max_length=255,blank=False)
-    phoneNumber = models.CharField(max_length=20,null=True,blank=True)
-    address = models.CharField(max_length=255,null=True,blank=True)
+    phoneNumber = models.CharField(max_length=20,null=True,blank=True , help_text="User Phone Number")
+    address = models.CharField(max_length=255,null=True,blank=True, help_text="User Address")
     # user_role = models.CharField(max_length=255,null=False,choices=ROLE)
     # user_role = models.ForeignKey(Role, on_delete=models.CASCADE,null=False)
-    user_role = models.ForeignKey(Role, on_delete=models.SET_NULL,null=True)
-    refresh_token = models.CharField(max_length=255,null=True,blank=True)
-    avatar = models.ImageField(upload_to=user_directory_path,default="avatar/default.jpg")
-    is_active = models.BooleanField(default=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    user_role = models.ForeignKey(Role, on_delete=models.SET_NULL,null=True )
+    refresh_token = models.CharField(max_length=255,null=True,blank=True,  help_text="This is for forget password")
+    avatar = models.ImageField(upload_to=user_directory_path,default="avatar/default.jpg", help_text="User Profile Picture")
+    is_active = models.BooleanField(default=True ,  help_text="User is active or not default true")
+    created_at = models.DateTimeField(auto_now_add=True ,  help_text="User created time")
 
     @classmethod
     def from_db(cls, db, field_names, values):
@@ -59,6 +63,7 @@ class User(models.Model):
         instance._old_values = dict(zip(field_names, values))
         return instance
 
+    """ Check update request or not """
     def data_changed(self, fields):
         if hasattr(self, '_old_values'):
             for field in fields:

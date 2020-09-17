@@ -63,6 +63,18 @@ class AllArtSearchView(View):
 
 # Create your views here.
 class AllArtView(View):
+    """
+    Display an Artist Account
+
+    **Context**
+
+    ``mymodel``
+        An instance of :model:`myapp.User`.
+
+    **Template:**
+
+    :template:`all_art_preview.html`
+    """
     def get(self, request, *args, **kwargs):
         user = get_current_user(request)
         if not user:
