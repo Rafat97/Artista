@@ -68,7 +68,7 @@ class ArtistArt(models.Model):
         return find
 
     def current_art_comment(self):
-        find = ArtComment.objects.filter(artist_art=self)
+        find = ArtComment.objects.filter(artist_art=self).order_by("-id")
         if not find:
             find = None
             pass
