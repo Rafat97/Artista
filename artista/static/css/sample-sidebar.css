@@ -2,14 +2,12 @@
  * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template-overviews/simple-sidebar)
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
- */
- body {
-    overflow-x: hidden;
-  }
+ 
+
   
   #sidebar-wrapper {
     min-height: 100vh;
-    margin-left: -15rem;
+    margin-left: -25rem;
     -webkit-transition: margin .25s ease-out;
     -moz-transition: margin .25s ease-out;
     -o-transition: margin .25s ease-out;
@@ -22,7 +20,7 @@
   }
   
   #sidebar-wrapper .list-group {
-    width: 15rem;
+    width: 25rem;
   }
   
   #page-content-wrapper {
@@ -44,6 +42,7 @@
     }
   
     #wrapper.toggled #sidebar-wrapper {
-      margin-left: -15rem;
+      margin-left: -25rem;
     }
   }
+  */

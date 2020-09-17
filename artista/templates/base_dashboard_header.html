@@ -22,15 +22,16 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Merienda+One&family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" href="{% static 'css/sample-sidebar.css' %}" />
-    {% block css_cdn %} {% endblock %} {% block js_cdn %} {% endblock %} {%
-    block add_style %} {% endblock %}
+    {% block css_cdn %} {% endblock %} {% block js_cdn %} {% endblock %}
+     {% block add_style %} {% endblock %}
   </head>
 
   <body>
-    <header></header>
-    <section>
+    <sidebar>
       <div class="d-flex" id="wrapper">
         {% block Sidebar %}
         <div class="bg-light border-right" id="sidebar-wrapper">
@@ -66,19 +67,13 @@
           <!-- Side bar menu -->
           <div>
             <div class="list-group list-group-flush text-center">
-              <<<<<<< HEAD
-              <a
-                href="#"
-                class="list-group-item list-group-item-action bg-light"
-                >HOME</a
-              >
-              =======
+             
               <a
                 href="{% url 'app_artInfo:home' %}"
                 class="list-group-item list-group-item-action bg-light"
                 >HOME</a
               >
-              >>>>>>> dev-final
+              
             </div>
             <div class="list-group list-group-flush text-center">
               <a
@@ -151,14 +146,18 @@
             </button>
           </nav>
 
-          <div class="container-fluid">
-            <div>
-              {% block content %}{% endblock %}
-            </div>
-          </div>
+          
         </div>
       </div>
-    </section>
+    </sidebar>
+    <main>
+      <div class="">
+        <div>
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+     
+    </main>
   </body>
   <script
     src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -181,5 +180,6 @@
       $("#wrapper").toggleClass("toggled");
     });
   </script>
+  
   {% block add_js %} {% endblock %}
 </html>

@@ -1,28 +1,29 @@
-{% extends 'base_dashboard_header.html' %} {% load static %} 
+{% extends 'base_dashboard_header.html' %} {% load static %}
 
 
 {% block page_title %}
 Artist All Arts
-{% endblock %} 
+{% endblock %}
 
 
 {% block js_cdn %}
 
-{% endblock %} 
+{% endblock %}
 
 
 {% block content %}
 All ARTS
 <div class="container text-center">
-  <a href="{% url 'app_artInfo:all_art_searching_page' %}"  class="btn btn-primary" >Search Page</a>
+  <a href="{% url 'app_artInfo:all_art_searching_page' %}" class="btn btn-primary">Search Page</a>
 </div>
 
 
 <div class="container my-5">
-  <div class="row">
-        {% for data in allArts %}
-          <div class="col-md-3 ">
-              <div class="card mx-1" >
+  <div class="grid">
+
+    {% for data in allArts %}
+    <div class="grid-item ">
+      <!-- <div class="card mx-1" >
                   <img class="card-img-top" src="{{ data.image.url }}" alt="Card image cap">
                   <div class="card-body">
                   <h5 class="card-title">{{ data.title }}</h5>
@@ -30,15 +31,54 @@ All ARTS
                   <p class="card-text">view Count : {{ data.view_count }}</p>
                   <a href="{% url 'app_artInfo:artist_single_art_page'  data.uuid %}"  class="card-link" >View Art</a>
                   </div>
-              </div>
-          </div>
-          {% endfor %}  
+              </div> -->
+            <div class="post-img">
+
+              <a href="{% url 'app_artInfo:artist_single_art_page'  data.uuid %}">
+                  <img src="{{ data.image.url }}" alt="{{ data.title }}"/>
+                  <div class="post-info">
+                    <div class="user-profile">
+                      <img src="http://127.0.0.1:8000/media/upload/cache/c9/a3/c9a333208dead6f0d005a0f7f311be0f.jpg"/>
+                      <div class="user-info">
+                        <h6>Rafat Haque</h6>
+                        <p class="mb-0">creative photographer</p>
+                      </div>
+                    </div>
+                    <h4>Category</h4>
+                    <p class="fas fa-heart color1 mb-0">{{ data.view_count }}</p>
+
+                    
+                  </div>
+              </a>
+
+            </div>
+    </div>
+    {% endfor %}
   </div>
 </div>
 {% endblock %}
 
 
 {% block add_js %}
-  <script>
-  </script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script>
+  
+  // vanilla JS
+// init with element
+var grid = document.querySelector('.grid');
+var msnry = new Masonry( grid, {
+  // options...
+  itemSelector: '.grid-item',
+ 
+  itemSelector: '.grid-item',
+  columnWidth: '.grid-sizer',
+  percentPosition: true,
+  gutter:15
+});
+
+// init with selector
+var msnry = new Masonry( '.grid', {
+  // options...
+});
+</script>
 {% endblock %}

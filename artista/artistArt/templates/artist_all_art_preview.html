@@ -16,7 +16,7 @@ Artist All Arts
     <a href="{% url 'artist_art_upload' %}" class="btn btn-primary">UPLOAD NEW ART</a>
 </div>
 <div class="container my-5">
-    <div class="row">
+    <div class="row"> 
         {% if arts_info|length >= 1 %}
             {% for data in arts_info %}
             <div class="col-md-3 ">
