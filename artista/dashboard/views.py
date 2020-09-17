@@ -5,7 +5,36 @@ from register.models import User
 
 # Create your views here.
 class DashboardView(View):
+    """
+    Display an Artist Account
+
+    **Context**
+
+    ``mymodel``
+        An instance of :model:`myapp.User`.
+
+    **Template:**
+
+    :template:`register_artist.html`
+    """
+
+    
     def get(self, request, *args, **kwargs):
+        """
+        Display an Artist Account
+
+        **Context**
+
+        ``mymodel``
+            An instance of :model:`myapp.User`.
+
+        **Template:**
+
+        :template:`register_artist.html`
+        """
+
+        
+        
         if not request.session.has_key('user'):
             return redirect('/')
 

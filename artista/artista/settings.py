@@ -44,6 +44,7 @@ SITE_NAME = 'Artista'
 # Application definition
 
 INSTALLED_APPS = [
+    ''
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,7 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-
+    'django.contrib.admindocs',
+    
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -99,8 +101,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'django.middleware.gzip.GZipMiddleware'
-    'htmlmin.middleware.HtmlMinifyMiddleware',
-    'htmlmin.middleware.MarkRequestMiddleware',
+    # 'htmlmin.middleware.HtmlMinifyMiddleware',
+    # 'htmlmin.middleware.MarkRequestMiddleware',
 
     # own Middleware
     'artista.middleware.MainMiddleware',
