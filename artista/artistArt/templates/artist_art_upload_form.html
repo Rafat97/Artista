@@ -1,14 +1,93 @@
 {% extends 'base_dashboard_header.html' %} {% load static %} {% block page_title
 %} Artist Upload Art {% block js_cdn %}
-<script
-  src="https://cdn.tiny.cloud/1/qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc/tinymce/5/tinymce.min.js"
-  crossorigin="anonymous"
-></script>
+<script src="https://cdn.tiny.cloud/1/qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc/tinymce/5/tinymce.min.js"
+  crossorigin="anonymous"></script>
 {% endblock %} {% block content %}
+<style>
+  input#id_image {
+    display: none;
+  }
 
+  label[for=id_image] {
+
+    background: #5433FF;
+    color: white;
+    display: inline-block;
+    padding: 0.75rem 3rem;
+    border-radius: 3rem;
+    border: 0.2rem solid #5433FF;
+    -webkit-transition: background 200ms ease-out, color 200ms linear;
+    transition: background 200ms ease-out, color 200ms linear;
+  }
+
+  label[for=id_image]:hover {
+    cursor: pointer;
+    background: transparent;
+    color: #5433FF;
+    
+  }
+  .cover{
+    height: 250px;
+    width: 170px;
+    border: 1px solid #707070;
+    border-radius: 3rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    margin-bottom: 2rem;
+  }
+  .cover img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+   
+   
+  }
+  #camera-img{
+    width: 40px;
+    height: auto;
+    object-fit: contain;
+  }
+  .form-control{
+    border:0.1rem solid #707070;
+    border-radius:0.75rem;
+    font-size: 1.6rem; 
+    
+  }
+  textarea {
+      resize: none;
+  }
+  select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-image: url("data:image/svg+xml,<svg fill='rgb(84, 51, 255)' width='15' height='15' xmlns='http://www.w3.org/2000/svg'><path d='m0,6l7,7l7,-7l-15,0z'/><path fill='none' d='m0,0l15,0l0,15l-15,0l0,-15z'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 90%;
+  background-position-y: 1rem;
+  border: 1px solid #707070;
+  border-radius: 0.75rem;
+  margin-right: 2rem;
+  padding: 0.75rem ;
+  padding-right: 4rem;
+}
+  @media(max-width: 767px){
+    .form-group{
+      text-align: center;
+    }
+    .cover {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+</style>
 <div class="container my-5">
   <div class="text-center mb-5">
     <h2>ADD A NEW ARTICLE</h2>
+  </div>
+  <div class="cover">
+      <img id="camera-img" src="https://picsum.photos/200"/>
   </div>
 
   <!-- add article form -->
@@ -22,21 +101,15 @@
     <form action="" method="POST" enctype="multipart/form-data">
       {% for field in form.visible_fields %}
       <div class="form-group">
-        <label class="font-weight-bold" for="exampleInputEmail1"
-          >{{ field.label_tag }}</label
-        >
+        <label class="font-weight-bold" for="exampleInputEmail1">{{ field.label_tag }}</label>
         {{ field }} {% for error in field.errors %}
         <small id="emailHelp" class="form-text text-danger">{{ error }}</small>
         {% endfor %}
       </div>
       {% endfor %} {% csrf_token %} {% for hidden in form.hidden_fields %} {{
       hidden }} {% endfor %}
-      <div class="text-center">
-        <button
-          class="btn btn-primary cnr-rounded "
-          style="width: 150px;"
-          type="submit"
-        >
+      <div class="text-center text-md-left">
+        <button class="color1-btn " type="submit">
           Submit
         </button>
       </div>
@@ -49,5 +122,35 @@
   // tinymce.init({
   // selector: 'textarea#id_short_description',
   // });
+  $(" label[for=id_image]").html("Select Image");
+  $( "#id_title" ).removeClass( "form-control" )
+
+  $(function () {
+                // Multiple images preview in browser
+                var imagesPreview = function (input, placeToInsertImagePreview) {
+
+                    if (input.files) {
+                        var filesAmount = input.files.length;
+
+                        for (i = 0; i <1; i++) {
+                            var reader = new FileReader();
+
+                            reader.onload = function (event) {
+                             
+                              $("img").remove();
+                                $($.parseHTML('<img id="cover-img">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                            }
+
+                            reader.readAsDataURL(input.files[i]);
+                        }
+                    }
+
+                };
+
+               
+                $('#id_image').on('change', function () {
+                    imagesPreview(this, 'div.cover');
+                });
+            });
 </script>
 {% endblock %}
