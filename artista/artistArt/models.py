@@ -99,7 +99,6 @@ class ArtLikeDislike(models.Model):
             super().save(*args, **kwargs)
             
         
-
 class ArtComment(models.Model):
 
     artist_art = models.ForeignKey(ArtistArt, on_delete=models.CASCADE,null=False,blank=False)

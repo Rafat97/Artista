@@ -50,6 +50,7 @@
                       src="{{ im.url }}"
                       class="rounded-circle"
                       alt="Avatar"
+                      style="width: 125px; height: calc(125px + 1rem);"
                     />
                     {% endthumbnail %}
                   </div>
@@ -99,7 +100,7 @@
             {% if user_info.user_role.role_name == 'Artist' %}
             <div class="list-group list-group-flush text-center">
               <a
-                href="{% url 'artist_own_all_art' %}"
+                href="{% url 'artist:artist_own_all_art' %}"
                 class="list-group-item list-group-item-action bg-light"
                 >ALL MY ART</a
               >

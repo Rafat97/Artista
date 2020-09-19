@@ -1,20 +1,13 @@
 {% extends 'base_dashboard_header.html' %} {% load static %} 
-
-
 {% block page_title %}
-Artist All Arts
-{% endblock %} 
-
-
-{% block js_cdn %}
-
+Artist Home
 {% endblock %} 
 
 
 {% block content %}
-<div class="container my-5 text-center">
-    <a href="{% url 'artist:artist_art_upload' %}" class="btn btn-primary">UPLOAD NEW ART</a>
-</div>
+
+Single Artist View
+
 <div class="container my-5">
     <div class="row"> 
         {% if arts_info|length >= 1 %}
@@ -25,8 +18,8 @@ Artist All Arts
                     <div class="card-body">
                     <h5 class="card-title">{{ data.title }}</h5>
                     <p class="card-text">{{ data.short_description }}</p>
-                    <a href="{% url 'artist:artist_art_upload_edit'  data.uuid %}"  class="card-link" >Edit</a>
-                    <a href="{% url 'artist:artist_art_uploaded_delete'  data.uuid %}" class="card-link">Delete</a>
+                    <!-- <a href="{% url 'artist:artist_art_upload_edit'  data.uuid %}"  class="card-link" >Edit</a> -->
+                    <!-- <a href="{% url 'artist:artist_art_uploaded_delete'  data.uuid %}" class="card-link">Delete</a> -->
                     </div>
                 </div>
             </div>
@@ -38,10 +31,13 @@ Artist All Arts
         {% endif %}
     </div>
 </div>
+
 {% endblock %}
 
 
-{% block add_js %}
-  <script>
-  </script>
+
+
+{% block add_js %} 
+<script src="{% static 'js/public/app-react.js' %}"></script>
+<script src="{% static 'js/public/app-vue.js' %}"></script>
 {% endblock %}
