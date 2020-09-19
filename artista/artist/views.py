@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from django.views import View
 from artista.utils import get_current_user
@@ -8,6 +8,8 @@ from artistArt.models import ArtistArt, ArtComment
 from django.db.models import Q
 
 # Create your views here.
+
+
 class DashboardArtistView(View):
     USER_INFO = None
 
@@ -20,9 +22,10 @@ class DashboardArtistView(View):
         if self.USER_INFO == None:
             return redirect('/logout')
         context = {
-            'user_info' : self.USER_INFO
+            'user_info': self.USER_INFO
         }
         return render(request, "home.html", context)
+
 
 class SingleArtistView(View):
     USER_INFO = None
@@ -39,16 +42,16 @@ class SingleArtistView(View):
 
         if self.USER_INFO == None:
             return redirect('/logout')
-        
+
         artist_user = get_object_or_404(
             User,  uuid=uid
         )
-        artist_all_art = ArtistArt.objects.filter(Q(user=artist_user) and Q(post_status='public'))
+        artist_all_art = ArtistArt.objects.filter(
+            Q(user=artist_user), Q(post_status='public'))
 
         context = {
-            'user_info' : self.USER_INFO,
-            'artist_info' : artist_user,
-            'arts_info' : artist_all_art,
+            'user_info': self.USER_INFO,
+            'artist_info': artist_user,
+            'arts_info': artist_all_art,
         }
         return render(request, "single_artist_view.html", context)
-

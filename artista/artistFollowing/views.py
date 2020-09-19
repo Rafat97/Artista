@@ -27,7 +27,14 @@ class ArtistFollow(View):
         artists = User.objects.filter(
             Q(user_role_id=1) & ~Q(uuid=self.USER_INFO.uuid))
 
-        return render(request, 'follow.html', {'artists': artists})
+        if self.USER_INFO == None:
+            return redirect('/logout')
+        context = {
+            'artists': artists,
+            'user_info': self.USER_INFO
+        }
+
+        return render(request, 'follow.html', context)
 
     def post(self, request):
         self.USER_INFO = get_current_user(request)
