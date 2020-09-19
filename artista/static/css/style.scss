@@ -2,7 +2,7 @@ $colors:(color1:#5433FF,
     color2:#20BDFF);
 
 
-    $sidebarWidth : 20vw;
+    $sidebarWidth : 20vw; $radius:3rem;
 
 @function color($color-name) {
     @return map-get($colors, $color-name);
@@ -72,7 +72,7 @@ $colors:(color1:#5433FF,
   }
   
   #page-content-wrapper {
-    min-width: 100vw;
+   
   }
   
   #wrapper.toggled #sidebar-wrapper {
@@ -186,15 +186,16 @@ select:-ms-input-placeholder {
     background: $color;
     color:white;
     display:inline-block;
-    padding:14px 20px;
-    border-radius: 30px;
-    border:2px solid $color;
-    transition: all 500ms ease-out 1s;
+    padding:0.75rem 3rem;
+    border-radius:$radius;
+    border:0.2rem solid $color;
+    transition: background 200ms ease-out, color 200ms linear;
     &:hover{
         background:transparent;
         color:$color;
     }
 }
+
 
 .color1-btn{
     @include btn(color(color1));
@@ -202,6 +203,7 @@ select:-ms-input-placeholder {
 .color2-btn{
     @include btn(color(color2));
 }
+
 .color1-overlay{
     @include overlay(color(color1))
 }
@@ -227,13 +229,16 @@ $headersMap:(
 .color1{
     color:color(color1);
 }
+.color1-hover:hover{
+    color:color(color1);
+}
 .color2{
     color:color(color2);
 }
 .color1-bg{
     background-color:color(color1);
 }
-.color2{
+.color2-bg{
     background-color:color(color2);
 }
 .bg-regular{
@@ -242,7 +247,7 @@ $headersMap:(
 
 .post-img{
     position:relative;
-    border-radius: 30px;
+    border-radius: 3rem;
     overflow: hidden;
     transition: height 0.3s;
 
@@ -262,7 +267,7 @@ $headersMap:(
     .user-profile img{
         width: 100px;
         height:100px;
-        padding: 10px;
+        padding: 1rem;
         border-radius: 100%;
         object-fit: cover;
         object-position: center;
@@ -272,26 +277,29 @@ $headersMap:(
         top:0;
         left:0;
         width:100%;
-        height:0;
+        height:100%;
         background:rgba(255,255,255,0.7);
         overflow: hidden;
         display: flex;
         align-items: center;
         justify-content: space-around;
         flex-direction: column;
-        transition: height 0.3s;
+        transition: opacity 0.4s linear;
+        opacity: 0;
     }
     .user-info{
-        padding:10px;
+        padding:1rem;
     }
     &:hover .post-info {
-        height: 100%;
+        opacity: 1;
     }
+   
     @include mobile{
         .post-info{
             height: 60%;
             bottom: 0;
             top:auto;
+            opacity: 1;
         }
        
     }
@@ -300,10 +308,10 @@ $headersMap:(
 .grid-sizer,
 .grid-item {
   width: 100%;
-  padding: 5px;
+  padding: 0.5rem;
   @include desktop-mini(){
       width: 50%;
-      padding: 10px;
+      padding: 1rem;
   }
   @include desktop(){
     width: 33.33%;
@@ -313,8 +321,35 @@ $headersMap:(
   }
 }
 .fas:before{
-    margin-right: 15px;
+    margin-right: 1.5rem;
 }
+.profile-img{
+    object-fit: cover;
+    object-position: center;
+    border-radius: 100%;
+}
+.form-group input{
+    border-radius:$radius;
+    width:100%;
+    padding: 0.75rem 3rem;
+    border: 1px solid #707070;
+}
+.form-group{
+    padding:0;
+}
+.font-700{
+    font-weight: 700;
+}
+.btn-link{
+    font-size: 1.6rem;
+    padding: 0;
+    transition: filter 0.5s ease;
+    &:hover{
+        text-decoration: none;
+        filter:brightness(120%);
+    }
+}
+
 @media(max-width:767px){
     html{
         font-size: 50%;
