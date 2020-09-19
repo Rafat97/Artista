@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.admindocs',
-    
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -74,7 +74,8 @@ INSTALLED_APPS = [
     'artist',
     'client',
     'artistArt',
-    'artistArtCategory'
+    'artistArtCategory',
+    'artistFollowing'
 ]
 INSTALLED_APPS += [
     "app_artInfo"

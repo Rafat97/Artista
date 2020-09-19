@@ -5,77 +5,78 @@
 
 {% block content %}
 <style>
-  .category-item{
+  .category-item {
     display: flex;
     height: 200px;
     flex-direction: column;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     border-radius: 25px;
     overflow: hidden;
-    margin-bottom:15px;
+    margin-bottom: 15px;
   }
-  .category-item:before{
-    opacity:0.5;
+
+  .category-item:before {
+    opacity: 0.5;
   }
-  .category-item h4{
-    color:white;
+
+  .category-item h4 {
+    color: white;
     text-transform: uppercase;
     position: relative;
     text-align: center;
-    padding:15px;
+    padding: 15px;
   }
-  
 </style>
 <h1>Hello Category</h1>
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-6 col-lg-4 ">
-      <a href="{% url 'architecture' %}">
+      <a href="{% url 'app_artInfo:all_art_searching_page'%}?category=1">
         <div class="category-item bg-regular color1-overlay" style="background-image:url(https://picsum.photos/300)">
-            <h4>Architecture</h4>
+          <h4>Architecture</h4>
         </div>
       </a>
     </div>
     <div class="col-md-6 col-lg-4 ">
-      <a href="{% url 'ceramics' %}">
+      <a href="{% url 'app_artInfo:all_art_searching_page'%}?category=2">
         <div class="category-item bg-regular color1-overlay" style="background-image:url(https://picsum.photos/300)">
-            <h4>Ceramics</h4>
+          <h4>Ceramics</h4>
         </div>
       </a>
     </div>
     <div class="col-md-6 col-lg-4 ">
-      <a href="{% url 'conceptualArt' %}">
+      <a href="{% url 'app_artInfo:all_art_searching_page'%}?category=3">
         <div class="category-item bg-regular color1-overlay" style="background-image:url(https://picsum.photos/300)">
-            <h4>conceptual Art</h4>
+          <h4>conceptual Art</h4>
         </div>
       </a>
     </div>
     <div class="col-md-6 col-lg-4 ">
-      <a href="{% url 'drawing' %}">
+      <a href="{% url 'app_artInfo:all_art_searching_page'%}?category=4">
         <div class="category-item bg-regular color1-overlay" style="background-image:url(https://picsum.photos/300)">
-            <h4>drawing</h4>
+          <h4>drawing</h4>
         </div>
       </a>
     </div>
     <div class="col-md-6 col-lg-4 ">
-      <a href="{% url 'painting' %}">
+      <a href="{% url 'app_artInfo:all_art_searching_page'%}?category=5">
         <div class="category-item bg-regular color1-overlay" style="background-image:url(https://picsum.photos/300)">
-            <h4>painting</h4>
+          <h4>painting</h4>
         </div>
       </a>
     </div>
     <div class="col-md-6 col-lg-4 ">
-      <a href="{% url 'photography' %}">
+      <a href="{% url 'app_artInfo:all_art_searching_page'%}?category=6">
         <div class="category-item bg-regular color1-overlay" style="background-image:url(https://picsum.photos/300)">
-            <h4>photography</h4>
+          <h4>photography</h4>
         </div>
       </a>
     </div>
     <div class="col-md-6 col-lg-4 ">
-      <a href="{% url 'sclpture' %}">
+      <a href="{% url 'app_artInfo:all_art_searching_page'%}?category=7">
         <div class="category-item bg-regular color1-overlay" style="background-image:url(https://picsum.photos/300)">
-            <h4>Sculpture</h4>
+          <h4>Sculpture</h4>
         </div>
       </a>
     </div>

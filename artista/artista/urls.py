@@ -31,7 +31,7 @@ admin.site.index_title = "Welcome to ARTISTA Portal"
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),  # landing page url
     path('api/', include('api.urls')),  # api page url
-    path('admin/doc/',include('django.contrib.admindocs.urls')),
+    path('admin/doc/', include('django.contrib.admindocs.urls')),
 
     # artist login page url app (login)
     path('login/', login_user, name='login_user'),
@@ -55,6 +55,8 @@ urlpatterns = [
     #path('dashboard/artist/api/art_artist/', include('artistArt.url_apis')),
 
     path('category/', include('artistArtCategory.urls')),
+
+    path('follow/', include('artistFollowing.urls')),
 
     path('chat/', include('chat.urls')),  # must need asynchronous server
 
