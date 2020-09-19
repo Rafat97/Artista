@@ -22,14 +22,6 @@ class ArtistReview(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def clean(self):
-
-        if self.user_reviewing != None and self.user_reviewer != None and self.user_reviewing == self.user_reviewer:
-            raise ValidationError(_(" You can not review own. "))
-
-        if self.user_reviewing.user_role.role_name != 'Artist':
-            raise ValidationError(
-                _(" You can not reviewing without Artist . "))
 
     def __str__(self):
         return self.message

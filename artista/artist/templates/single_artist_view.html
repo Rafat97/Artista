@@ -8,7 +8,91 @@ Artist Home
 
 Single Artist View
 
+
 <div class="container my-5">
+    <h1>Artist Info</h1>
+    <div>
+        <img src="{{  artist_info.avatar.url }}" class="" alt="Avatar" >
+    </div>
+    <div>
+        display_name = {{ artist_info.display_name }}
+    </div>
+    <div>
+        email = {{ artist_info.email }}
+    </div>
+
+    <div>
+        uuid = {{ artist_info.uuid }}
+    </div>
+    <div>
+        address = {{ artist_info.address }}
+    </div>
+    <div>
+        phone number = {{ artist_info.phoneNumber }}
+    </div>
+  
+</div>
+
+<div class="container my-5">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-danger" role="alert">
+      {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+
+    <!-- Large modal -->
+    {% if artist_info != user_info %}
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form action="{% url 'artist:artist_review' artist_info.uuid  %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="exampleInputEmail1">message</label>
+                    <input type="text" name="message" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter message">
+                   
+                </div>
+                <button type="submit" class="btn btn-primary"> Submit </button>
+            </form>
+        </div>
+    </div>
+    </div>
+    {% endif %}
+
+</div>
+
+<div class="container my-5">
+    <h1>Artist Art Reviewer</h1>
+    <div class="row"> 
+        {% if artist_review|length >= 1 %}
+            {% for data in artist_review %}
+            <div class="col-md-3 ">
+                <div class="card mx-1" >
+                    <img class="card-img-top" src="{{ data.user_reviewing.avatar.url }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ data.user_reviewing.display_name }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ data.message }}</h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}  
+        {% else %}  
+        <div class="container text-center">
+            <h1 >OOPS ! NO REVIEW FOUND </h1>
+        </div>
+        {% endif %}
+    </div>
+</div>
+ 
+<div class="container my-5">
+    <h1>Artist Art Info</h1>
     <div class="row"> 
         {% if arts_info|length >= 1 %}
             {% for data in arts_info %}
@@ -32,12 +116,15 @@ Single Artist View
     </div>
 </div>
 
+
+
+
 {% endblock %}
 
 
 
 
 {% block add_js %} 
-<script src="{% static 'js/public/app-react.js' %}"></script>
-<script src="{% static 'js/public/app-vue.js' %}"></script>
+<!-- <script src="{% static 'js/public/app-react.js' %}"></script>
+<script src="{% static 'js/public/app-vue.js' %}"></script> -->
 {% endblock %}
