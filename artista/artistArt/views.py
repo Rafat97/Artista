@@ -36,7 +36,7 @@ class ArtistArtUploadNew(View):
             data = form.save()
             print(data)
             # return HttpResponse("Thank you to upload a new art code is = "+str(data.uuid))
-            return redirect('artist_own_all_art')
+            return redirect('artist:artist_own_all_art')
 
         context = {
             'user_info': self.USER_INFO,
@@ -129,7 +129,7 @@ class ArtistArtUploadEdit(View):
         form.setUser(current_user=self.USER_INFO)
         if form.is_valid():
             data = form.save()
-            return redirect('artist_own_all_art')
+            return redirect('artist:artist_own_all_art')
 
         context = {
             'user_info': self.USER_INFO,
@@ -154,7 +154,7 @@ class ArtistArtUploadedDelete(View):
             ArtistArt,  uuid=uid, user=self.USER_INFO
         )
         art.delete()
-        return redirect('artist_own_all_art')
+        return redirect('artist:artist_own_all_art')
 
 
 class ArtistArtPreviewAll(View):
@@ -169,7 +169,7 @@ class ArtistArtPreviewAll(View):
         if self.USER_INFO == None:
             return redirect('/logout')
 
-        art = ArtistArt.objects.filter(user=self.USER_INFO)
+        art = ArtistArt.objects.filter(user=self.USER_INFO).order_by('-id')
         self.ART_INFO = art
 
         context = {

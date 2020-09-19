@@ -43,77 +43,86 @@
               <div class="row mb-5">
                 <div class="col-sm-12 text-center">
                   {% thumbnail user_info.avatar "104x104" as im %}
-                  <img src="{{ im.url }}" class="rounded-circle" alt="Avatar" />
+                  <img src="{{ im.url }}" class="rounded-circle" alt="Avatar"
+                    style="width: 125px; height: calc(125px + 1rem);" />
                   {% endthumbnail %}
                 </div>
               </div>
-              <div class="row">
-                <div class="col-sm-12 text-center mb-5">
-                  {{ user_info.display_name | upper }}
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-        <!-- end Profile info -->
-
-        <!-- Side bar menu -->
-        <div>
-          <div class="list-group list-group-flush text-center">
-
-            <a href="{% url 'app_artInfo:home' %}" class="list-group-item list-group-item-action bg-light">HOME</a>
-
-          </div>
-          <div class="list-group list-group-flush text-center">
-            <a href="{% url 'artist_follow' %}" class="list-group-item list-group-item-action bg-light">FOLLOWING</a>
-          </div>
-          <div class="list-group list-group-flush text-center">
-            <a href="#" class="list-group-item list-group-item-action bg-light">LOVED ART</a>
-          </div>
-          <div class="list-group list-group-flush text-center">
-            <a href="{% url 'category' %}" class="list-group-item list-group-item-action bg-light">CATEGORY</a>
-          </div>
-          {% if user_info.user_role.role_name == 'Artist' %}
-          <div class="list-group list-group-flush text-center">
-            <a href="{% url 'artist_own_all_art' %}" class="list-group-item list-group-item-action bg-light">ALL MY
-              ART</a>
-          </div>
-          {% endif %}
-        </div>
-        <!-- end Side bar menu -->
-
-        <!-- Logout menu -->
-        <div style="bottom: 0px;position: absolute;">
-          <div class="list-group list-group-flush">
-            <div class="row my-2">
-              <div class="col-sm-3">
-                <img src="{{ user_info.avatar.url }}" class="rounded-circle" alt="Avatar" width="45px" height="45px"
-                  class="avatar" />
-              </div>
-              <div class="col-sm-5 p-0 text-center my-auto">
+            <div class="row">
+              <div class="col-sm-12 text-center mb-5">
                 {{ user_info.display_name | upper }}
               </div>
-              <div class="col-sm-4 p-0 my-auto">
-                <a href="{% url 'logout_user' %}" class="btn btn-primary">
-                  Logout
-                </a>
-              </div>
             </div>
           </div>
         </div>
-        <!-- end Logout menu -->
       </div>
+      <!-- end Profile info -->
 
-      {% endblock %}
-      <div id="page-content-wrapper">
-        <nav class="d-md-none navbar navbar-expand-lg navbar-light bg-light border-bottom">
-          <button class="btn btn-primary" id="menu-toggle">
-            Toggle Menu
-          </button>
-        </nav>
+      <!-- Side bar menu -->
+      <div>
+        <div class="list-group list-group-flush text-center">
 
+          <a href="{% url 'app_artInfo:home' %}" class="list-group-item list-group-item-action bg-light">HOME</a>
 
+        </div>
+        <div class="list-group list-group-flush text-center">
+          <a href="{% url 'artist_follow' %}" class="list-group-item list-group-item-action bg-light">FOLLOWING</a>
+        </div>
+        <div class="list-group list-group-flush text-center">
+          <a href="#" class="list-group-item list-group-item-action bg-light">LOVED ART</a>
+        </div>
+        <div class="list-group list-group-flush text-center">
+          <a href="{% url 'category' %}" class="list-group-item list-group-item-action bg-light">CATEGORY</a>
+        </div>
+        {% if user_info.user_role.role_name == 'Artist' %}
+        <div class="list-group list-group-flush text-center">
+          <a href="{% url 'artist:artist_own_all_art' %}" class="list-group-item list-group-item-action bg-light">ALL MY
+            ART</a>
+        </div>
+        {% endif %}
       </div>
+      {% if user_info.user_role.role_name == 'Artist' %}
+      <div class="list-group list-group-flush text-center">
+        <a href="{% url 'artist_own_all_art' %}" class="list-group-item list-group-item-action bg-light">ALL MY
+          ART</a>
+      </div>
+      {% endif %}
+    </div>
+    <!-- end Side bar menu -->
+
+    <!-- Logout menu -->
+    <div style="bottom: 0px;position: absolute;">
+      <div class="list-group list-group-flush">
+        <div class="row my-2">
+          <div class="col-sm-3">
+            <img src="{{ user_info.avatar.url }}" class="rounded-circle" alt="Avatar" width="45px" height="45px"
+              class="avatar" />
+          </div>
+          <div class="col-sm-5 p-0 text-center my-auto">
+            {{ user_info.display_name | upper }}
+          </div>
+          <div class="col-sm-4 p-0 my-auto">
+            <a href="{% url 'logout_user' %}" class="btn btn-primary">
+              Logout
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end Logout menu -->
+    </div>
+
+    {% endblock %}
+    <div id="page-content-wrapper">
+      <nav class="d-md-none navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-primary" id="menu-toggle">
+          Toggle Menu
+        </button>
+      </nav>
+
+
+    </div>
     </div>
   </sidebar>
   <main>

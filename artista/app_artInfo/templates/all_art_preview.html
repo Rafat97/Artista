@@ -14,7 +14,11 @@ Artist All Arts
 {% block content %}
 All ARTS
 <div class="container text-center">
-  <a href="{% url 'app_artInfo:all_art_searching_page' %}" class="btn btn-primary">Search Page</a>
+<form action="{% url 'app_artInfo:all_art_searching_page' %}">
+  <input type="text" name="search"> 
+  <button  class="btn btn-primary">Search Page</button>
+</form>
+
 </div>
 
 
@@ -38,16 +42,14 @@ All ARTS
                   <img src="{{ data.image.url }}" alt="{{ data.title }}"/>
                   <div class="post-info">
                     <div class="user-profile">
-                      <img src="http://127.0.0.1:8000/media/upload/cache/c9/a3/c9a333208dead6f0d005a0f7f311be0f.jpg"/>
+                      <img src="{{ data.user.avatar.url }}"/>
                       <div class="user-info">
-                        <h6>Rafat Haque</h6>
-                        <p class="mb-0">creative photographer</p>
+                        <h6>{{ data.user.display_name }}</h6>
+                        <p class="mb-0">{{ data.category }}</p>
                       </div>
                     </div>
                     <h4>Category</h4>
-                    <p class="fas fa-heart color1 mb-0">{{ data.view_count }}</p>
-
-                    
+                    <p class="fas fa-eye color1 mb-0">{{ data.view_count }}</p>
                   </div>
               </a>
 
