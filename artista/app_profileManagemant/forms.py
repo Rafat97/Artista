@@ -21,32 +21,30 @@ class UserEditProfile(forms.ModelForm):
                                    ),
                                    max_length=30, required=True)
 
-
     address = forms.CharField(label="Address",
-                                   widget=forms.TextInput(
-                                       attrs={
-                                           'class': 'form-control cnr-rounded', }
-                                   ),
-                                   max_length=255, required=True)
+                              widget=forms.TextInput(
+                                  attrs={
+                                      'class': 'form-control cnr-rounded', }
+                              ),
+                              max_length=255, required=True)
 
     phoneNumber = forms.CharField(label="Phone Number",
-                                   widget=forms.TextInput(
-                                       attrs={
-                                           'class': 'form-control cnr-rounded', }
-                                   ),
-                                   max_length=20, required=True)
+                                  widget=forms.TextInput(
+                                      attrs={
+                                          'class': 'form-control cnr-rounded', }
+                                  ),
+                                  max_length=20, required=True)
 
-    avatar = forms.ImageField(label="Profile Picture",required=True)
-
+    avatar = forms.ImageField(label="Profile Picture", required=True)
 
     def clean_image(self):
         image = self.cleaned_data.get('avatar')
         if image:
-            if image.size> 1*1024*1024:
+            if image.size > 1*1024*1024:
                 raise forms.ValidationError("Image file too large ( > 1mb )")
             return image
         else:
-            raise forms.ValidationError("Couldn't read uploaded image")     
+            raise forms.ValidationError("Couldn't read uploaded image")
 
     def clean_email(self):
         email = self.cleaned_data['email']

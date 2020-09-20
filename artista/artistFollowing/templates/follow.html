@@ -21,14 +21,19 @@
 <div class="container-fluid">
     <div class="row mx-auto">{% for artist in artists%}
         <div class="card mx-auto ms-2 mb-2" style="width: 18rem;">
-            <img src={{artist.avatar.url}} class="card-img-top" alt="...">
+            <img src={{artist.user_following.avatar.url}} class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">{{artist.display_name}}</h5>
+                <h5 class="card-title">{{artist.user_following.display_name}}</h5>
 
-                <form action="" method="POST">
+
+                <form action="{% url 'artist_follow_form_submit'  artist.user_following.uuid %}" method="POST">
                     {% csrf_token %}
-                    <input type="text" name="artist_id" value='{{artist.uuid}}'>
-                    <input type="submit" class="btn btn-primary" value="Follow">
+
+                    <input type="hidden" name="art" value='{{artist.user_following.uuid}}'>
+
+
+                    <button type="submit" class="color1-btn ">Unfollow</button>
+
                 </form>
             </div>
         </div>
