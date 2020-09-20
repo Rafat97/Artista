@@ -136,8 +136,6 @@ class SingleArtView(View):
 
 # Create your views here.
 class SingleArtComment(View):
-
-
     
     def post(self, request, *args, **kwargs):
         uid = kwargs.get('image_uuid')

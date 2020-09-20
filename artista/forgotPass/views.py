@@ -2,11 +2,14 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect,reverse
 from django.http import HttpResponse
 from django.views import View
-from .forms import ForgotPassUserFrom
+from .forms import ForgotPassUserFrom, ForgotPassNewPassSetUserFrom
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
 from django.contrib import messages
+from register.models import User
+from django.shortcuts import get_object_or_404
+from django.db.models import Q
 
 # Create your views here.
 
@@ -40,7 +43,7 @@ class ForgotPassword(View):
             )
             # return HttpResponse("bla bla ")
             if mail:
-                messages.success(request, 'Please check your email.')
+                messages.success(request, 'Please check your email. ')
                 # return HttpResponse("Please check your email ! ")
             else:
                 messages.error(request, 'Please ! Try again or Contact us.')
@@ -55,5 +58,30 @@ class ForgotPassword(View):
 
 class ForgotPasswordReset(View):
     def get(self, request,user_uuid,user_reset_token, *args, **kwargs):
-        
-        return HttpResponse(user_uuid + "<br>" + user_reset_token)
+        user =  get_object_or_404(
+                User,  Q(uuid=user_uuid) , Q(refresh_token=user_reset_token)
+            )
+
+        form = ForgotPassNewPassSetUserFrom(None)
+        context = {
+            "form" : form
+        }
+        return render(request, 'forgot_password_form.html', context)
+
+    def post(self, request,user_uuid,user_reset_token, *args, **kwargs):
+        print("asdasd")
+        pass
+        form = ForgotPassNewPassSetUserFrom(request.POST or None)
+        form.setToken(user_reset_token)
+        form.setIdUser(user_uuid)
+        if form.is_valid():
+            form.save(commit=True)
+            messages.success(request , " Your password is changed. Please login with new password ")
+            response = redirect('login_user')
+            return response
+
+        context = {
+            "form" : form
+        }
+        return render(request, 'forgot_password_form.html', context)
+

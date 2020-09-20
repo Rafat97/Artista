@@ -3,6 +3,7 @@ from register.models import User
 from django.contrib.auth.hashers import make_password,check_password
 from django.utils.translation import gettext, gettext_lazy as _
 import uuid
+from django.db.models import Q
 
 class ForgotPassUserFrom(forms.Form):
 
@@ -38,3 +39,60 @@ class ForgotPassUserFrom(forms.Form):
         # 
         # if check_password(password_not_hashed,password_hash):
             # pass
+
+
+
+class ForgotPassNewPassSetUserFrom(forms.Form):
+
+    password=forms.CharField(widget=forms.PasswordInput(
+        attrs={'class':'form-control cnr-rounded',}
+    ))
+    confirm_password=forms.CharField(widget=forms.PasswordInput(
+        attrs={'class':'form-control cnr-rounded',}
+    ))
+    
+    __user = None
+    __token = None
+    __iduser = None
+
+    def setToken(self,token_user):
+        self.__token = token_user
+
+    def setIdUser(self,user_id):
+        self.__iduser = user_id
+        
+    def clean_confirm_password(self):
+        cleaned_data = super(ForgotPassNewPassSetUserFrom, self).clean()
+        password = cleaned_data.get("password")
+        confirm_password = cleaned_data.get("confirm_password")
+        if password != confirm_password:
+            raise forms.ValidationError(
+                "Password and Confirm password does not match"
+            )
+    
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if self.__token and self.__iduser:
+            user = User.objects.get( Q(uuid=self.__iduser) , Q(refresh_token=self.__token) )
+            if not user:
+               raise forms.ValidationError(_(' You are not allow to reset password '))
+            else:
+                password_not_hashed = self.cleaned_data["password"]
+                if check_password(password_not_hashed,user.password):
+                    raise forms.ValidationError(_(' You can not use this password. Please use another one '))
+                else:
+                    self.__user = user
+        else:
+            raise forms.ValidationError(_(' Invalid reset password request '))
+        
+
+    def save(self, commit=True):
+        password = make_password(self.cleaned_data["password"])
+        self.__user.password = password
+        self.__user.refresh_token = None
+        if commit:
+            self.__user.save()
+
+        return self.__user
+

@@ -221,16 +221,16 @@ STATIC_URL = '/static/'
 
 
 # Email Setup
-# EMAIL_HOST = 'smtp.mailtrap.io'
-# EMAIL_HOST_USER = '342d440685e0fb'
-# EMAIL_HOST_PASSWORD = '4982cfbd5f4f1c'
-# EMAIL_PORT = '2525'
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '1d673a236e6229'
+EMAIL_HOST_PASSWORD = '96832748e4ec5f'
+EMAIL_PORT = '2525'
 
 
-EMAIL_HOST = 'smtp.mailgun.org'
-EMAIL_HOST_USER = 'postmaster@sandboxd3381ef9db1b44b49660f116c3b8f8bc.mailgun.org'
-EMAIL_HOST_PASSWORD = 'c2c4282dccedb83a581e01836a77657e-46ac6b00-638ce906'
-EMAIL_PORT = '587'
+# EMAIL_HOST = 'smtp.mailgun.org'
+# EMAIL_HOST_USER = 'postmaster@sandboxd3381ef9db1b44b49660f116c3b8f8bc.mailgun.org'
+# EMAIL_HOST_PASSWORD = 'c2c4282dccedb83a581e01836a77657e-46ac6b00-638ce906'
+# EMAIL_PORT = '587'
 
 # Email Setup with file
 # EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
