@@ -10,6 +10,7 @@ from django.db import models
 from django.shortcuts import get_object_or_404
 from artistArt.forms import ArtCommentForm
 from django.contrib import messages
+from django.db.models import Q
 
 
 class ProductFilter(django_filters.FilterSet):
@@ -36,7 +37,11 @@ class ProductFilter(django_filters.FilterSet):
     def search__in(self, queryset, value, name):
         if name:
             expression = name
-            queryset = queryset.filter(title__contains=expression)
+            queryset = queryset.filter(
+                Q(title__icontains=expression) | 
+                Q(tags__icontains=expression) | 
+                Q(short_description__icontains=expression)
+            )
         return queryset
 
 
@@ -195,3 +200,21 @@ class ArtistArtReact(View):
         saveData.save()
         
         return redirect("app_artInfo:artist_single_art_page",uid)
+
+
+
+class ArtistArtReactAllArt(View):
+
+    def get(self, request, *args, **kwargs):
+
+        user = get_current_user(request)
+
+        all_Loved_Arts = ArtLikeDislike.objects.filter(Q(user = user) , Q(like_dislike = True) )
+
+        context = {
+            'user_info': user,
+            "allLovedArts" : all_Loved_Arts,
+        }
+
+        
+        return render(request, "all_reacted_art.html", context)
