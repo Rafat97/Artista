@@ -10,6 +10,7 @@ from django.db import models
 from django.shortcuts import get_object_or_404
 from artistArt.forms import ArtCommentForm
 from django.contrib import messages
+from .forms import UserEditProfile
 
 # Create your views here.
 
@@ -19,12 +20,28 @@ class UsersProfileEdit(View):
     def get(self, request, *args, **kwargs):
         user = get_current_user(request)
         if not user:
-            return redirect('/')
-
+            return redirect('/logout')
+        form = UserEditProfile(instance=user)
         context = {
             'user_info': user,
+            'form': form
         }
         return render(request, "user_profile_edit.html", context)
 
     def post(self, request, *args, **kwargs):
-        pass
+        user = get_current_user(request)
+        if not user:
+            return redirect('/logout')
+
+        form = UserEditProfile(
+            request.POST, request.FILES or None, instance=user)
+        
+        if form.is_valid():
+            data = form.save()
+            return redirect('app_profileManagemant:home')
+
+        context = {
+            'user_info': user,
+            'form': form
+        }
+        return render(request, 'user_profile_edit.html', context)

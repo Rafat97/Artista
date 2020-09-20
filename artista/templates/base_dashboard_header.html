@@ -52,7 +52,7 @@
               </div>
               <div class="row">
                 <div class="col-sm-12 text-center mb-5">
-                  {{ user_info.display_name | upper }}
+                  {{ user_info.display_name }}
                 </div>
               </div>
             </div>
@@ -95,7 +95,7 @@
                   class="avatar" />
               </div>
               <div class="col-sm-5 p-0 text-center my-auto">
-                {{ user_info.display_name | upper }}
+                {{ user_info.display_name  }}
               </div>
               <div class="col-sm-4 p-0 my-auto">
                 <a href="{% url 'logout_user' %}" class="btn btn-primary">
