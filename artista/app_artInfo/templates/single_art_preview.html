@@ -1,0 +1,195 @@
+{% extends 'base_dashboard_header.html' %} {% load static %}
+
+
+{% block page_title %}
+Artist All Arts
+{% endblock %}
+
+
+{% block js_cdn %}
+
+{% endblock %} 
+
+{% block content %}
+
+
+<style>
+  .profile-block img {
+    width:125px;
+    height: calc(125px + 1rem);
+
+  }
+  .font-700{
+    font-weight: 700;
+  }
+  .img-small{
+    height: 80px;
+    width: 80px;
+  }
+</style>
+<div class="container pt-5 ">
+
+
+  <div class="row">
+    <div class="col-md-6 ">
+      <img class="img-fluid" src="{{  art_info.image.url }}" class="" alt="Avatar">
+    </div>
+    <div class="col-md-6 ">
+    
+        
+      <div class="profile-block d-flex align-items-center align-items-xl-start">
+
+        <a class="text-dark" href="{% url 'artist:single_artist_info'  art_info.user.uuid %}" >
+        <img class="profile-img py-3" src="{{ art_info.user.avatar.url }}" alt="avatar" />
+        <div class="profile-info d-flex flex-wrap flex-grow-1">
+
+          <div class="py-3 pr-5 pl-4">
+            <h5 class="text-black mb-0">{{ art_info.user.display_name }}</h5>
+
+
+          </div>
+          <div class="flex-grow-1 p-3">
+            <button class="color1-btn ">Follow</button>
+          </div>
+          
+          </a>
+        </div>
+        
+      </div>
+
+      <h3>
+        {{ art_info.title }}
+      </h3>
+      <p>
+        short_description = {{ art_info.short_description }}
+      </p>
+      <h5 class="font-700">Category:</h5>
+      <p> {{ art_info.category | upper }}</p>
+      {% if current_user_liked %}
+      <form action="{%  url 'app_artInfo:artist_art_react' art_info.uuid %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-default ">
+          <h3>
+            <i class="fas fa-heart color2"></i>
+           </h3>
+       </button>
+      </form>
+      {% else %}
+      <form action="{%  url 'app_artInfo:artist_art_react' art_info.uuid %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-default ">
+           <h3>
+             <i class="fas fa-heart"></i>
+            </h3>
+        </button>
+      </form>
+      {% endif %}
+    </div>
+
+  </div>
+  <h4 class="mt-4 font-700">Tags</h4>
+  <h6 > Tags = {{ art_info.tags | upper }}</h6>
+  <h4 class="mt-5 font-700">Description</h4>
+  <p > long_description = {{ art_info.long_description }}</p>
+  <h4 class="my-5 font-700">Comment</h4>
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-danger" role="alert">
+    {{message}}
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% for error in art_comments_form.non_field_errors %}
+  <div class="alert alert-danger" role="alert">
+    {{error}}
+  </div>
+  {% endfor %}
+  <form class="form-inline align-items-start mb-5" action="{%  url 'app_artInfo:artist_single_art_comment' art_info.uuid 'add'%}" method="POST">
+    {% for field in art_comments_form.visible_fields %}
+    <div class="form-group col-md-6 col-lg-6">
+      <!-- <label class="font-weight-bold" for="exampleInputEmail1">{{ field.label_tag }}</label> -->
+      {{ field }}
+      {% for error in field.errors %}
+      <small id="emailHelp" class="form-text text-danger">{{ error }}</small>
+      {% endfor %}
+    </div>
+    {% endfor %}
+
+    {% csrf_token %}
+
+    {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+    {% endfor %}
+    <div class="px-md-4">
+      <button class="color1-btn " style="width: 150px;" type="submit">Submit</button>
+    </div>
+    
+  </form>
+
+  
+    {% for data in art_comments %}
+    <div class="row m-0 mb-5">
+    <div class="col flex-grow-0">
+      <img class="profile-img img-small" src="{{ data.user.avatar.url }}"   alt="{{ data.user.display_name }}">
+    </div>
+    <div class="col">
+      <h5 class="mb-3">{{ data.user.display_name }}</h5>
+      <p class="mb-3">{{ data.comment_message }}</p>
+      {% if user_info == data.user %}
+      <form action="{%  url 'app_artInfo:artist_single_art_comment' art_info.uuid 'delete'%}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="comment_id" value="{{ data.id }}">
+        <button type="submit" class=" btn btn-link color1 color1-hover">Delete</button>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+    {% endfor %}
+
+
+
+  <!-- <div>
+     
+        <img src="{{  art_info.image.url }}" class="" alt="Avatar" >
+      </div>
+    <div>
+      title = {{ art_info.title }}
+    </div>
+    <div>
+      short_description = {{ art_info.short_description }}
+    </div>
+    <div>
+      view_count = {{ art_info.view_count }}
+    </div>
+    <div>
+      long_description = {{ art_info.long_description }}
+    </div>
+    <div>
+      category = {{ art_info.category | upper }}
+    </div>
+    <div>
+     Tags = {{ art_info.tags | upper }}
+    </div>
+    <div>
+      likes = {{ art_info.number_of_likes | upper }}
+     </div>
+     <div>
+      dislikes = {{ art_info.number_of_dislikes | upper }}
+     </div>
+     <div>
+      current_user_liked = {{ current_user_liked }}
+     </div> -->
+
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+{% block add_js %}
+<script>
+</script>
+{% endblock %}

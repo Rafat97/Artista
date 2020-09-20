@@ -1,0 +1,48 @@
+{% extends 'base_dashboard_header.html' %} {% load static %}
+
+
+{% block page_title %}
+Artist All Arts
+{% endblock %}
+
+
+{% block js_cdn %}
+
+{% endblock %}
+
+
+{% block content %}
+    User Profile edit
+  <!-- User Profile  edit -->
+  <div class="container my-5">
+    {% for error in form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+      {{error}}
+    </div>
+    {% endfor %}
+
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% for field in form.visible_fields %}
+      <div class="form-group">
+        <label class="font-weight-bold" for="exampleInputEmail1">{{ field.label_tag }}</label>
+        {{ field }} {% for error in field.errors %}
+        <small id="emailHelp" class="form-text text-danger">{{ error }}</small>
+        {% endfor %}
+      </div>
+      {% endfor %} {% csrf_token %} {% for hidden in form.hidden_fields %} {{
+      hidden }} {% endfor %}
+      <div class="text-center text-md-left">
+        <button class="color1-btn " type="submit">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+  <!-- User Profile  edit  -->
+
+{% endblock %}
+
+
+{% block add_js %}
+
+{% endblock %}

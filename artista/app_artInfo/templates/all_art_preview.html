@@ -1,0 +1,93 @@
+{% extends 'base_dashboard_header.html' %} {% load static %}
+
+
+{% block page_title %}
+Artist All Arts
+{% endblock %}
+
+
+{% block js_cdn %}
+
+{% endblock %}
+
+
+{% block content %}
+All ARTS
+<div class="container text-center">
+<form action="{% url 'app_artInfo:all_art_searching_page' %}">
+  
+  <div class="form-group">
+    <input type="text" name="search" class="form-control cnr-rounded" maxlength="100" required id="id_title"> 
+  </div>
+  <div class="text-center text-md-left">
+    <button class="color1-btn " type="submit">
+      Search
+    </button>
+  </div>
+</form>
+
+</div>
+
+
+<div class="container my-5">
+  <div class="grid">
+
+    {% for data in allArts %}
+    <div class="grid-item ">
+      <!-- <div class="card mx-1" >
+                  <img class="card-img-top" src="{{ data.image.url }}" alt="Card image cap">
+                  <div class="card-body">
+                  <h5 class="card-title">{{ data.title }}</h5>
+                  <p class="card-text">{{ data.short_description }}</p>
+                  <p class="card-text">view Count : {{ data.view_count }}</p>
+                  <a href="{% url 'app_artInfo:artist_single_art_page'  data.uuid %}"  class="card-link" >View Art</a>
+                  </div>
+              </div> -->
+            <div class="post-img">
+
+              <a href="{% url 'app_artInfo:artist_single_art_page'  data.uuid %}">
+                  <img src="{{ data.image.url }}" alt="{{ data.title }}"/>
+                  <div class="post-info">
+                    <div class="user-profile">
+                      <img src="{{ data.user.avatar.url }}"/>
+                      <div class="user-info">
+                        <h6>{{ data.user.display_name }}</h6>
+                        <p class="mb-0">{{ data.category }}</p>
+                      </div>
+                    </div>
+                    <h4>Category</h4>
+                    <p class="fas fa-eye color1 mb-0">{{ data.view_count }}</p>
+                  </div>
+              </a>
+
+            </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+
+{% block add_js %}
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script>
+  
+  // vanilla JS
+// init with element
+var grid = document.querySelector('.grid');
+var msnry = new Masonry( grid, {
+  // options...
+  itemSelector: '.grid-item',
+ 
+  itemSelector: '.grid-item',
+  columnWidth: '.grid-sizer',
+  percentPosition: true,
+  gutter:15
+});
+
+// init with selector
+var msnry = new Masonry( '.grid', {
+  // options...
+});
+</script>
+{% endblock %}

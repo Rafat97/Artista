@@ -13,6 +13,14 @@
         <!-- <img src="{% static 'images/Artista-logo.png' %}" width="168"  height="150"> -->
       </div>
       <h5 class="text-center mb-5 text-uppercase font-weight-bold">Login Your Account </h5>
+      
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-danger" role="alert">
+        {{message}}
+      </div>
+      {% endfor %}
+      {% endif %}
 
       {% for error in form.non_field_errors %}
       <div class="alert alert-danger" role="alert">

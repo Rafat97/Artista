@@ -67,6 +67,13 @@ class ArtistArt(models.Model):
         self.__user_like_dislike = find
         return find
 
+    def current_art_comment(self):
+        find = ArtComment.objects.filter(artist_art=self).order_by("-id")
+        if not find:
+            find = None
+            pass
+        return find
+
 
 class ArtLikeDislike(models.Model):
 
@@ -83,16 +90,15 @@ class ArtLikeDislike(models.Model):
         find = ArtLikeDislike.objects.filter(user=self.user , artist_art=self.artist_art)
         if find:
             get_data = find.get()
-            if get_data.like_dislike !=  self.like_dislike:
-                find.update(like_dislike = self.like_dislike)
+            if get_data.like_dislike == True :
+                find.update(like_dislike = False)
             else:
-                # Same value as previous like
+                find.update(like_dislike = True)
                 pass
         else:
             super().save(*args, **kwargs)
             
         
-
 class ArtComment(models.Model):
 
     artist_art = models.ForeignKey(ArtistArt, on_delete=models.CASCADE,null=False,blank=False)

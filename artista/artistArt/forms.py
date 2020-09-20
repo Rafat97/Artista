@@ -1,5 +1,5 @@
 from django import forms
-from .models import ArtCategory,ArtistArt
+from .models import ArtCategory,ArtistArt,ArtComment
 from django.utils.translation import gettext, gettext_lazy as _
 
 
@@ -57,3 +57,29 @@ class ArtistArtViewForm(forms.ModelForm):
             'post_status'
         ]
         exclude = ['user','view_count']
+
+
+
+class ArtCommentForm(forms.ModelForm):
+    __user = None
+    __art = None
+
+    def setUser(self,current_user):
+        self.__user = current_user
+
+    def setArt(self,current_art):
+        self.__art = current_art
+
+    def save(self, commit=True):
+        comment_art = super(ArtCommentForm, self).save(commit=False)
+        comment_art.user = self.__user
+        comment_art.artist_art = self.__art
+        if commit:
+            comment_art.save()
+        return comment_art
+    
+    class Meta:
+        model = ArtComment
+        fields = [
+            'comment_message',
+        ]

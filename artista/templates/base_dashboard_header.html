@@ -1,152 +1,147 @@
-{% load static %}
-{% load thumbnail %}
+{% load static %} {% load thumbnail %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% block meta %} {% endblock %}
-    <title>{% block page_title %} {% endblock %}</title>
 
-    <!-- <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {% block meta %} {% endblock %}
+  <title>{% block page_title %} {% endblock %}</title>
+
+  <!-- <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script> -->
 
-    <!-- <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+  <!-- <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script> -->
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="{% static 'css/style.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      href="{% static 'css/sample-sidebar.css' %}"
-    />
-    {% block css_cdn %} {% endblock %}
-    {% block js_cdn %} {% endblock %}
-  </head>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Merienda+One&family=Montserrat:wght@500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/sample-sidebar.css' %}" />
+  {% block css_cdn %} {% endblock %} {% block js_cdn %} {% endblock %}
+  {% block add_style %} {% endblock %}
+</head>
 
-  <body>
-    <header></header>
-    <section>
-      <div class="d-flex" id="wrapper">
+<body>
+  <sidebar>
+    <div class="d-flex" id="wrapper">
       {% block Sidebar %}
-        <div class="bg-light border-right" id="sidebar-wrapper">
-          <div class="sidebar-heading text-center">Artista</div>
-           <!-- Profile info -->
-          <div class="list-group list-group-flush">
-            <div>
-              <div href="#" class="mt-5 list-group-item list-group-item-action bg-light">
-                <div class="row mb-5">
-                  <div class="col-sm-12 text-center">
-
-                    {% thumbnail user_info.avatar "104x104" as im %}
-                        <img src="{{ im.url }}" class="rounded-circle" alt="Avatar" >
-                    {% endthumbnail %}
-
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-12 text-center mb-5">
-                    {{ user_info.display_name | upper  }}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-           <!-- end Profile info -->
-
-            <!-- Side bar menu -->
+      <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading text-center">Artista</div>
+        <!-- Profile info -->
+        <div class="list-group list-group-flush">
           <div>
-            <div class="list-group list-group-flush text-center">
-              <a href="#" class="list-group-item list-group-item-action bg-light">HOME</a>
-            </div>
-            <div class="list-group list-group-flush text-center">
-              <a href="#" class="list-group-item list-group-item-action bg-light">FOLLOWING</a>
-            </div>
-            <div class="list-group list-group-flush text-center">
-              <a href="#" class="list-group-item list-group-item-action bg-light">LOVED ART</a>
-            </div>
-            <div class="list-group list-group-flush text-center">
-              <a href="#" class="list-group-item list-group-item-action bg-light">CATEGORY</a>
-            </div>
-            {% if user_info.user_role.role_name == 'Artist' %}
-            <div class="list-group list-group-flush text-center">
-              <a href="{% url 'artist_own_all_art' %}" class="list-group-item list-group-item-action bg-light">ALL MY ART</a>
-            </div>
-            {% endif %}
-          </div>
-            <!-- end Side bar menu -->
-
-          <!-- Logout menu -->
-          <div style="bottom: 0px;position: absolute;">  
-            <div class="list-group list-group-flush">
-              
-              <div class="row my-2">
-                <div class="col-sm-3">
-                  <img src="{{ user_info.avatar.url }}" class="rounded-circle" alt="Avatar" width="45px" height="45px" class="avatar">
-                </div>
-                <div class="col-sm-5 p-0 text-center my-auto">
-                  {{ user_info.display_name | upper }}
-                </div>
-                <div class="col-sm-4 p-0 my-auto">
-                  <a href="{% url 'logout_user' %}" class="btn btn-primary">
-                    Logout
+            <div href="#" class="mt-5 list-group-item list-group-item-action bg-light">
+              <div class="row mb-5">
+                <div class="col-sm-12 text-center">
+                  <a href="{% url 'app_profileManagemant:home' %}">
+                  {% thumbnail user_info.avatar "104x104" as im %}
+                  <img src="{{ im.url }}" class="rounded-circle" alt="Avatar"
+                    style="width: 50px; height: calc(50px + 1rem);" />
+                  {% endthumbnail %}
                   </a>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-sm-12 text-center mb-5">
+                  {{ user_info.display_name }}
+                </div>
+              </div>
             </div>
           </div>
-        <!-- end Logout menu -->
-
         </div>
-       
-      {% endblock %}
-      <div id="page-content-wrapper">
+        <!-- end Profile info -->
 
-        <nav class="d-md-none navbar navbar-expand-lg navbar-light bg-light border-bottom">
-          <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
-        </nav>
-  
-        <div class="container-fluid">
-          <div>
-            {% block content %}{% endblock %}
+        <!-- Side bar menu -->
+        <div>
+          <div class="list-group list-group-flush text-center">
+
+            <a href="{% url 'app_artInfo:home' %}" class="list-group-item list-group-item-action bg-light">HOME</a>
+
+          </div>
+          <div class="list-group list-group-flush text-center">
+            <a href="{% url 'artist_follow' %}" class="list-group-item list-group-item-action bg-light">FOLLOWING</a>
+          </div>
+
+          <div class="list-group list-group-flush text-center">
+            <a href="{% url 'app_artInfo:artist_reacted_all_art' %}" class="list-group-item list-group-item-action bg-light">LOVED ART</a>
+          </div>
+          <div class="list-group list-group-flush text-center">
+            <a href="{% url 'category' %}" class="list-group-item list-group-item-action bg-light">CATEGORY</a>
+          </div>
+          {% if user_info.user_role.role_name == 'Artist' %}
+          <div class="list-group list-group-flush text-center">
+            <a href="{% url 'artist:artist_own_all_art' %}" class="list-group-item list-group-item-action bg-light">ALL
+              MY ART</a>
+          </div>
+          {% endif %}
+        </div>
+        <!-- end Side bar menu -->
+
+        <!-- Logout menu -->
+        <div style="bottom: 0px;position: absolute;">
+          <div class="list-group list-group-flush">
+            <div class="row my-2">
+              <div class="col-sm-3">
+                <img src="{{ user_info.avatar.url }}" class="rounded-circle" alt="Avatar" width="45px" height="45px"
+                  class="avatar" />
+              </div>
+              <div class="col-sm-5 p-0 text-center my-auto">
+                {{ user_info.display_name  }}
+              </div>
+              <div class="col-sm-4 p-0 my-auto">
+                <a href="{% url 'logout_user' %}" class="btn btn-primary">
+                  Logout
+                </a>
+              </div>
+            </div>
           </div>
         </div>
+        <!-- end Logout menu -->
+      </div>
+
+      {% endblock %}
+      <div id="page-content-wrapper">
+        <nav class="d-md-none navbar navbar-expand-lg navbar-light bg-light border-bottom">
+          <button class="btn btn-primary" id="menu-toggle">
+            Toggle Menu
+          </button>
+        </nav>
+
+
       </div>
     </div>
-     
-    </section>
-  </body>
-  <script
-    src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"
-  ></script>
-  <script>
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
-  {% block add_js %} {% endblock %}
+  </sidebar>
+  <main>
+    <div class="">
+      <div>
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+
+  </main>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+  integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script>
+  $("#menu-toggle").click(function (e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  });
+</script>
+
+{% block add_js %} {% endblock %}
+
 </html>

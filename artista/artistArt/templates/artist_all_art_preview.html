@@ -13,10 +13,10 @@ Artist All Arts
 
 {% block content %}
 <div class="container my-5 text-center">
-    <a href="{% url 'artist_art_upload' %}" class="btn btn-primary">UPLOAD NEW ART</a>
+    <a href="{% url 'artist:artist_art_upload' %}" class="btn btn-primary">UPLOAD NEW ART</a>
 </div>
 <div class="container my-5">
-    <div class="row">
+    <div class="row"> 
         {% if arts_info|length >= 1 %}
             {% for data in arts_info %}
             <div class="col-md-3 ">
@@ -25,8 +25,8 @@ Artist All Arts
                     <div class="card-body">
                     <h5 class="card-title">{{ data.title }}</h5>
                     <p class="card-text">{{ data.short_description }}</p>
-                    <a href="{% url 'artist_art_upload_edit'  data.uuid %}"  class="card-link" >Edit</a>
-                    <a href="{% url 'artist_art_uploaded_delete'  data.uuid %}" class="card-link">Delete</a>
+                    <a href="{% url 'artist:artist_art_upload_edit'  data.uuid %}"  class="card-link" >Edit</a>
+                    <a href="{% url 'artist:artist_art_uploaded_delete'  data.uuid %}" class="card-link">Delete</a>
                     </div>
                 </div>
             </div>

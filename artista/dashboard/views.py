@@ -5,17 +5,46 @@ from register.models import User
 
 # Create your views here.
 class DashboardView(View):
+    """
+    Display an Artist Account
+
+    **Context**
+
+    ``mymodel``
+        An instance of :model:`myapp.User`.
+
+    **Template:**
+
+    :template:`register_artist.html`
+    """
+
+    
     def get(self, request, *args, **kwargs):
+        """
+        Display an Artist Account
+
+        **Context**
+
+        ``mymodel``
+            An instance of :model:`myapp.User`.
+
+        **Template:**
+
+        :template:`register_artist.html`
+        """
+
+        
+        
         if not request.session.has_key('user'):
             return redirect('/')
 
         uuid = request.session['user']
         user = User.objects.filter(uuid__exact=uuid).get()
         if user.user_role.role_name == 'Client':
-            return redirect('/dashboard/client')
+            return redirect('/dashboard/art')
             
         elif user.user_role.role_name == 'Artist':
-            return redirect('/dashboard/artist')
+            return redirect('/dashboard/art')
             
         else:
             return redirect('/')
