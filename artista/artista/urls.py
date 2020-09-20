@@ -53,6 +53,7 @@ urlpatterns = [
     path('dashboard/art/', include('app_artInfo.urls')),
     #path('dashboard/art_artist/', include('artistArt.urls')),
     #path('dashboard/artist/api/art_artist/', include('artistArt.url_apis')),
+     path('dashboard/profile', include('app_profileManagemant.urls')),
 
     path('category/', include('artistArtCategory.urls')),
 

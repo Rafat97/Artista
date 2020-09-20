@@ -75,10 +75,11 @@ INSTALLED_APPS = [
     'client',
     'artistArt',
     'artistArtCategory',
-    'artistFollowing'
+    'artistFollowing',
 ]
 INSTALLED_APPS += [
-    "app_artInfo"
+    "app_artInfo",
+    'app_profileManagemant'
 ]
 
 

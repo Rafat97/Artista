@@ -42,10 +42,12 @@
             <div href="#" class="mt-5 list-group-item list-group-item-action bg-light">
               <div class="row mb-5">
                 <div class="col-sm-12 text-center">
+                  <a href="{% url 'app_profileManagemant:home' %}">
                   {% thumbnail user_info.avatar "104x104" as im %}
                   <img src="{{ im.url }}" class="rounded-circle" alt="Avatar"
                     style="width: 50px; height: calc(50px + 1rem);" />
                   {% endthumbnail %}
+                  </a>
                 </div>
               </div>
               <div class="row">
