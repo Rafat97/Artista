@@ -137,7 +137,7 @@
 
                             reader.onload = function (event) {
                              
-                              $("img").remove();
+                              $(".cover > img").remove();
                                 $($.parseHTML('<img id="cover-img">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
                             }
 

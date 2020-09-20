@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpResponseRedirect,Http404
 from django.views import View
 from register.models import User
-from artistArt.models import ArtistArt, ArtComment
+from artistArt.models import ArtistArt, ArtComment, ArtLikeDislike
 from artista.utils import get_current_user
 import django_filters
 from django import forms
@@ -171,4 +171,29 @@ class SingleArtComment(View):
             else :
                 messages.error(request , " Please give correct comment ")
 
+        return redirect("app_artInfo:artist_single_art_page",uid)
+
+
+
+class ArtistArtReact(View):
+
+    USER_INFO = None
+    ART_INFO = None
+
+    def post(self, request, *args, **kwargs):
+        uid = kwargs.get('uuid')
+        if not uid:
+            raise Http404("Page not found")
+
+        self.USER_INFO = get_current_user(request)
+
+        if self.USER_INFO == None:
+            return redirect('/logout')
+
+        art = ArtistArt.objects.get(uuid=uid)
+        saveData = ArtLikeDislike()
+        saveData.artist_art = art
+        saveData.user = self.USER_INFO
+        saveData.save()
+        
         return redirect("app_artInfo:artist_single_art_page",uid)

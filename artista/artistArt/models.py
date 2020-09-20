@@ -90,10 +90,10 @@ class ArtLikeDislike(models.Model):
         find = ArtLikeDislike.objects.filter(user=self.user , artist_art=self.artist_art)
         if find:
             get_data = find.get()
-            if get_data.like_dislike !=  self.like_dislike:
-                find.update(like_dislike = self.like_dislike)
+            if get_data.like_dislike == True :
+                find.update(like_dislike = False)
             else:
-                # Same value as previous like
+                find.update(like_dislike = True)
                 pass
         else:
             super().save(*args, **kwargs)

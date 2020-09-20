@@ -15,8 +15,15 @@ Artist All Arts
 All ARTS
 <div class="container text-center">
 <form action="{% url 'app_artInfo:all_art_searching_page' %}">
-  <input type="text" name="search"> 
-  <button  class="btn btn-primary">Search Page</button>
+  
+  <div class="form-group">
+    <input type="text" name="search" class="form-control cnr-rounded" maxlength="100" required id="id_title"> 
+  </div>
+  <div class="text-center text-md-left">
+    <button class="color1-btn " type="submit">
+      Search
+    </button>
+  </div>
 </form>
 
 </div>
