@@ -5,7 +5,7 @@ from artista.utils import get_current_user
 from register.models import User
 from django.shortcuts import get_object_or_404
 from artistArt.models import ArtistArt, ArtComment
-from artist.forms import  ArtistReviewForm
+from artist.forms import ArtistReviewForm
 
 from .models import ArtistReview
 from django.db.models import Q
@@ -54,7 +54,7 @@ class SingleArtistView(View):
             Q(user=artist_user), Q(post_status='public'))
 
         artist_reviews = ArtistReview.objects.filter(
-            Q(user_reviewer=artist_user), Q(post_status='public'))
+            Q(user_reviewer=artist_user), Q(post_status='public')).order_by('-id')
 
         context = {
             'user_info': self.USER_INFO,
@@ -65,8 +65,6 @@ class SingleArtistView(View):
         return render(request, "single_artist_view.html", context)
 
 
-
-
 class ArtistReviewView(View):
     USER_INFO = None
 
@@ -74,13 +72,12 @@ class ArtistReviewView(View):
         reviewing_uid = kwargs.get('uuid')
         if not reviewing_uid:
             raise Http404("Page not found")
-        
+
         message = request.POST.get('message')
 
         self.USER_INFO = get_current_user(request)
         if self.USER_INFO == None:
             return redirect('/logout')
-
 
         artist_user = get_object_or_404(
             User,  uuid=reviewing_uid
@@ -89,13 +86,9 @@ class ArtistReviewView(View):
         form.setUserReviewing(self.USER_INFO)
         form.setUserReviewer(artist_user)
 
-        if form.is_valid() :
+        if form.is_valid():
             form.save(commit=True)
-        else :
-            messages.error(request , " Please give correct review message ")
+        else:
+            messages.error(request, " Please give correct review message ")
 
-
-        return redirect("artist:single_artist_info",reviewing_uid)
-
-
-
+        return redirect("artist:single_artist_info", reviewing_uid)

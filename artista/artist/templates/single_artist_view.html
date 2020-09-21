@@ -59,58 +59,68 @@ Artist Home
     .form-group {
         padding: 2rem;
     }
-    .contact-box{
-        
+
+    .contact-box {
+
         padding: 5rem;
     }
-    .modal-content{
+
+    .modal-content {
         border-radius: 1.5rem;
     }
-    .close-btn{
+
+    .close-btn {
         position: absolute;
         top: 10px;
         right: 10px;
     }
-    #reviewArtist .form-group{
+
+    #reviewArtist .form-group {
         margin-top: 10rem;
         margin-bottom: 0;
 
     }
-    .accordion-btn{
+
+    .accordion-btn {
         max-width: 5rem;
         background: white;
-        border:none;
+        border: none;
         position: absolute;
         top: 50%;
         right: 0;
         transform: translateY(-50%);
     }
-    .head-title{
+
+    .head-title {
         line-height: 2;
-    font-size: 3.2rem;
-    text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 0.5rem;
-        
+        font-size: 3.2rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 0.5rem;
+
     }
-    .head-title::after{
-        content:"";
-        position:absolute;
-        bottom:0;
-        left:0;
-        width:4rem;
+
+    .head-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 4rem;
         height: 100%;
         border-bottom: 3px solid #5433FF;
 
     }
-    .review-box{
-        border:2px solid #5433FF;
+
+    .review-box {
+        border: 2px solid #5433FF;
         border-radius: 0.75rem;
 
     }
-    .accordion-btn[aria-expanded="true"] svg{
+
+    .accordion-btn[aria-expanded="true"] svg {
         transform: rotate(180deg) !important;
     }
+
     @media(max-width:767px) {
         .display-pic {
             height: 160px;
@@ -135,10 +145,9 @@ Single Artist View
 
 
     <h4 class="text-uppercase text-center">
-        display_name = {{ artist_info.display_name }}
+        {{ artist_info.display_name }}
     </h4>
-    <p class="text-center"> Short Bio : I am a freelance artist . Art is my passion.
-        If you are looking for some colorful art, I am the guy.</p>
+    <p class="text-center"> Short Bio : {{ artist_info.short_bio }}</p>
     <div class="btn-container">
         <button type="button" class="color1-btn mr-5" data-toggle="modal" data-target="#contactArtist"> Contact
             Artist</button>
@@ -231,33 +240,40 @@ Single Artist View
     <h1>Artist Art Reviewer</h1>
     <p class="position-relative mb-5">
         <span class="head-title color1">Review</span>
-        <button class="accordion-btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
-            <svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="100%" height="100%" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M22 12a10 10 0 0 1-10 10A10 10 0 0 1 2 12A10 10 0 0 1 12 2a10 10 0 0 1 10 10m-2 0a8 8 0 0 0-8-8a8 8 0 0 0-8 8a8 8 0 0 0 8 8a8 8 0 0 0 8-8M6 10l6 6l6-6l-1.4-1.4l-4.6 4.6l-4.6-4.6L6 10z" fill="#5433FF"/></svg>
+        <button class="accordion-btn" type="button" data-toggle="collapse" data-target="#collapseExample"
+            aria-expanded="true" aria-controls="collapseExample">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                focusable="false" width="100%" height="100%"
+                style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
+                preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                <path
+                    d="M22 12a10 10 0 0 1-10 10A10 10 0 0 1 2 12A10 10 0 0 1 12 2a10 10 0 0 1 10 10m-2 0a8 8 0 0 0-8-8a8 8 0 0 0-8 8a8 8 0 0 0 8 8a8 8 0 0 0 8-8M6 10l6 6l6-6l-1.4-1.4l-4.6 4.6l-4.6-4.6L6 10z"
+                    fill="#5433FF" /></svg>
         </button>
-      </p>
-      <div class="collapse show" id="collapseExample" >
+    </p>
+    <div class="collapse show" id="collapseExample">
         {% if artist_review|length >= 1 %}
         {% for data in artist_review %}
         <div class="row m-0 mb-5 py-5 review-box">
             <div class="col flex-grow-0">
-              <img class="profile-img img-small" src="{{ data.user_reviewing.avatar.url }}" alt="test">
+                <img class="profile-img img-small" src="{{ data.user_reviewing.avatar.url }}" alt="test">
             </div>
             <div class="col">
-              <h5 class="mb-3">{{ data.user_reviewing.display_name }}</h5>
-              <p class="mb-3">{{ data.message }}</p>
-              
-             
-              
+                <h5 class="mb-3">{{ data.user_reviewing.display_name }}</h5>
+                <p class="mb-3">{{ data.message }}</p>
+
+
+
             </div>
-          </div>
-          {% endfor %}
+        </div>
+        {% endfor %}
         {% else %}
         <div class="container text-center">
             <h1>OOPS ! NO REVIEW FOUND </h1>
         </div>
         {% endif %}
-      </div>
-   
+    </div>
+
 </div>
 
 <div class="container my-5">
@@ -266,26 +282,26 @@ Single Artist View
         {% if arts_info|length >= 1 %}
         {% for data in arts_info %}
         <div class="grid-item ">
-        
-                <div class="post-img">
-    
-                  <a href="{% url 'app_artInfo:artist_single_art_page'  data.uuid %}">
-                      <img src="{{ data.image.url }}" alt="{{ data.title }}"/>
-                      <div class="post-info">
+
+            <div class="post-img">
+
+                <a href="{% url 'app_artInfo:artist_single_art_page'  data.uuid %}">
+                    <img src="{{ data.image.url }}" alt="{{ data.title }}" />
+                    <div class="post-info">
                         <div class="user-profile">
-                          <img src="{{ data.user.avatar.url }}"/>
-                          <div class="user-info">
-                            <h6>{{ data.user.display_name }}</h6>
-                            <h5 class="card-title">{{ data.title }}</h5>
-                            <p class="card-text">{{ data.short_description }}</p>
-                          </div>
+                            <img src="{{ data.user.avatar.url }}" />
+                            <div class="user-info">
+                                <h6>{{ data.user.display_name }}</h6>
+                                <h5 class="card-title">{{ data.title }}</h5>
+                                <p class="card-text">{{ data.short_description }}</p>
+                            </div>
                         </div>
                         <h4>Category</h4>
                         <p class="fas fa-eye color1 mb-0">{{ data.view_count }}</p>
-                      </div>
-                  </a>
-    
-                </div>
+                    </div>
+                </a>
+
+            </div>
         </div>
         {% endfor %}
         {% else %}
@@ -293,7 +309,7 @@ Single Artist View
             <h1>OOPS ! NO ART FOUND </h1>
         </div>
         {% endif %}
-      </div>
+    </div>
     <!-- <div class="row">
         {% if arts_info|length >= 1 %}
         {% for data in arts_info %}
@@ -330,23 +346,23 @@ Single Artist View
 <script src="{% static 'js/public/app-vue.js' %}"></script> -->
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script>
-  
-  // vanilla JS
-// init with element
-var grid = document.querySelector('.grid');
-var msnry = new Masonry( grid, {
-  // options...
-  itemSelector: '.grid-item',
- 
-  itemSelector: '.grid-item',
-  columnWidth: '.grid-sizer',
-  percentPosition: true,
-  gutter:15
-});
 
-// init with selector
-var msnry = new Masonry( '.grid', {
-  // options...
-});
+    // vanilla JS
+    // init with element
+    var grid = document.querySelector('.grid');
+    var msnry = new Masonry(grid, {
+        // options...
+        itemSelector: '.grid-item',
+
+        itemSelector: '.grid-item',
+        columnWidth: '.grid-sizer',
+        percentPosition: true,
+        gutter: 15
+    });
+
+    // init with selector
+    var msnry = new Masonry('.grid', {
+        // options...
+    });
 </script>
 {% endblock %}

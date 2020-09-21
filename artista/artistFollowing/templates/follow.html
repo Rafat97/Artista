@@ -17,28 +17,31 @@
 
 {% block content %}
 <style>
-    .short-bio{
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    padding-bottom: 0px;
-    min-height: 9rem;
-    }
-    .display-name{
+    .short-bio {
         display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    padding-bottom: 0px;
-    min-height: 5.6rem;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        padding-bottom: 0px;
+        min-height: 9rem;
     }
-    .profile-card img{
+
+    .display-name {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        padding-bottom: 0px;
+        min-height: 5.6rem;
+    }
+
+    .profile-card img {
         height: 200px;
         width: 200px;
         padding: 1.5rem;
     }
-    .profile-card{
+
+    .profile-card {
         border: 1px solid #707070;
         padding: 2rem 3rem;
         border-radius: 2rem;
@@ -55,29 +58,32 @@
     <div class="row align-items-stretch justify-content-center">{% for artist in artists%}
         <div class="col-md-6 col-lg-4 text-center mb-4">
             <div class="profile-card ">
-                <img src={{artist.user_following.avatar.url}} class="profile-img " alt="{{artist.user_following.display_name}}">
+                <img src={{artist.user_following.avatar.url}} class="profile-img "
+                    alt="{{artist.user_following.display_name}}">
                 <h4 class="display-name">{{artist.user_following.display_name}}</h4>
                 <p class="short-bio my-4">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                    {{ artist.user_following.short_bio }}
                 </p>
-                <h5 class="my-4">Category:</h5>
+                <!-- <h5 class="my-4">Category:</h5> -->
                 <div class="d-flex w-100 flex-wrap justify-content-evenly">
-                    
+
                     <form action="{% url 'artist_follow_form_submit'  artist.user_following.uuid %}" method="POST">
                         {% csrf_token %}
-    
+
                         <input type="hidden" name="art" value='{{artist.user_following.uuid}}'>
-    
-    
+
+
                         <button type="submit" class="color1-inv-btn my-4">Unfollow</button>
-    
+
                     </form>
-                    <button class="color1-btn my-4">View Profile</button>
+                    <a href="{% url 'artist:single_artist_info'  artist.user_following.uuid%}">
+                        <button class="color1-btn my-4">View Profile</button>
+                    </a>
                 </div>
-               
+
             </div>
         </div>
-      
+
         {% endfor %}
     </div>
 </div>
