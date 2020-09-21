@@ -211,6 +211,7 @@ select {
     margin-right: 2rem;
     padding: 0.75rem ;
     padding-right: 4rem;
+    cursor: pointer;
   }
 @mixin btn($color) {
     background: $color;
@@ -409,7 +410,7 @@ nav{
 .nav-link{
   
   @include desktop-mini{  line-height: 2;
-    font-size: 2.8rem;
+    font-size: 2rem;
     font-family: 'Segoe UI','Montserrat', sans-serif ;
     font-weight: 600;
    padding-left: 0;
@@ -440,7 +441,7 @@ nav{
 
 
 .navbar-brand img{
-    max-width: 125px;
+    max-width: 100px;
 }
 
 @media(max-width:767px){
