@@ -35,6 +35,12 @@
     button{
         font-family: 'Segoe UI','Montserrat', sans-serif;
     }
+    html{
+      scroll-behavior: smooth;
+    }
+    .alt-font{
+      font-family: 'Segoe UI','Montserrat', sans-serif
+    }
     @media(max-width: 767px){
         .mbl-reverse{
             flex-direction: column-reverse;
@@ -58,7 +64,7 @@
                 <h1 class="display-1 text-md-left text-center">Artista</h1>
                 <h3 class="display-4 text-md-left text-center" >Connecting Artists<br/> and Art Lovers</h3>
                 <div class="text-md-left text-center">
-                 <button class="color1-btn landing-btn my-5">Get Started</button>
+                 <a class="color1-btn landing-btn my-5 alt-font" href="#getStarted">Get Started</a>
 
                 </div>
               </div>
@@ -92,7 +98,7 @@
         </div>
       </section>
       <!---text and image-->
-      <section class="py-5">
+      <section class="py-5" id="getStarted">
         <div class="container">
           <div class="row mbl-reverse">
             <div class="col-md-5 d-flex align-items-center justify-content-center flex-wrap " data-aos="fade-right">
