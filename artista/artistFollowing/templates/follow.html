@@ -55,8 +55,9 @@
 </style>
 
 <div class="container-fluid">
-    {% if artsists|length >= 1 %}
-    <div class="row align-items-stretch justify-content-center">{% for artist in artists%}
+    {% if artists|length >= 1 %}
+    <div class="row align-items-stretch justify-content-center">
+        {% for artist in artists%}
         <div class="col-md-6 col-lg-4 text-center mb-4">
             <div class="profile-card ">
                 <img src={{artist.user_following.avatar.url}} class="profile-img "
