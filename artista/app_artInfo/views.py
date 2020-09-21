@@ -61,7 +61,8 @@ class ProductFilter(django_filters.FilterSet):
             queryset = queryset.filter(
                 Q(title__icontains=expression) |
                 Q(tags__icontains=expression) |
-                Q(short_description__icontains=expression)
+                Q(short_description__icontains=expression)|
+                Q(category__category_name__icontains=expression)
             )
         return queryset
 

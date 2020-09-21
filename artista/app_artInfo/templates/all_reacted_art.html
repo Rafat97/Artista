@@ -17,26 +17,7 @@ All Reacted Art
   <div class="container my-5">
       <div class="grid">
             {% for data in allLovedArts %}
-              <!-- <div class="col-md-3 ">
-                  <div class="card mx-1" >
-                      <img class="card-img-top" src="{{ data.artist_art.image.url }}" alt="Card image cap">
-                      <div class="card-body">
-                      <h5 class="card-title">{{ data.artist_art.title }}</h5>
-                      <p class="card-text">{{ data.artist_art.short_description }}</p>
-                      <a href="{% url 'app_artInfo:artist_single_art_page'  data.artist_art.uuid %}"  class="card-link" >View Art</a>
-                      </div>
-                  </div>
-              </div> -->
               <div class="grid-item ">
-                <!-- <div class="card mx-1" >
-                              <img class="card-img-top" src="{{ data.image.url }}" alt="Card image cap">
-                              <div class="card-body">
-                              <h5 class="card-title">{{ data.title }}</h5>
-                              <p class="card-text">{{ data.short_description }}</p>
-                              <p class="card-text">view Count : {{ data.view_count }}</p>
-                              <a href="{% url 'app_artInfo:artist_single_art_page'  data.uuid %}"  class="card-link" >View Art</a>
-                              </div>
-                          </div> -->
                 <a href="{% url 'app_artInfo:artist_single_art_page'  data.artist_art.uuid %}">
                   <div class="post-img">
           
@@ -53,7 +34,7 @@ All Reacted Art
           
                        
                       </div>
-                    </a>
+
           
                   </div>
                 </a>

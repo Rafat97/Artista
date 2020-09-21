@@ -155,7 +155,7 @@ input:-webkit-autofill:active {
 }
 
 .fullscreen {
-  min-height: calc(100vh - 141px);
+  min-height: calc(100vh - 50px) !important;
 }
 
 .form-logo {

@@ -259,9 +259,8 @@ Artist Home
         <div class="row m-0 mb-5 py-5 review-box">
             <div class="col flex-grow-0">
                 
-             <a href="{% url 'app_artInfo:single_artist_info'  data.user_reviewing.uuid %}">
+
                 <img class="profile-img img-small" src="{{ data.user_reviewing.avatar.url }}" alt="test">
-              </a>  
             </div>
             <div class="col">
                 <h5 class="mb-3">{{ data.user_reviewing.display_name }}</h5>
