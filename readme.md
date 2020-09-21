@@ -94,10 +94,10 @@ How to install. Also how to  run project in your machine
         Quit the server with CTRL-BREAK.
     ```
 
-- Copy the url from command and paste into your browser. Then you can the magic :sunglasses: :sunglasses: :sunglasses:  .
+- Copy the url from command and paste into your browser. Then you can see the magic :sunglasses: :sunglasses: :sunglasses: :sunglasses: .
 
 
-## Imporent Django Commands
+## Imporent Django Commands (Optionals / Knowledgetics)
 1. python manage.py runserver   (server run)
 2. python manage.py makemigrations (database)
 3. python manage.py migrate     (database)
@@ -115,6 +115,8 @@ pass : admin
 
 ## Extra Software
 1. (DB Browser for SQLite) https://sqlitebrowser.org/dl/
+
+2. (Online Db connector/IDE) https://sqliteonline.com/
 
 
 
