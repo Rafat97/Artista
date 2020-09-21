@@ -13,27 +13,48 @@ Artist All Arts
 
 {% block content %}
 <div class="container my-5 text-center">
-    <a href="{% url 'artist:artist_art_upload' %}" class="btn btn-primary">UPLOAD NEW ART</a>
+    <a href="{% url 'artist:artist_art_upload' %}" class="color1-btn">UPLOAD NEW ART</a>
 </div>
 <div class="container my-5">
-    <div class="row"> 
+    <div class="grid"> 
         {% if arts_info|length >= 1 %}
             {% for data in arts_info %}
-            <div class="col-md-3 ">
-                <div class="card mx-1" >
-                    <img class="card-img-top" src="{{ data.image.url }}" alt="Card image cap">
-                    <div class="card-body">
-                    <h5 class="card-title">{{ data.title }}</h5>
-                    <p class="card-text">{{ data.short_description }}</p>
-                    <a href="{% url 'artist:artist_art_upload_edit'  data.uuid %}"  class="card-link" >Edit</a>
-                    <a href="{% url 'artist:artist_art_uploaded_delete'  data.uuid %}" class="card-link">Delete</a>
-                    </div>
-                </div>
-            </div>
+            <div class="grid-item ">
+                <!-- <div class="card mx-1" >
+                            <img class="card-img-top" src="{{ data.image.url }}" alt="Card image cap">
+                            <div class="card-body">
+                            <h5 class="card-title">{{ data.title }}</h5>
+                            <p class="card-text">{{ data.short_description }}</p>
+                            <p class="card-text">view Count : {{ data.view_count }}</p>
+                            <a href="{% url 'app_artInfo:artist_single_art_page'  data.uuid %}"  class="card-link" >View Art</a>
+                            </div>
+                        </div> -->
+                      <div class="post-img">
+          
+                        <a href="{% url 'app_artInfo:artist_single_art_page'  data.uuid %}">
+                            <img src="{{ data.image.url }}" alt="{{ data.title }}"/>
+                            <div class="post-info">
+                              <div class="user-profile">
+                               
+                                <div class="user-info">
+                                  <h6>{{ data.title }}</h6>
+                                  <p class="mb-0">{{ data.short_description }}</p>
+                                </div>
+                              </div>
+                              <div>
+                                <a href="{% url 'artist:artist_art_upload_edit'  data.uuid %}"  class="card-link" >Edit</a>
+                                <a href="{% url 'artist:artist_art_uploaded_delete'  data.uuid %}" class="card-link">Delete</a>
+                              </div>
+                            </div>
+                        </a>
+          
+                      </div>
+              </div>
+           
             {% endfor %}  
         {% else %}  
         <div class="container text-center">
-            <h1 >OOPS ! NO ART FOUND </h1>
+            <h1 class="color1" >OOPS ! NO ART FOUND </h1>
         </div>
         {% endif %}
     </div>
@@ -42,6 +63,25 @@ Artist All Arts
 
 
 {% block add_js %}
-  <script>
-  </script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script>
+  
+  // vanilla JS
+// init with element
+var grid = document.querySelector('.grid');
+var msnry = new Masonry( grid, {
+  // options...
+  itemSelector: '.grid-item',
+ 
+  itemSelector: '.grid-item',
+  columnWidth: '.grid-sizer',
+  percentPosition: true,
+  gutter:15
+});
+
+// init with selector
+var msnry = new Masonry( '.grid', {
+  // options...
+});
+</script>
 {% endblock %}

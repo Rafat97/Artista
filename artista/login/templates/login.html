@@ -1,75 +1,78 @@
-{% extends 'base_header.html' %} {% load static %} 
+{% extends 'base_header.html' %} {% load static %}
 {% block page_title %}
- Artist Register Page 
-{% endblock %} 
+Artist Register Page
+{% endblock %}
 
 {% block content %}
 <style>
-  
-/* Change the white to any color ;) */
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active  {
+  /* Change the white to any color ;) */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px white inset !important;
-}
-.fullscreen{
-  min-height: calc(100vh - 141px);
-}
-.form-logo{
-  max-width: 18rem;
-  padding:1.5rem
-}
+  }
+
+  .fullscreen {
+    min-height: calc(100vh - 141px);
+  }
+
+  .form-logo {
+    max-width: 18rem;
+    padding: 1.5rem
+  }
 </style>
 
 <div class="">
   <div class="row align-items-stretch fullscreen">
     <div class="col-md-7 bg-regular" style="background-image: url({% static 'images/water-bg.jpg' %});"></div>
-    <div class="col-md-5 p-5 align-self-center">
-      <div class="text-center">
-         <img src="{% static 'images/Artista-logo.png' %}" alt="logo" class="form-logo"> 
-      </div>
-      <h5 class="text-center mb-5 text-uppercase font-weight-bold">Login Your Account </h5>
-      
-      {% if messages %}
-      {% for message in messages %}
-      <div class="alert alert-danger" role="alert">
-        {{message}}
-      </div>
-      {% endfor %}
-      {% endif %}
+    <div class="col-md-5 p-5 d-flex flex-wrap align-items-center justify-content-center">
+      <div class="w-100 px-5">
+        <div class="text-center">
+          <img src="{% static 'images/Artista-logo.png' %}" alt="logo" class="form-logo">
+        </div>
+        <h5 class="text-center mb-5 text-uppercase font-weight-bold">Login Your Account </h5>
 
-      {% for error in form.non_field_errors %}
-      <div class="alert alert-danger" role="alert">
-        {{error}}
-      </div>
-      {% endfor %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+          {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
 
-      <form action="" method="POST">
-        {% for field in form.visible_fields %}
-        <div class="form-group">
-           <label class="font-weight-bold" for="exampleInputEmail1">{{ field.label_tag }}</label>  
-          {{ field }} 
-          {% for error in field.errors %}
-          <small id="emailHelp" class="form-text text-danger">{{ error }}</small>
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-danger" role="alert">
+          {{error}}
+        </div>
+        {% endfor %}
+
+        <form action="" method="POST">
+          {% for field in form.visible_fields %}
+          <div class="form-group">
+            <label class="font-weight-bold" for="exampleInputEmail1">{{ field.label_tag }}</label>
+            {{ field }}
+            {% for error in field.errors %}
+            <small id="emailHelp" class="form-text text-danger">{{ error }}</small>
+            {% endfor %}
+          </div>
           {% endfor %}
-        </div>
-        {% endfor %}
 
-        {% csrf_token %}
+          {% csrf_token %}
 
-        {% for hidden in form.hidden_fields %}
-            {{ hidden }}
-        {% endfor %}
-        <div class="text-center my-4"> 
-            <button class="color1-btn "  type="submit" >Sign In</button>
+          {% for hidden in form.hidden_fields %}
+          {{ hidden }}
+          {% endfor %}
+          <div class="text-center my-4">
+            <button class="color1-btn " type="submit">Sign In</button>
+          </div>
+        </form>
+        <div class="text-center mt-2 mb-4">
+          <a class="color2" href="{% url 'forgot_password_user' %}">
+            <strong> Forgot Password ? </strong>
+          </a>
+
         </div>
-      </form>
-      <div class="text-center mt-2 mb-4"> 
-        <a class="color2" href="{% url 'forgot_password_user' %}">
-          <strong> Forgot Password ? </strong>
-        </a>
-        
       </div>
     </div>
 

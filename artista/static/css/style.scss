@@ -2,7 +2,8 @@ $colors:(color1:#5433FF,
     color2:#20BDFF);
 
 
-    $sidebarWidth : 20vw; $radius:3rem;
+    $sidebarWidth : 250px; $radius:3rem;
+    $sidebarWidthMbl:200px;
 
 @function color($color-name) {
     @return map-get($colors, $color-name);
@@ -55,7 +56,7 @@ $colors:(color1:#5433FF,
     -o-transition: margin .25s ease-out;
     transition: margin .25s ease-out;
     @include mobile{
-        margin-left: -$sidebarWidth*2;
+        margin-left: -$sidebarWidthMbl;
     }
   }
   
@@ -67,7 +68,7 @@ $colors:(color1:#5433FF,
   #sidebar-wrapper .list-group {
     width: $sidebarWidth;
     @include mobile{
-        width: $sidebarWidth*2;
+        width: $sidebarWidthMbl;
     }
   }
   
@@ -90,7 +91,7 @@ $colors:(color1:#5433FF,
     }
   
     #wrapper.toggled #sidebar-wrapper {
-      margin-left: -$sidebarWidth*2;
+      margin-left: -$sidebarWidthMbl;
     }
   }
 * {
@@ -127,7 +128,7 @@ body {
     text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
     font-size: 1.6rem;
-
+    padding-top:80px;
 }
 
 *,
@@ -197,7 +198,21 @@ input:-webkit-autofill:active  {
   max-width: 18rem;
   padding:1.5rem
 }
-
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+    background-image: url("data:image/svg+xml,<svg fill='rgb(84, 51, 255)' width='15' height='15' xmlns='http://www.w3.org/2000/svg'><path d='m0,6l7,7l7,-7l-15,0z'/><path fill='none' d='m0,0l15,0l0,15l-15,0l0,-15z'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 90%;
+    background-position-y: 1rem;
+    border: 1px solid #707070;
+    border-radius: 0.75rem;
+    margin-right: 2rem;
+    padding: 0.75rem ;
+    padding-right: 4rem;
+    cursor: pointer;
+  }
 @mixin btn($color) {
     background: $color;
     color:white;
@@ -395,7 +410,7 @@ nav{
 .nav-link{
   
   @include desktop-mini{  line-height: 2;
-    font-size: 2.8rem;
+    font-size: 2rem;
     font-family: 'Segoe UI','Montserrat', sans-serif ;
     font-weight: 600;
    padding-left: 0;
@@ -426,7 +441,7 @@ nav{
 
 
 .navbar-brand img{
-    max-width: 125px;
+    max-width: 100px;
 }
 
 @media(max-width:767px){

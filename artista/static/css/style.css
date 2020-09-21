@@ -1,14 +1,14 @@
 /*Sidebar CSS*/
 #sidebar-wrapper {
   min-height: 100vh;
-  margin-left: -20vw;
+  margin-left: -250px;
   -webkit-transition: margin .25s ease-out;
   transition: margin .25s ease-out;
 }
 
 @media (max-width: 767px) {
   #sidebar-wrapper {
-    margin-left: -40vw;
+    margin-left: -200px;
   }
 }
 
@@ -18,12 +18,12 @@
 }
 
 #sidebar-wrapper .list-group {
-  width: 20vw;
+  width: 250px;
 }
 
 @media (max-width: 767px) {
   #sidebar-wrapper .list-group {
-    width: 40vw;
+    width: 200px;
   }
 }
 
@@ -40,7 +40,7 @@
     width: 100%;
   }
   #wrapper.toggled #sidebar-wrapper {
-    margin-left: -40vw;
+    margin-left: -200px;
   }
 }
 
@@ -78,6 +78,7 @@ body {
   text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
   font-size: 1.6rem;
+  padding-top: 80px;
 }
 
 *,
@@ -116,7 +117,7 @@ main {
 
 @media (min-width: 768px) {
   main {
-    margin-left: 20vw;
+    margin-left: 250px;
   }
 }
 
@@ -154,6 +155,22 @@ input:-webkit-autofill:active {
 .form-logo {
   max-width: 18rem;
   padding: 1.5rem;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-image: url("data:image/svg+xml,<svg fill='rgb(84, 51, 255)' width='15' height='15' xmlns='http://www.w3.org/2000/svg'><path d='m0,6l7,7l7,-7l-15,0z'/><path fill='none' d='m0,0l15,0l0,15l-15,0l0,-15z'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 90%;
+  background-position-y: 1rem;
+  border: 1px solid #707070;
+  border-radius: 0.75rem;
+  margin-right: 2rem;
+  padding: 0.75rem;
+  padding-right: 4rem;
+  cursor: pointer;
 }
 
 .color1-btn {
@@ -460,7 +477,7 @@ nav {
 @media (min-width: 768px) {
   .nav-link {
     line-height: 2;
-    font-size: 2.8rem;
+    font-size: 2rem;
     font-family: 'Segoe UI','Montserrat', sans-serif;
     font-weight: 600;
     padding-left: 0;
@@ -490,7 +507,7 @@ nav {
 }
 
 .navbar-brand img {
-  max-width: 125px;
+  max-width: 100px;
 }
 
 @media (max-width: 767px) {

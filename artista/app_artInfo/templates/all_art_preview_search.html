@@ -1,45 +1,113 @@
-{% extends 'base_dashboard_header.html' %} {% load static %} 
+{% extends 'base_dashboard_header.html' %} {% load static %}
 
 
 {% block page_title %}
 Artist All Arts
-{% endblock %} 
+{% endblock %}
 
 
 {% block js_cdn %}
 
-{% endblock %} 
+{% endblock %}
 
 
 {% block content %}
-All ARTS
+<style>
+  .form-inline p {
+  
+  }
 
-    <form method="get">
-        {{ filter.form.as_p }}
-        <input type="submit" />
-    </form>
+  #id_search {
+    border: 1px solid #707070;
+    border-radius: 0.75rem;
+
+    padding: 0.75rem;
+  }
+  select{
+    margin-right: 0px;
+  }
+
+  @media(min-width: 768px) {
+    .form-inline {
+      justify-content: space-evenly;
+    }
+  }
+
+  @media(max-width:767px) {
+    .form-inline .color1-btn {
+      width: 100%;
+    }
+
+    .form-inline p {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .form-inline input,
+    .form-inline select {
+      flex-grow: 1;
+      margin-left: 1rem;
+      margin-right: 0;
+    }
+
+    .form-inline label {
+      width: 30%;
+    }
+  }
+</style>
+<div class="container">
+  <form class="form-inline" method="get">
+    {{ filter.form.as_p }}
+    <input class="color1-btn" type="submit" />
+  </form>
+</div>
 
 
-  <div class="container my-5">
-      <div class="row">
-            {% for data in filter.qs %}
-              <div class="col-md-3 ">
-                  <div class="card mx-1" >
-                      <img class="card-img-top" src="{{ data.image.url }}" alt="Card image cap">
-                      <div class="card-body">
-                      <h5 class="card-title">{{ data.title }}</h5>
-                      <p class="card-text">{{ data.short_description }}</p>
-                      <a href="{% url 'app_artInfo:artist_single_art_page'  data.uuid %}"  class="card-link" >View Art</a>
-                      </div>
-                  </div>
+
+<div class="container my-5">
+  <div class="grid">
+
+    {% for data in filter.qs %}
+    <div class="grid-item ">
+      <!-- <div class="card mx-1" >
+                    <img class="card-img-top" src="{{ data.image.url }}" alt="Card image cap">
+                    <div class="card-body">
+                    <h5 class="card-title">{{ data.title }}</h5>
+                    <p class="card-text">{{ data.short_description }}</p>
+                    <p class="card-text">view Count : {{ data.view_count }}</p>
+                    <a href="{% url 'app_artInfo:artist_single_art_page'  data.uuid %}"  class="card-link" >View Art</a>
+                    </div>
+                </div> -->
+      <a href="{% url 'app_artInfo:artist_single_art_page'  data.uuid %}">
+        <div class="post-img">
+
+          <a href="{% url 'app_artInfo:artist_single_art_page'  data.uuid %}">
+            <img src="{{ data.image.url }}" alt="{{ data.title }}" />
+            <div class="post-info">
+              <div class="user-profile">
+               
+                <div class="user-info">
+                  <h6>{{ data.title }}</h6>
+                  <p class="mb-0">{{ data.short_description }}</p>
+                </div>
               </div>
-              {% endfor %}  
-      </div>
+
+              <p class="fas fa-eye color1 mb-0">{{ data.view_count }}</p>
+            </div>
+          </a>
+
+        </div>
+      </a>
+    </div>
+    {% endfor %}
   </div>
+
+</div>
 {% endblock %}
 
 
 {% block add_js %}
-  <script>
-  </script>
+<script>
+</script>
 {% endblock %}

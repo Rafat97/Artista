@@ -25,7 +25,7 @@
     }
     body{
       font-family: 'Merienda One', cursive;
-     
+
     }
     .footer-logo{
         max-width:200px;
@@ -47,7 +47,7 @@
     Hello, {{ request.session.user }}
 
     <!-- <img src="{% static 'path.png' %}" alt="My image"> -->
-   <div class="d-flex"> 
+   <div class="d-flex">
     <p>
         <a href="{% url 'login_user' %}">Login</a>
     </p>
@@ -62,7 +62,7 @@
         <a href="{% url 'logout_user' %}">Logout User</a>
     </p>
    </div>
-   
+
     <section class="pt-0 pb-5">
         <div class="container">
           <div class="row mbl-reverse">
@@ -72,7 +72,7 @@
                 <h3 class="display-4 text-md-left text-center" >Connecting Artists<br/> and Art Lovers</h3>
                 <div class="text-md-left text-center">
                  <button class="color1-btn landing-btn my-5">Get Started</button>
-                    
+
                 </div>
               </div>
             </div>
@@ -83,7 +83,7 @@
         </div>
       </section>
       <!---text and image-->
-    
+
       <section class="bg-regular " style="background-image: url({% static 'images/Blue.jpg' %});">
         <div class="container">
          <div class="row align-items-center">
@@ -95,9 +95,9 @@
                 </h2>
             </div>
             <div class="col-md-8">
-                <h4 class="text-white text-md-left text-center pt-mt-0 pt-4 mx-auto max-width-90">Artista creates a marketplace for 
-                    artists. Artista also creates promotion 
-                    opportunities for art contents. General 
+                <h4 class="text-white text-md-left text-center pt-mt-0 pt-4 mx-auto max-width-90">Artista creates a marketplace for
+                    artists. Artista also creates promotion
+                    opportunities for art contents. General
                     people now can hire freelance artists
                     when they need by this website.</h4>
             </div>
@@ -112,10 +112,10 @@
               <div>
                 <h2 class="display-1 text-md-left text-center">Are You an <br/>
                     Art lover ?</h2>
-                
+
                 <div class="text-md-left text-center">
-                 <button class="color1-btn landing-btn my-5">Start Here</button>
-                    
+                 <a href="{% url 'register_client' %}"><button class="color1-btn landing-btn my-5">Start Here</button></a>
+
                 </div>
               </div>
             </div>
@@ -137,18 +137,18 @@
               <div>
                 <h2 class="display-1 text-md-left text-center">Are You  <br/>
                     An Artist ?</h2>
-                
+
                 <div class="text-md-left text-center">
-                 <button class="color1-btn landing-btn my-5">Start Here</button>
+                 <a href="{% url 'register_artist' %}"><button class="color1-btn landing-btn my-5">Start Here</button></a>
                     
                 </div>
               </div>
             </div>
-           
+
           </div>
         </div>
       </section>
-     
+
       <!---text and image-->
       <section class="bg-regular bg-top" style="background-image:url({% static 'images/Footer.png' %}) ;">
         <div class="container">
@@ -173,10 +173,10 @@
                     019XXXXXXXXX
                     </p>
                 </a>
-                  
+
                </div>
             </div>
            </div>
       </section>
-    
+
 {% endblock %}

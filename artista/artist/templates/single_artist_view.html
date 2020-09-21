@@ -120,7 +120,9 @@ Artist Home
     .accordion-btn[aria-expanded="true"] svg {
         transform: rotate(180deg) !important;
     }
-
+    body{
+        padding-top:0px;
+    }
     @media(max-width:767px) {
         .display-pic {
             height: 160px;
@@ -133,7 +135,7 @@ Artist Home
         }
     }
 </style>
-Single Artist View
+
 <section class="bg-regular cover-photo" style="background-image: url(https://picsum.photos/seed/picsum/1280/720);">
     <div class="display-pic ">
         <img class="profile-img " src="{{  artist_info.avatar.url }}" alt=" {{ artist_info.display_name }}" />

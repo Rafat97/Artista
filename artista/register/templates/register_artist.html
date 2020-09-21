@@ -1,46 +1,48 @@
-{% extends 'base_header.html' %} {% load static %} 
+{% extends 'base_header.html' %} {% load static %}
 {% block page_title %}
- Artist Register Page 
- {% endblock %} 
- 
+Artist Register Page
+{% endblock %}
+
 {% block content %}
 
 <div class="">
   <div class="row mbl-reverse align-items-stretch fullscreen">
-    
-    <div class="col-md-5 p-5">
-      <div class="text-center">
-        <img src="{% static 'images/Artista-logo.png' %}" alt="logo" class="form-logo"> 
-     </div>
-      <h5 class="text-center mb-5 text-uppercase font-weight-bold">Create Account </h5>
-      <h5 class="text-center pb-4 text-uppercase font-weight-bold">Hi Artist </h5>
 
-      {% for error in form.non_field_errors %}
-      <div class="alert alert-danger" role="alert">
-        {{error}}
-      </div>
-      {% endfor %}
+    <div class="col-md-5 p-5 d-flex align-items-center">
+      <div class="w-100 px-md-5">
+        <div class="text-center">
+          <img src="{% static 'images/Artista-logo.png' %}" alt="logo" class="form-logo">
+        </div>
+        <h5 class="text-center mb-5 text-uppercase font-weight-bold">Create Account </h5>
+        <h5 class="text-center pb-4 text-uppercase font-weight-bold">Hi Artist </h5>
 
-      <form action="" method="POST">
-        {% for field in form.visible_fields %}
-        <div class="form-group">
-           <label class="font-weight-bold" for="exampleInputEmail1">{{ field.label_tag }}</label>  
-          {{ field }} 
-          {% for error in field.errors %}
-          <small id="emailHelp" class="form-text text-danger">{{ error }}</small>
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-danger" role="alert">
+          {{error}}
+        </div>
+        {% endfor %}
+
+        <form action="" method="POST">
+          {% for field in form.visible_fields %}
+          <div class="form-group">
+            <label class="font-weight-bold" for="exampleInputEmail1">{{ field.label_tag }}</label>
+            {{ field }}
+            {% for error in field.errors %}
+            <small id="emailHelp" class="form-text text-danger">{{ error }}</small>
+            {% endfor %}
+          </div>
           {% endfor %}
-        </div>
-        {% endfor %}
 
-        {% csrf_token %}
+          {% csrf_token %}
 
-        {% for hidden in form.hidden_fields %}
-            {{ hidden }}
-        {% endfor %}
-        <div class="text-center my-5"> 
-            <button class="color1-btn"  type="submit" >Submit</button>
-        </div>
-      </form>
+          {% for hidden in form.hidden_fields %}
+          {{ hidden }}
+          {% endfor %}
+          <div class="text-center my-5">
+            <button class="color1-btn" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
     </div>
     <div class="col-md-7 bg-regular" style="background-image: url({% static 'images/register-bg.jpg' %});"></div>
 
