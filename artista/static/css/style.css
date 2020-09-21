@@ -68,7 +68,7 @@ body {
     display: -ms-flexbox;
     display: flex; */
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow: hidden;
   font-family: 'Segoe UI','Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
