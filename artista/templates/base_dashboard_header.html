@@ -26,7 +26,44 @@
     rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   <link rel="stylesheet" href="{% static 'css/sample-sidebar.css' %}" />
-  {% block css_cdn %} {% endblock %} {% block js_cdn %} {% endblock %}
+  {% block css_cdn %}
+  <style>
+    .setting-icon{
+      position: absolute;
+    top: 50%;
+    
+    transform: translateY(-50%);
+    right: 25%;
+  }
+  .logout-icon{
+    max-width: 50px;
+  }  
+  .bottom-image{
+    width:70px;
+    height: 70px;
+  }
+  .img-top{
+    width: 130px;
+    height: 130px;
+  }
+  .black{
+    color: black;
+  }
+  @media(max-width:767px){
+    .logout-icon{
+    max-width: 40px;
+  }  
+  .bottom-image{
+    width:40px;
+    height: 40px;
+  }
+  .img-top{
+  width: 90px;
+  height: 90px;
+  }
+  }
+  </style>
+  {% endblock %} {% block js_cdn %} {% endblock %}
   {% block add_style %} {% endblock %}
 </head>
 
@@ -44,16 +81,19 @@
                 <div class="col-sm-12 text-center">
                   <a href="{% url 'app_profileManagemant:home' %}">
                   {% thumbnail user_info.avatar "104x104" as im %}
-                  <img src="{{ im.url }}" class="rounded-circle" alt="Avatar"
-                    style="width: 50px; height: calc(50px + 1rem);" />
+                  <img src="{{ im.url }}" class=" profile-img img-top" alt="Avatar"
+                     />
                   {% endthumbnail %}
                   </a>
                 </div>
               </div>
               <div class="row">
-                <div class="col-sm-12 text-center mb-5">
-                  {{ user_info.display_name }}
+                <div class="col-sm-12 text-center mb-5 position-relative">
+                 <h5> {{ user_info.display_name }}</h5>
+                 <a href="{% url 'app_profileManagemant:home' %}">
+                   <i class="fa fa-cog setting-icon black"></i></a>
                 </div>
+                
               </div>
             </div>
           </div>
@@ -79,7 +119,7 @@
           </div>
           {% if user_info.user_role.role_name == 'Artist' %}
           <div class="list-group list-group-flush text-center">
-            <a href="{% url 'artist:artist_own_all_art' %}" class="list-group-item list-group-item-action bg-light">ALL
+            <a href="{% url 'artist:artist_own_all_art' %}" class="list-group-item list-group-item-action bg-light">SELL
               MY ART</a>
           </div>
           {% endif %}
@@ -89,17 +129,16 @@
         <!-- Logout menu -->
         <div style="bottom: 0px;position: absolute;">
           <div class="list-group list-group-flush">
-            <div class="row my-2">
-              <div class="col-sm-3">
-                <img src="{{ user_info.avatar.url }}" class="rounded-circle" alt="Avatar" width="45px" height="45px"
-                  class="avatar" />
+            <div class="row mx-0 my-2 align-items-center">
+              <div class="col-4">
+                <img src="{{ user_info.avatar.url }}" class="profile-img bottom-image" alt="Avatar"  />
               </div>
-              <div class="col-sm-5 p-0 text-center my-auto">
+              <div class="col-4 p-0 text-center my-auto">
                 {{ user_info.display_name  }}
               </div>
-              <div class="col-sm-4 p-0 my-auto">
-                <a href="{% url 'logout_user' %}" class="btn btn-primary">
-                  Logout
+              <div class="col-4 p-0 my-auto text-center">
+                <a href="{% url 'logout_user' %}" class="">
+                  <img src="{% static 'images/logout.png' %}" class="logout-icon" alt="logout"/>
                 </a>
               </div>
             </div>
@@ -111,8 +150,8 @@
       {% endblock %}
       <div id="page-content-wrapper">
         <nav class="d-md-none navbar navbar-expand-lg navbar-light bg-light border-bottom">
-          <button class="btn btn-primary" id="menu-toggle">
-            Toggle Menu
+          <button class="navbar-toggler" id="menu-toggle">
+            <span class="navbar-toggler-icon"></span>
           </button>
         </nav>
 
@@ -142,6 +181,8 @@
   });
 </script>
 
-{% block add_js %} {% endblock %}
+{% block add_js %} 
+
+{% endblock %}
 
 </html>
