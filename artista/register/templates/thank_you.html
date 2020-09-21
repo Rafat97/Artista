@@ -5,8 +5,13 @@ Thank you
 
 
 {% block content %}
+<div class="fullscreen d-flex flex-wrap align-items-center justify-content-center">
+    <div>
+        <h2 class="text-center display-2">Thank You For Registering.</h2>
+        <h2 class="text-center"><a class="color2" href="{% url 'login_user' %}">Go to Login</a></h2>
+    </div>
 
-Thank you
-<a href="{% url 'login_user' %}">Go to Login</a>
+</div>
+
 
 {% endblock %}
