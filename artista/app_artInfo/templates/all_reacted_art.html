@@ -12,12 +12,12 @@ All Reacted Art
 
 
 {% block content %}
-All Reacted Art
+
 
   <div class="container my-5">
-      <div class="row">
+      <div class="grid">
             {% for data in allLovedArts %}
-              <div class="col-md-3 ">
+              <!-- <div class="col-md-3 ">
                   <div class="card mx-1" >
                       <img class="card-img-top" src="{{ data.artist_art.image.url }}" alt="Card image cap">
                       <div class="card-body">
@@ -26,6 +26,37 @@ All Reacted Art
                       <a href="{% url 'app_artInfo:artist_single_art_page'  data.artist_art.uuid %}"  class="card-link" >View Art</a>
                       </div>
                   </div>
+              </div> -->
+              <div class="grid-item ">
+                <!-- <div class="card mx-1" >
+                              <img class="card-img-top" src="{{ data.image.url }}" alt="Card image cap">
+                              <div class="card-body">
+                              <h5 class="card-title">{{ data.title }}</h5>
+                              <p class="card-text">{{ data.short_description }}</p>
+                              <p class="card-text">view Count : {{ data.view_count }}</p>
+                              <a href="{% url 'app_artInfo:artist_single_art_page'  data.uuid %}"  class="card-link" >View Art</a>
+                              </div>
+                          </div> -->
+                <a href="{% url 'app_artInfo:artist_single_art_page'  data.artist_art.uuid %}">
+                  <div class="post-img">
+          
+                   
+                      <img src="{{ data.artist_art.image.url }}" alt="{{ data.title }}" />
+                      <div class="post-info">
+                        <div class="user-profile">
+                         
+                          <div class="user-info">
+                            <h6>{{ data.artist_art.title }}</h6>
+                            <p class="mb-0">{{ data.artist_art.short_description }}</p>
+                          </div>
+                        </div>
+          
+                       
+                      </div>
+                    </a>
+          
+                  </div>
+                </a>
               </div>
               {% endfor %}  
       </div>
@@ -34,6 +65,25 @@ All Reacted Art
 
 
 {% block add_js %}
-  <script>
-  </script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script>
+  
+  // vanilla JS
+// init with element
+var grid = document.querySelector('.grid');
+var msnry = new Masonry( grid, {
+  // options...
+  itemSelector: '.grid-item',
+ 
+  itemSelector: '.grid-item',
+  columnWidth: '.grid-sizer',
+  percentPosition: true,
+  gutter:15
+});
+
+// init with selector
+var msnry = new Masonry( '.grid', {
+  // options...
+});
+</script>
 {% endblock %}
