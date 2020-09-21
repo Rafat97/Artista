@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
     crossorigin="anonymous" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 </head>
 <style>
@@ -27,12 +28,15 @@
 
 <body>
   <header>
-
+    
+  <!-- <p>
+      <a href="{% url 'logout_user' %}">Logout User</a>
+  </p> -->
     {% block nav %}
     <nav class="nav-bg fixed-top navbar bg-white navbar-expand-lg navbar-light white-bg bg-light px-5">
       <a class="navbar-brand" href="{% url 'home' %}">
         <h2>
-          <div class="text-center">
+          <div class="text-center" data-aos="zoom-in">
             <!-- How to add Images -->
             <img src="{% static 'images/Artista-logo.png' %}" >
           </div>
@@ -44,24 +48,25 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav mr-auto"></ul>
-        <div class="form-inline my-2 my-lg-0 nav-item">
-          <a class=" nav-link " href="{% url 'home' %}#get-start">
-            <span class="">
-              GET STARTED
-            </span>
-          </a>
-        </div>
-        <div class="form-inline my-2 my-lg-0 nav-item">
-          <a class="nav-link " href="{% url 'home' %}#artist">
+        
+        <div class="form-inline my-2 my-lg-0 nav-item "data-aos="zoom-in">
+          <a class="nav-link " href="{% url 'register_artist' %}">
             <span class="">
               ARTIST
             </span>
           </a>
         </div>
-        <div class="form-inline my-2 my-lg-0 nav-item">
-          <a class="nav-link " href="{% url 'home' %}#client">
+        <div class="form-inline my-2 my-lg-0 nav-item"data-aos="zoom-in">
+          <a class="nav-link " href="{% url 'register_client' %}">
             <span class="">
               CLIENT
+            </span>
+          </a>
+        </div>
+        <div class="nav-item my-2 my-lg-0" data-aos="zoom-in">
+          <a class="nav-link " href="{% url 'login_user' %}">
+            <span class="">
+              LOGIN
             </span>
           </a>
         </div>
@@ -146,6 +151,10 @@
   integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
   integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({duration: 800});
+  </script>
 {% block add_js %} {% endblock %}
 
 </html>
