@@ -41,7 +41,7 @@ Artist All Arts
 
       <div class="profile-block d-flex align-items-center align-items-xl-start">
 
-        <a class="text-dark" href="{% url 'artist:single_artist_info'  art_info.user.uuid %}">
+        <a class="text-dark" href="{% url 'app_artInfo:single_artist_info'  art_info.user.uuid %}">
           <img class="profile-img py-3" src="{{ art_info.user.avatar.url }}" alt="avatar" />
           <div class="profile-info d-flex flex-wrap flex-grow-1">
 

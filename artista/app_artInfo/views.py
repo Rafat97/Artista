@@ -15,6 +15,24 @@ from artistFollowing.models import ArtistFollow
 
 
 class ProductFilter(django_filters.FilterSet):
+    """
+
+    Custom made filtering class . Filter the arts and show then in the website  .
+
+    **Super Class**
+        from django_filters import FilterSet
+
+    **Method User:**
+
+        filter_by_order(self, queryset, value, name): return queryset\n
+        search__in(self, queryset, value, name):return queryset\n
+
+     **Models that are used by this Class**
+
+        The instance of model artistArt.ArtistArt.\n
+
+
+    """
 
     STATUS_CHOICES = (
         ("view_count", 'View Count ASC'),
@@ -50,6 +68,33 @@ class ProductFilter(django_filters.FilterSet):
 
 # Create your views here.
 class AllArtSearchView(View):
+    """
+
+    Search all the arts by filtering them .the filters are bacically categorywise filter,choosing viewcount or latest uploded. Also can search by title or parial title.
+
+    **Super Class**
+
+        from django.views import View
+
+    **Method User:**
+
+       GET
+
+    **Context**
+
+        user_info: register.User.\n
+        filter: app_artinfo.View.ProductFilter.\n
+
+    **Models that are used by this Class**
+
+        The instance of model register.User.\n
+        The instance of model artistArt.ArtistArt.\n
+
+    **Template:**
+
+        View Templates directory: artistArt/templates/all_art_preview_search.html
+    """
+
     def get(self, request, *args, **kwargs):
         user = get_current_user(request)
         if not user:
@@ -73,16 +118,30 @@ class AllArtSearchView(View):
 # Create your views here.
 class AllArtView(View):
     """
-    Display an Artist Account
+
+    Display all the artist's public arts
+
+    **Super Class**
+
+        from django.views import View
+
+    **Method User:**
+
+       GET
 
     **Context**
 
-    ``mymodel``
-        An instance of :model:`myapp.User`.
+        user_info: register.User.\n
+        "allArts": artistArt.ArtistArt.\n
+
+    **Models that are used by this Class**
+
+        The instance of model register.User.\n
+        The instance of model artistArt.ArtistArt.\n
 
     **Template:**
 
-    :template:`all_art_preview.html`
+        View Templates directory: artistArt/templates/all_art_preview.html
     """
 
     def get(self, request, *args, **kwargs):
@@ -98,12 +157,42 @@ class AllArtView(View):
         }
         return render(request, "all_art_preview.html", context)
 
-    def post(self, request, *args, **kwargs):
-        pass
-
 
 # Create your views here.
 class SingleArtView(View):
+    """
+    Displaing a specific art with comment, react, artist info etc
+
+    **Super Class**
+
+        from django.views import View
+
+    **Method User:**
+
+       GET
+
+    **Context**
+
+        'user_info': registe.User,\n
+        'art_info': artistArt.ArtistArt,\n
+        'current_user_liked': artistArt.ArtLikeDislike,\n
+        'art_comments': artistArt.ArtComment,\n
+        'art_comments_form': ArtCommentForm.form,\n
+        'is_current_user_following': artistFollowing.ArtistFollow\n
+
+    **Models that are used by this Class**
+
+        The instance of model register.User.\n
+        The instance of model artistArt.ArtistArt.\n
+        The instance of model artistArt.ArtLikeDislike.\n
+        The instance of model artistArt.ArtComment.\n
+        The instance of model artistFollowing.ArtistFollow.\n
+
+    **Template:**
+
+        View Templates directory: app_artInfo\\templates\single_art_preview.html
+    """
+
     def get(self, request, *args, **kwargs):
         uid = kwargs.get('uuid')
         if not uid:
@@ -127,7 +216,7 @@ class SingleArtView(View):
 
         is_current_user_following = False
         data = ArtistFollow.objects.filter(
-            user_follower=user, user_following=ART_INFO.user)
+            user_following=ART_INFO.user)
         if data:
             is_current_user_following = True
 
@@ -150,6 +239,26 @@ class SingleArtView(View):
 
 # Create your views here.
 class SingleArtComment(View):
+    """
+    Comment submission using a form
+
+    **Super Class**
+
+        from django.views import View
+
+    **Method User:**
+
+        POST
+
+
+    **Models that are used by this Class**
+
+        The instance of model register.User.\n
+        The instance of model artistArt.ArtComment.\n
+
+    **Redirect to:**
+        artist_single_art_page
+    """
 
     def post(self, request, *args, **kwargs):
         uid = kwargs.get('image_uuid')
@@ -187,6 +296,26 @@ class SingleArtComment(View):
 
 
 class ArtistArtReact(View):
+    """
+    React on a existing public art.Record the react 
+
+    **Super Class**
+
+        from django.views import View
+
+    **Method User:**
+
+        POST
+
+
+    **Models that are used by this Class**
+
+        The instance of model register.User.\n
+        The instance of model artistArt.ArtLikeDislike.\n
+
+    **Redirect to:**
+        artist_single_art_page
+    """
 
     USER_INFO = None
     ART_INFO = None
@@ -211,6 +340,31 @@ class ArtistArtReact(View):
 
 
 class ArtistArtReactAllArt(View):
+    """
+    Show all the reacted art of currently logged-in user
+
+    **Super Class**
+
+        from django.views import View
+
+    **Method User:**
+
+        GET
+
+    **Context**
+
+        user_info: register.user,\n
+        allLovedArts: artistArt.ArtLikeDislike,\n
+
+    **Models that are used by this Class**
+
+        The instance of model register.User.\n
+        The instance of model artistArt.ArtistArt.\n
+
+    **Template:**
+
+        View Templates directory: artistArt/templates/all_reacted_art.html
+    """
 
     def get(self, request, *args, **kwargs):
 

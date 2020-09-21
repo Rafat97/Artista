@@ -18,16 +18,24 @@ def user_login_redirect(view_func):
 
 def register_client(request, *args, **kwargs):
     """
-    Display an Client Account
+    reagister User as a client
+
+    **Super Class**
+
+        from django.views import View
+
+    **Method User:**
+
+       GET,POST
 
     **Context**
 
-    ``mymodel``
-        An instance of :model:`myapp.User`.
+        getUser: register.form.ClientUserForm.\n
 
     **Template:**
 
-    :template:`register_client.html`
+        View Templates directory: register/templates/register_client.html
+        View redirect ur name : register_thank_you
     """
     if request.session.has_key('user_id'):
         print(request.session['user_id'])
@@ -48,32 +56,54 @@ def register_client(request, *args, **kwargs):
 
 def register_artist(request, *args, **kwargs):
     """
-    Display an Artist Account
+    reagister User as a Artist
+
+    **Super Class**
+
+        from django.views import View
+
+    **Method User:**
+
+       GET,POST
 
     **Context**
 
-    ``mymodel``
-        An instance of :model:`myapp.User`.
+        getUser: register.form.ArtistUserForm.\n
 
     **Template:**
 
-    :template:`register_artist.html`
+        View Templates directory: register/templates/register_client.html
+        View redirect ur name : register_artist
     """
     form = ArtistUserForm(request.POST or None)
     if request.method == 'POST':
-        if form.is_valid() :
+        if form.is_valid():
             form.save(commit=True)
             response = redirect('register_thank_you')
             return response
-        
+
     context = {
-        "form" : form
+        "form": form
     }
     return render(request, 'register_artist.html', context)
 
 
-def thank_you(request, *args, **kwargs): 
+def thank_you(request, *args, **kwargs):
+    """
+    After login & register thank you page
+
+    **Super Class**
+
+        from django.views import View
+
+    **Method User:**
+
+       GET,POST
+
+    **Template:**
+
+        View Templates directory: register/templates/thank_you.html
+    """
     print(kwargs)
     context = {}
     return render(request, 'thank_you.html', context)
-

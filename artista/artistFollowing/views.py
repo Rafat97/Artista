@@ -15,6 +15,32 @@ from django.db.models import Q
 
 
 class ArtistFollowView(View):
+    """
+
+    Atrist can follow an artist
+
+    **Super Class**
+
+        from django.views import View
+
+    **Method User:**
+
+        GET,POST
+
+    **Context**
+
+        user_info: register.User.\n
+        artists : artistFollowing.ArtistFollow\n
+
+    **Models that are used by this Class**
+
+        The instance of model register.User.\n
+        The instance of model artistFollowing.ArtistFollow.\n
+
+    **Template:**
+
+        View Templates directory: artistArt/templates/follow.html
+    """
 
     USER_INFO = None
 
@@ -53,6 +79,32 @@ class ArtistFollowView(View):
 
 
 class ArtistFollowViewFormSubmit(View):
+    """
+
+    Atrist can submit follow or Unfollow
+
+    **Super Class**
+
+        from django.views import View
+
+    **Method User:**
+
+        POST
+
+    **Context**
+
+        user_info: register.User.\n
+        artists : artistFollowing.ArtistFollow\n
+
+    **Models that are used by this Class**
+
+        The instance of model register.User.\n
+        The instance of model artistFollowing.ArtistFollow.\n
+
+    **Redirect:**
+
+        View Redirect Url name: prev_url = request.META['HTTP_REFERER']
+    """
 
     USER_INFO = None
 

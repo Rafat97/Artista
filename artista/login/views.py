@@ -5,6 +5,21 @@ from register.models import User
 
 
 def user_login_redirect(view_func):
+    """
+    already logedin user redirect
+
+    **Super Class**
+
+        from django.views import View
+
+    **Method:**
+
+       __ALL__
+
+    **Redirect:**
+
+       Redirect to url : dashboard 
+    """
     def decorated_view_func(request, *args, **kwargs):
         if request.session.has_key('user'):
             return redirect('/dashboard')
@@ -15,6 +30,25 @@ def user_login_redirect(view_func):
 
 
 def login_user(request, *args, **kwargs):
+    """
+    Login User form view
+
+    **Super Class**
+
+        from django.views import View
+
+    **Method User:**
+
+       GET
+
+    **Context**
+
+        getUser: login.form.LoginFrom.\n
+
+    **Template:**
+
+        View Templates directory: login/templates/login.html
+    """
     form = LoginFrom(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
@@ -29,6 +63,22 @@ def login_user(request, *args, **kwargs):
 
 
 def logout_user(request, *args, **kwargs):
+    """
+    Login User form view
+
+    **Super Class**
+
+        from django.views import View
+
+    **Method User:**
+
+       GET
+
+    **Redirect:**
+        redirect to url : 'home'
+
+    """
+
     if request.session.has_key('user'):
         del request.session['user']
     response = redirect('/')
