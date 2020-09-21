@@ -97,7 +97,7 @@ How to install. Also how to  run project in your machine
 - Copy the url from command and paste into your browser. Then you can see the magic :sunglasses: :sunglasses: :sunglasses: :sunglasses: .
 
 
-## Imporent Django Commands (Optionals / Knowledgetics)
+## Important Django Commands (Optionals / Knowledgetics)
 1. python manage.py runserver   (server run)
 2. python manage.py makemigrations (database)
 3. python manage.py migrate     (database)
