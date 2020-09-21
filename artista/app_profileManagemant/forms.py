@@ -64,4 +64,5 @@ class UserEditProfile(forms.ModelForm):
             'phoneNumber',
             'address',
             'avatar',
+            'short_bio',
         ]
