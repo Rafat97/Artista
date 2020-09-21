@@ -112,12 +112,13 @@ html {
 }
 
 body {
-    display: -webkit-box;
+ /*   display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
+    display: flex; */
     min-height: 100vh;
     overflow-x: hidden;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Segoe UI','Montserrat', sans-serif;
+    
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
@@ -144,12 +145,12 @@ main {
     display: block;
 
 }
-sidebar{
+aside{
     display:block;
     position:fixed;
     top:0;
     left:0;
-    z-index: 10000;
+    z-index: 100;
 }
 a:hover{
     text-decoration: none;
@@ -181,6 +182,21 @@ textarea:-ms-input-placeholder,
 select:-ms-input-placeholder {
     color: #dddddd;
 }
+ 
+/* Change the white to any color ;) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+.fullscreen{
+  min-height: calc(100vh - 141px);
+}
+.form-logo{
+  max-width: 18rem;
+  padding:1.5rem
+}
 
 @mixin btn($color) {
     background: $color;
@@ -188,17 +204,33 @@ select:-ms-input-placeholder {
     display:inline-block;
     padding:0.75rem 3rem;
     border-radius:$radius;
-    border:0.2rem solid $color;
+    border:2px solid $color;
     transition: background 200ms ease-out, color 200ms linear;
     &:hover{
         background:transparent;
         color:$color;
     }
 }
+@mixin invBtn($color) {
+    background: transparent;
+    color:$color;
+    display:inline-block;
+    padding:0.75rem 3rem;
+    border-radius:$radius;
+    border:2px solid $color;
+    transition: background 200ms ease-out, color 200ms linear;
+    &:hover{
+        background:$color;
+        color:white;
+    }
+}
 
 
 .color1-btn{
     @include btn(color(color1));
+}
+.color1-inv-btn{
+    @include invBtn(color(color1));
 }
 .color2-btn{
     @include btn(color(color2));
@@ -304,7 +336,9 @@ $headersMap:(
        
     }
 }
-
+.justify-content-evenly{
+    justify-content: space-evenly;
+}
 .grid-sizer,
 .grid-item {
   width: 100%;
@@ -340,6 +374,10 @@ $headersMap:(
 .font-700{
     font-weight: 700;
 }
+.img-small{
+    height: 80px;
+    width: 80px;
+}
 .btn-link{
     font-size: 1.6rem;
     padding: 0;
@@ -350,8 +388,66 @@ $headersMap:(
     }
 }
 
+nav{
+    font-family: 'Segoe UI','Montserrat', sans-serif  !important;
+    font-weight: 600;
+}
+.nav-link{
+  
+  @include desktop-mini{  line-height: 2;
+    font-size: 2.8rem;
+    font-family: 'Segoe UI','Montserrat', sans-serif ;
+    font-weight: 600;
+   padding-left: 0;
+   padding-right: 3rem;
+    color:#5433FF;
+    position: relative;
+    transition: all 0.3s ease;
+    &:hover{
+    color:#5433FF;
+        
+    }
+    &:hover::after{
+        width: 80%;
+        }
+    &::after{
+        content:"";
+        position:absolute;
+        bottom:0;
+        left:0;
+        width:3.5rem;
+        height: 100%;
+        border-bottom: 3px solid #5433FF;
+        transition: all 0.3s ease;
+    
+    }
+}
+}
+
+
+.navbar-brand img{
+    max-width: 125px;
+}
+
 @media(max-width:767px){
     html{
         font-size: 50%;
+    }
+    .nav-bg{
+   
+        text-align: center;
+    }
+    .nav-item a{
+        text-align: center;
+        margin: auto;;
+    }
+    .navbar-brand img{
+        max-width: 75px;
+    }
+    .nav-bg{
+        box-shadow: 0 0.3rem 2rem 0 rgba(0,0,0,0.2);
+    }
+    .mbl-reverse{
+        flex-direction: column-reverse;
     }
 }

@@ -74,6 +74,7 @@ class CustomAuthMiddleware:
             if not user:
                 response = redirect('logout_user')
                 return response
+                #redirect('/dashboard')
             else:
                 for url in self.USER_LOGIN_REDIRECT_NAME:
                     if url == resolve( request.path_info ).url_name :

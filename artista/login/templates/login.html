@@ -4,13 +4,30 @@
 {% endblock %} 
 
 {% block content %}
+<style>
+  
+/* Change the white to any color ;) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+.fullscreen{
+  min-height: calc(100vh - 141px);
+}
+.form-logo{
+  max-width: 18rem;
+  padding:1.5rem
+}
+</style>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-7"></div>
-    <div class="col-md-4 p-5">
+<div class="">
+  <div class="row align-items-stretch fullscreen">
+    <div class="col-md-7 bg-regular" style="background-image: url({% static 'images/water-bg.jpg' %});"></div>
+    <div class="col-md-5 p-5 align-self-center">
       <div class="text-center">
-        <!-- <img src="{% static 'images/Artista-logo.png' %}" width="168"  height="150"> -->
+         <img src="{% static 'images/Artista-logo.png' %}" alt="logo" class="form-logo"> 
       </div>
       <h5 class="text-center mb-5 text-uppercase font-weight-bold">Login Your Account </h5>
       
@@ -44,12 +61,12 @@
         {% for hidden in form.hidden_fields %}
             {{ hidden }}
         {% endfor %}
-        <div class="text-center"> 
-            <button class="btn btn-primary cnr-rounded " style="width: 150px;" type="submit" >Submit</button>
+        <div class="text-center my-4"> 
+            <button class="color1-btn "  type="submit" >Sign In</button>
         </div>
       </form>
-      <div class="text-center mt-1"> 
-        <a href="{% url 'forgot_password_user' %}">
+      <div class="text-center mt-2 mb-4"> 
+        <a class="color2" href="{% url 'forgot_password_user' %}">
           <strong> Forgot Password ? </strong>
         </a>
         

@@ -64,12 +64,12 @@ html {
 }
 
 body {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  /*   display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; */
   min-height: 100vh;
   overflow-x: hidden;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Segoe UI','Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
@@ -95,12 +95,12 @@ main {
   display: block;
 }
 
-sidebar {
+aside {
   display: block;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10000;
+  z-index: 100;
 }
 
 a:hover {
@@ -139,13 +139,30 @@ select:-ms-input-placeholder {
   color: #dddddd;
 }
 
+/* Change the white to any color ;) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+.fullscreen {
+  min-height: calc(100vh - 141px);
+}
+
+.form-logo {
+  max-width: 18rem;
+  padding: 1.5rem;
+}
+
 .color1-btn {
   background: #5433FF;
   color: white;
   display: inline-block;
   padding: 0.75rem 3rem;
   border-radius: 3rem;
-  border: 0.2rem solid #5433FF;
+  border: 2px solid #5433FF;
   -webkit-transition: background 200ms ease-out, color 200ms linear;
   transition: background 200ms ease-out, color 200ms linear;
 }
@@ -155,13 +172,29 @@ select:-ms-input-placeholder {
   color: #5433FF;
 }
 
+.color1-inv-btn {
+  background: transparent;
+  color: #5433FF;
+  display: inline-block;
+  padding: 0.75rem 3rem;
+  border-radius: 3rem;
+  border: 2px solid #5433FF;
+  -webkit-transition: background 200ms ease-out, color 200ms linear;
+  transition: background 200ms ease-out, color 200ms linear;
+}
+
+.color1-inv-btn:hover {
+  background: #5433FF;
+  color: white;
+}
+
 .color2-btn {
   background: #20BDFF;
   color: white;
   display: inline-block;
   padding: 0.75rem 3rem;
   border-radius: 3rem;
-  border: 0.2rem solid #20BDFF;
+  border: 2px solid #20BDFF;
   -webkit-transition: background 200ms ease-out, color 200ms linear;
   transition: background 200ms ease-out, color 200ms linear;
 }
@@ -338,6 +371,12 @@ p {
   }
 }
 
+.justify-content-evenly {
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
 .grid-sizer,
 .grid-item {
   width: 100%;
@@ -393,6 +432,11 @@ p {
   font-weight: 700;
 }
 
+.img-small {
+  height: 80px;
+  width: 80px;
+}
+
 .btn-link {
   font-size: 1.6rem;
   padding: 0;
@@ -408,9 +452,70 @@ p {
           filter: brightness(120%);
 }
 
+nav {
+  font-family: 'Segoe UI','Montserrat', sans-serif  !important;
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .nav-link {
+    line-height: 2;
+    font-size: 2.8rem;
+    font-family: 'Segoe UI','Montserrat', sans-serif;
+    font-weight: 600;
+    padding-left: 0;
+    padding-right: 3rem;
+    color: #5433FF;
+    position: relative;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+  .nav-link:hover {
+    color: #5433FF;
+  }
+  .nav-link:hover::after {
+    width: 80%;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 3.5rem;
+    height: 100%;
+    border-bottom: 3px solid #5433FF;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+}
+
+.navbar-brand img {
+  max-width: 125px;
+}
+
 @media (max-width: 767px) {
   html {
     font-size: 50%;
+  }
+  .nav-bg {
+    text-align: center;
+  }
+  .nav-item a {
+    text-align: center;
+    margin: auto;
+  }
+  .navbar-brand img {
+    max-width: 75px;
+  }
+  .nav-bg {
+    -webkit-box-shadow: 0 0.3rem 2rem 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0.3rem 2rem 0 rgba(0, 0, 0, 0.2);
+  }
+  .mbl-reverse {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
   }
 }
 /*# sourceMappingURL=style.css.map */

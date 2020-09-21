@@ -4,10 +4,50 @@
 {% block page_title %} Artista Get Started  {% endblock %}
 
 {% block content %}
-
+<style>
+    .landing-btn{
+        border-radius: 0.75rem;
+    }
+    .lh-1{
+        line-height: 1;
+    }
+    section{
+        padding: 10rem 0;
+    }
+    .white-line{
+        border-right:5px solid white;
+    }
+    .max-width-90{
+        max-width: 90%;
+    }
+    .bg-top{
+        background-position: top;
+    }
+    body{
+      font-family: 'Merienda One', cursive;
+     
+    }
+    .footer-logo{
+        max-width:200px;
+        padding: 2rem;
+    }
+    button{
+        font-family: 'Segoe UI','Montserrat', sans-serif;
+    }
+    @media(max-width: 767px){
+        .mbl-reverse{
+            flex-direction: column-reverse;
+        }
+        .white-line{
+            border-bottom:3px solid white;
+            border-right: none;
+        }
+    }
+</style>
     Hello, {{ request.session.user }}
 
     <!-- <img src="{% static 'path.png' %}" alt="My image"> -->
+   <div class="d-flex"> 
     <p>
         <a href="{% url 'login_user' %}">Login</a>
     </p>
@@ -21,4 +61,122 @@
     <p>
         <a href="{% url 'logout_user' %}">Logout User</a>
     </p>
+   </div>
+   
+    <section class="pt-0 pb-5">
+        <div class="container">
+          <div class="row mbl-reverse">
+            <div class="col-md-5 d-flex align-items-center justify-content-center flex-wrap ">
+              <div>
+                <h1 class="display-1 text-md-left text-center">Artista</h1>
+                <h3 class="display-4 text-md-left text-center" >Connecting Artists<br/> and Art Lovers</h3>
+                <div class="text-md-left text-center">
+                 <button class="color1-btn landing-btn my-5">Get Started</button>
+                    
+                </div>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <img class="img-fluid" alt="Artist" src="{% static 'images/Artist_vector.png' %}">
+            </div>
+          </div>
+        </div>
+      </section>
+      <!---text and image-->
+    
+      <section class="bg-regular " style="background-image: url({% static 'images/Blue.jpg' %});">
+        <div class="container">
+         <div class="row align-items-center">
+             <div class="col-md-4  text-md-right text-center">
+                 <h2 class="display-2 pr-md-5 pb-md-0 pb-5 text-center white-line text-white">
+                    What<br/>
+                    Is<br/>
+                    Artista?
+                </h2>
+            </div>
+            <div class="col-md-8">
+                <h4 class="text-white text-md-left text-center pt-mt-0 pt-4 mx-auto max-width-90">Artista creates a marketplace for 
+                    artists. Artista also creates promotion 
+                    opportunities for art contents. General 
+                    people now can hire freelance artists
+                    when they need by this website.</h4>
+            </div>
+         </div>
+        </div>
+      </section>
+      <!---text and image-->
+      <section class="py-5">
+        <div class="container">
+          <div class="row mbl-reverse">
+            <div class="col-md-5 d-flex align-items-center justify-content-center flex-wrap ">
+              <div>
+                <h2 class="display-1 text-md-left text-center">Are You an <br/>
+                    Art lover ?</h2>
+                
+                <div class="text-md-left text-center">
+                 <button class="color1-btn landing-btn my-5">Start Here</button>
+                    
+                </div>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <img class="img-fluid" alt="Art Enthusiast" src="{% static 'images/Hire.png' %}">
+            </div>
+          </div>
+        </div>
+      </section>
+      <!---text and image-->
+      <!---text and image-->
+      <section class="pt-5">
+        <div class="container">
+          <div class="row ">
+            <div class="col-md-7">
+                <img class="img-fluid" alt="Artist" src="{% static 'images/Artist.png' %}">
+              </div>
+            <div class="col-md-5 d-flex align-items-center justify-content-center flex-wrap ">
+              <div>
+                <h2 class="display-1 text-md-left text-center">Are You  <br/>
+                    An Artist ?</h2>
+                
+                <div class="text-md-left text-center">
+                 <button class="color1-btn landing-btn my-5">Start Here</button>
+                    
+                </div>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+      </section>
+     
+      <!---text and image-->
+      <section class="bg-regular bg-top" style="background-image:url({% static 'images/Footer.png' %}) ;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6  text-md-right text-center">
+                   <img class="img-fluid white-line footer-logo" class="footer-logo" src="{% static 'images/Artista-logo.png' %}" alt="logo">
+               </div>
+               <div class="col-md-6">
+                   <h5 class="text-white text-md-left text-center pt-mt-0 pt-4 mx-auto max-width-90">
+                       Email:
+                   </h5>
+                   <a href="mailto:artista@mail.com">
+                    <p class="text-white text-md-left text-center pt-mt-0 pt-4 mx-auto max-width-90">
+                        artista@mail.com
+                       </p>
+                   </a>
+                   <h5 class="text-white text-md-left text-center pt-mt-0 pt-4 mx-auto max-width-90">
+                    Call:
+                </h5>
+                <a href="tel:100000">
+                 <p class="text-white text-md-left text-center pt-mt-0 pt-4 mx-auto max-width-90">
+                    019XXXXXXXXX
+                    </p>
+                </a>
+                  
+               </div>
+            </div>
+           </div>
+      </section>
+    
 {% endblock %}

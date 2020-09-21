@@ -12,6 +12,62 @@ Artist All Arts
 
 
 {% block content %}
+<style>
+  input#id_avatar {
+    display: none;
+  }
+
+  label[for=id_avatar] {
+
+    color: #5433FF;
+    background: transparent;
+    display: inline-block;
+    padding: 0.75rem 3rem;
+    border-radius: 3rem;
+    border: 0.2rem solid #5433FF;
+    -webkit-transition: background 200ms ease-out, color 200ms linear;
+    transition: background 200ms ease-out, color 200ms linear;
+  }
+
+  label[for=id_image]:hover {
+    cursor: pointer;
+    color: white;
+    background: #5433FF;
+    
+  }
+  .cover{
+    height: 250px;
+    width: 170px;
+    border: 1px solid #707070;
+    border-radius: 3rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    margin-bottom: 2rem;
+  }
+  .cover img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+   
+   
+  }
+  #camera-img{
+    width: 40px;
+    height: auto;
+    object-fit: contain;
+  }
+  .form-control{
+    border:0.1rem solid #707070;
+    border-radius:0.75rem;
+    font-size: 1.6rem; 
+    
+  }
+  textarea {
+      resize: none;
+  }
+</style>
     User Profile edit
   <!-- User Profile  edit -->
   <div class="container my-5">
@@ -44,5 +100,37 @@ Artist All Arts
 
 
 {% block add_js %}
+<script>
+  $("label[for=id_avatar").prepend('<div class="dp "></div>'); 
+   $(" label[for=id_avatar]").html("Upload Photo");
+  $( ".form-control input" ).removeClass( "form-control" )
 
+  $(function () {
+                // Multiple images preview in browser
+                var imagesPreview = function (input, placeToInsertImagePreview) {
+
+                    if (input.files) {
+                        var filesAmount = input.files.length;
+
+                        for (i = 0; i <1; i++) {
+                            var reader = new FileReader();
+
+                            reader.onload = function (event) {
+                             
+                             // $(".cover > img").remove();
+                                $($.parseHTML('<img id="cover-img">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                            }
+
+                            reader.readAsDataURL(input.files[i]);
+                        }
+                    }
+
+                };
+
+               
+                $('#id_avatar').on('change', function () {
+                    imagesPreview(this, 'div.dp');
+                });
+            });
+</script>
 {% endblock %}
