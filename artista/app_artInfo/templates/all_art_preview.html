@@ -23,12 +23,13 @@ Artist All Arts
     padding: 0.75rem 3rem;
     border: 1px solid #707070;   
   }
+  
 </style>
 <div class="container text-center">
 <form class="form-inline" action="{% url 'app_artInfo:all_art_searching_page' %}">
   
   <div class="input-group col">
-    <input type="text" name="search" class="form-control cnr-rounded" maxlength="100" required id="id_title"> 
+    <input type="text" name="search" class="" maxlength="100" required id="id_title"> 
    
   </div>
 
@@ -65,10 +66,10 @@ Artist All Arts
                       <img src="{{ data.user.avatar.url }}"/>
                       <div class="user-info">
                         <h6>{{ data.user.display_name }}</h6>
-                        <p class="mb-0">{{ data.category }}</p>
+                        
                       </div>
                     </div>
-                    <h4>Category</h4>
+                    <h4 class="px-2 text-center">Category: {{ data.category }}</h4>
                     <p class="fas fa-eye color1 mb-0">{{ data.view_count }}</p>
                   </div>
               </a>

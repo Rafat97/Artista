@@ -4,7 +4,9 @@ Artist Register Page
 {% endblock %}
 
 {% block content %}
+<style>
 
+</style>
 <div class="">
   <div class="row mbl-reverese align-items-stretch fullscreen">
 
@@ -13,8 +15,8 @@ Artist Register Page
         <div class="text-center">
           <img src="{% static 'images/Artista-logo.png' %}" alt="logo" class="form-logo">
         </div>
-        <h5 class="text-center mb-5 text-uppercase font-weight-bold">Create Account </h5>
-        <h5 class="text-center pb-4 text-uppercase font-weight-bold">Hi Client </h5>
+        <h5 class="text-center mb-5 text-uppercase font-weight-bold"> Hello Client! </h5>
+        <h5 class="text-center pb-4 text-uppercase font-weight-bold"> Create Account</h5>
 
         {% for error in form.non_field_errors %}
         <div class="alert alert-danger" role="alert">

@@ -36,7 +36,14 @@
     top: 50%;
     
     transform: translateY(-50%);
-    right: 25%;
+    right: 2rem;
+  }
+  .cursor-pointer:hover{
+    cursor:pointer !important;
+
+  }
+  .pr-2r{
+    padding-right: 2rem;
   }
   .logout-icon{
     max-width: 50px;
@@ -75,15 +82,15 @@
     <div class="d-flex" id="wrapper">
       {% block Sidebar %}
       <div class="bg-light border-right" id="sidebar-wrapper">
-        <div class="sidebar-heading text-center">Artista</div>
+        <h4 class=" text-center">Artista</h3>
         <!-- Profile info -->
         <div class="list-group list-group-flush">
           <div>
             <div href="#" class="mt-5 list-group-item list-group-item-action bg-light">
               <div class="row mb-5">
-                <div class="col-sm-12 text-center">
+                <div class="col-sm-12 text-center pr-2r" >
                   <a href="{% url 'app_profileManagemant:home' %}">
-                  {% thumbnail user_info.avatar "104x104" as im %}
+                  {% thumbnail user_info.avatar "200x200" as im %}
                   <img src="{{ im.url }}" class=" profile-img img-top" alt="Avatar"
                      />
                   {% endthumbnail %}
@@ -91,8 +98,8 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-sm-12 text-center mb-5 position-relative">
-                 <h5> {{ user_info.display_name }}</h5>
+                <div class="col-sm-12 text-center mb-5 position-relative " >
+                 <h5 class="px-2 black text-center text-uppercase">  {{ user_info.display_name }}</h5>
                  <a href="{% url 'app_profileManagemant:home' %}">
                    <i class="fa fa-cog setting-icon black"></i></a>
                 </div>
@@ -107,22 +114,22 @@
         <div>
           <div class="list-group list-group-flush text-center">
 
-            <a href="{% url 'app_artInfo:home' %}" class="list-group-item list-group-item-action bg-light">HOME</a>
+            <a href="{% url 'app_artInfo:home' %}" class="list-group-item list-group-item-action color1-bg text-white item-hover">HOME</a>
 
           </div>
           <div class="list-group list-group-flush text-center">
-            <a href="{% url 'artist_follow' %}" class="list-group-item list-group-item-action bg-light">FOLLOWING</a>
+            <a href="{% url 'artist_follow' %}" class="list-group-item list-group-item-action color1-bg text-white item-hover">FOLLOWING</a>
           </div>
 
-          <div class="list-group list-group-flush text-center">
+          <!-- <div class="list-group list-group-flush text-center">
             <a href="{% url 'app_artInfo:artist_reacted_all_art' %}" class="list-group-item list-group-item-action bg-light">LOVED ART</a>
-          </div>
+          </div> -->
           <div class="list-group list-group-flush text-center">
-            <a href="{% url 'category' %}" class="list-group-item list-group-item-action bg-light">CATEGORY</a>
+            <a href="{% url 'category' %}" class="list-group-item list-group-item-action color1-bg text-white item-hover">CATEGORY</a>
           </div>
           {% if user_info.user_role.role_name == 'Artist' %}
           <div class="list-group list-group-flush text-center">
-            <a href="{% url 'artist:artist_own_all_art' %}" class="list-group-item list-group-item-action bg-light">SELL
+            <a href="{% url 'artist:artist_own_all_art' %}" class="list-group-item list-group-item-action color1-bg text-white item-hover">SELL
               MY ART</a>
           </div>
           {% endif %}
@@ -131,21 +138,24 @@
 
         <!-- Logout menu -->
         <div style="bottom: 0px;position: absolute;">
-          <div class="list-group list-group-flush">
+          <a href="{% url 'logout_user' %}" class="cursor-pointer">
+          <div class="list-group list-group-flush color1-bg cursor-pointer text-white item-hover">
             <div class="row mx-0 my-2 align-items-center">
               <div class="col-4">
                 <img src="{{ user_info.avatar.url }}" class="profile-img bottom-image" alt="Avatar"  />
               </div>
-              <div class="col-4 p-0 text-center my-auto">
-                {{ user_info.display_name  }}
+              <div class="col-4 p-0 px-2 text-center my-auto" style="word-break: break-all;">
+                <!-- {{ user_info.display_name  }} -->
+                LOG OUT
               </div>
               <div class="col-4 p-0 my-auto text-center">
-                <a href="{% url 'logout_user' %}" class="">
+                
                   <img src="{% static 'images/logout.png' %}" class="logout-icon" alt="logout"/>
-                </a>
+                
               </div>
             </div>
           </div>
+        </a>
         </div>
         <!-- end Logout menu -->
       </div>

@@ -140,6 +140,12 @@ select:-ms-input-placeholder {
   color: #dddddd;
 }
 
+textarea {
+  width: 100%;
+  border: 1px solid #707070;
+  border-radius: 0.75rem;
+}
+
 /* Change the white to any color ;) */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -381,7 +387,7 @@ p {
 
 @media (max-width: 767px) {
   .post-img .post-info {
-    height: 60%;
+    height: 75%;
     bottom: 0;
     top: auto;
     opacity: 1;
@@ -507,7 +513,46 @@ nav {
 }
 
 .navbar-brand img {
-  max-width: 100px;
+  max-width: 80px;
+}
+
+.nav-bg {
+  -webkit-box-shadow: 0 0.3rem 2rem 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0.3rem 2rem 0 rgba(0, 0, 0, 0.2);
+}
+
+.item-hover {
+  -webkit-transition: background-color 0.3s linear;
+  transition: background-color 0.3s linear;
+}
+
+.item-hover:hover {
+  background-color: rgba(0, 0, 0, 0) !important;
+  color: #5433FF !important;
+  border: 1px solid #5433FF !important;
+}
+
+input:focus {
+  -webkit-filter: brightness(120%);
+          filter: brightness(120%);
+  border-radius: inherit;
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+.category-item {
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+
+.category-item:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 
 @media (max-width: 767px) {

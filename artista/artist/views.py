@@ -160,4 +160,4 @@ class ArtistReviewView(View):
         else:
             messages.error(request, " Please give correct review message ")
 
-        return redirect("artist:single_artist_info", reviewing_uid)
+        return redirect("app_artInfo:single_artist_info", reviewing_uid)

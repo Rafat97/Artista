@@ -55,6 +55,7 @@
 </style>
 
 <div class="container-fluid">
+    {% if artsists|length >= 1 %}
     <div class="row align-items-stretch justify-content-center">{% for artist in artists%}
         <div class="col-md-6 col-lg-4 text-center mb-4">
             <div class="profile-card ">
@@ -85,6 +86,9 @@
         </div>
 
         {% endfor %}
+        {% else %}
+        <h2 class=" text-center color1">You haven't followed anyone yet!</h2>
+        {% endif %}
     </div>
 </div>
 

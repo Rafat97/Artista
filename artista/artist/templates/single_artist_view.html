@@ -149,7 +149,7 @@ Artist Home
     <h4 class="text-uppercase text-center">
         {{ artist_info.display_name }}
     </h4>
-    <p class="text-center"> Short Bio : {{ artist_info.short_bio }}</p>
+    <p class="text-center">  {{ artist_info.short_bio }}</p>
     <div class="btn-container">
         <button type="button" class="color1-btn mr-5" data-toggle="modal" data-target="#contactArtist"> Contact
             Artist</button>
@@ -166,14 +166,14 @@ Artist Home
 
                     <div class="contact-box">
                         <p class="color2">
-                            email = {{ artist_info.email }}
+                            Email : {{ artist_info.email }}
                         </p>
 
                         <p class="color2">
-                            address = {{ artist_info.address }}
+                            Address : {{ artist_info.address }}
                         </p>
                         <p class="color2">
-                            phone number = {{ artist_info.phoneNumber }}
+                            Phone Number : {{ artist_info.phoneNumber }}
                         </p>
                     </div>
                 </div>
@@ -208,7 +208,7 @@ Artist Home
                         <div class="form-group">
 
                             <textarea name="message" class="review-input" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" placeholder="Enter message"></textarea>
+                                aria-describedby="emailHelp" placeholder="Write your review here..."></textarea>
 
                         </div>
                         <button type="submit" class="color1-btn my-5"> Submit </button>
@@ -239,7 +239,7 @@ Artist Home
 
 
 <div class="container my-5">
-    <h1>Artist Art Reviewer</h1>
+   
     <p class="position-relative mb-5">
         <span class="head-title color1">Review</span>
         <button class="accordion-btn" type="button" data-toggle="collapse" data-target="#collapseExample"
@@ -258,7 +258,10 @@ Artist Home
         {% for data in artist_review %}
         <div class="row m-0 mb-5 py-5 review-box">
             <div class="col flex-grow-0">
+                
+             <a href="{% url 'app_artInfo:single_artist_info'  data.user_reviewing.uuid %}">
                 <img class="profile-img img-small" src="{{ data.user_reviewing.avatar.url }}" alt="test">
+              </a>  
             </div>
             <div class="col">
                 <h5 class="mb-3">{{ data.user_reviewing.display_name }}</h5>
@@ -298,7 +301,7 @@ Artist Home
                                 <p class="card-text">{{ data.short_description }}</p>
                             </div>
                         </div>
-                        <h4>Category</h4>
+                      
                         <p class="fas fa-eye color1 mb-0">{{ data.view_count }}</p>
                     </div>
                 </a>
