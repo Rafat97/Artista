@@ -567,7 +567,7 @@ button:focus {
     margin: auto;
   }
   .navbar-brand img {
-    max-width: 75px;
+    max-width: 45px;
   }
   .nav-bg {
     -webkit-box-shadow: 0 0.3rem 2rem 0 rgba(0, 0, 0, 0.2);
