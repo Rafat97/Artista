@@ -42,6 +42,25 @@ Artist All Arts
 
 
 {% block add_js %}
-  <script>
-  </script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script>
+  
+  // vanilla JS
+// init with element
+var grid = document.querySelector('.grid');
+var msnry = new Masonry( grid, {
+  // options...
+  itemSelector: '.grid-item',
+ 
+  itemSelector: '.grid-item',
+  columnWidth: '.grid-sizer',
+  percentPosition: true,
+  gutter:15
+});
+
+// init with selector
+var msnry = new Masonry( '.grid', {
+  // options...
+});
+</script>
 {% endblock %}
