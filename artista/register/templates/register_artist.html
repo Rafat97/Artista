@@ -5,13 +5,13 @@
  
 {% block content %}
 
-<div class="container-fluid">
-  <div class="row">
+<div class="">
+  <div class="row mbl-reverse align-items-stretch fullscreen">
     
-    <div class="col-md-4 p-5">
+    <div class="col-md-5 p-5">
       <div class="text-center">
-        <!-- <img src="{% static 'images/Artista-logo.png' %}" width="168"  height="150"> -->
-      </div>
+        <img src="{% static 'images/Artista-logo.png' %}" alt="logo" class="form-logo"> 
+     </div>
       <h5 class="text-center mb-5 text-uppercase font-weight-bold">Create Account </h5>
       <h5 class="text-center pb-4 text-uppercase font-weight-bold">Hi Artist </h5>
 
@@ -37,12 +37,13 @@
         {% for hidden in form.hidden_fields %}
             {{ hidden }}
         {% endfor %}
-        <div class="text-center"> 
-            <button class="btn btn-primary cnr-rounded " style="width: 150px;" type="submit" >Submit</button>
+        <div class="text-center my-5"> 
+            <button class="color1-btn"  type="submit" >Submit</button>
         </div>
       </form>
     </div>
-    <div class="col-md-7"></div>
+    <div class="col-md-7 bg-regular" style="background-image: url({% static 'images/register-bg.jpg' %});"></div>
+
   </div>
 </div>
 
