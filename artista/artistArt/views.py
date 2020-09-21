@@ -10,6 +10,32 @@ from django.shortcuts import get_object_or_404
 
 
 class ArtistArtUploadNew(View):
+    """
+
+    Atrist can upload a new art
+
+    **Super Class**
+
+        from django.views import View
+
+    **Method User:**
+
+       GET,POST
+
+    **Context**
+
+        user_info: register.User.\n
+        form: artistArt.form.ArtistArtViewForm\n
+
+    **Models that are used by this Class**
+
+        The instance of model register.User.\n
+        The instance of model artistArt.ArtistArt.\n
+
+    **Template:**
+
+        View Templates directory: artistArt/templates/artist_art_upload_form.html
+    """
 
     USER_INFO = None
 
@@ -46,6 +72,34 @@ class ArtistArtUploadNew(View):
 
 
 class ArtistArtPreview(View):
+    """
+    Artist can see all his uploaded art and can select them for editing
+
+    Atrist can upload a new art
+
+    **Super Class**
+
+        from django.views import View
+
+    **Method User:**
+
+        GET
+    **Context**
+
+        user_info: register.User.\n
+        art_info: artistArt.ArtistArt.\n
+        current_user_liked: artistArt.ArtLikeDislike\n
+
+    **Models that are used by this Class**
+
+        The instance of model register.User.\n
+        The instance of model artistArt.ArtistArt.\n
+        The instance of model artistArt.ArtLikeDislike.\n
+
+    **Template:**
+
+        View Templates directory: artistArt/templates/artist_art_preview.html
+    """
 
     USER_INFO = None
     ART_INFO = None
@@ -90,6 +144,32 @@ class ArtistArtPreview(View):
 
 
 class ArtistArtUploadEdit(View):
+    """
+    Artist can Edit their uploaded art
+
+
+    **Super Class**
+
+        from django.views import View
+
+    **Method User:**
+
+        GET,POST
+    **Context**
+
+        user_info: register.User.\n
+        form: artistart.form.ArtistArtViewForm\n
+
+    **Models that are used by this Class**
+
+        The instance of model register.User.\n
+        The instance of model artistArt.ArtistArt.\n
+
+
+    **Template:**
+
+        View Templates directory: artistArt/templates/artist_art_upload_form.html
+    """
 
     USER_INFO = None
 
@@ -139,6 +219,27 @@ class ArtistArtUploadEdit(View):
 
 
 class ArtistArtUploadedDelete(View):
+    """
+    Artist can Delete their uploaded art
+
+    **Super Class**
+
+        from django.views import View
+
+    **Method User:**
+
+        GET
+
+    **Models that are used by this Class**
+
+        The instance of model register.User.\n
+        The instance of model artistArt.ArtistArt.\n
+
+
+    **Redirect:**
+
+        View Redirect Url name: artistArt/templates/artist_art_upload_form.html
+    """
 
     USER_INFO = None
 
@@ -158,6 +259,31 @@ class ArtistArtUploadedDelete(View):
 
 
 class ArtistArtPreviewAll(View):
+    """
+    Artist can see  all art
+
+    **Super Class**
+
+        from django.views import View
+
+    **Method User:**
+
+        GET
+    **Context**
+
+        user_info: register.User.\n
+        arts_info: artistArt.ArtistArt\n
+
+    **Models that are used by this Class**
+
+        The instance of model register.User.\n
+        The instance of model artistArt.ArtistArt.\n
+
+
+    **Template:**
+
+        View Templates directory: artistArt/templates/artist_all_art_preview.html
+    """
 
     USER_INFO = None
     ART_INFO = None

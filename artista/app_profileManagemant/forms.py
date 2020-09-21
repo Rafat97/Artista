@@ -8,30 +8,59 @@ from django.db.models import Q
 
 class UserEditProfile(forms.ModelForm):
 
+    """
+    A form that generates Custom UserEdit form
+
+    **Super Class**
+
+        from django import forms
+
+    **Method User:**
+
+        clean_image(self): raise forms.ValidationError\n
+        def clean_email(self): return email.lower()\n
+        save(self, commit=True): return usr\n
+
+
+    **Models that are used by this Class**
+
+        The instance of model register.User.\n
+
+    ** Generated Form Field **
+
+        'display_name',\n
+        'email',\n
+        'phoneNumber',\n
+        'address',\n
+        'avatar',\n
+        'short_bio',\n
+
+    """
+
     email = forms.CharField(label="Email",
                             widget=forms.EmailInput(
-                                attrs={'class': 'form-control cnr-rounded', }
+                                attrs={'class': '', }
                             ),
                             max_length=100, required=True)
 
     display_name = forms.CharField(label="Display name",
                                    widget=forms.TextInput(
                                        attrs={
-                                           'class': 'form-control cnr-rounded', }
+                                           'class': '', }
                                    ),
                                    max_length=30, required=True)
 
     address = forms.CharField(label="Address",
                               widget=forms.TextInput(
                                   attrs={
-                                      'class': 'form-control cnr-rounded', }
+                                      'class': '', }
                               ),
                               max_length=255, required=True)
 
     phoneNumber = forms.CharField(label="Phone Number",
                                   widget=forms.TextInput(
                                       attrs={
-                                          'class': 'form-control cnr-rounded', }
+                                          'class': '', }
                                   ),
                                   max_length=20, required=True)
 

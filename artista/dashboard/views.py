@@ -1,9 +1,11 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import View
 from register.models import User
 
 # Create your views here.
+
+
 class DashboardView(View):
     """
     Display an Artist Account
@@ -13,28 +15,13 @@ class DashboardView(View):
     ``mymodel``
         An instance of :model:`myapp.User`.
 
-    **Template:**
+    **Redrict:**
 
-    :template:`register_artist.html`
+    :Redrict Url name:/dashboard/art base on Artist or Client
     """
 
-    
     def get(self, request, *args, **kwargs):
-        """
-        Display an Artist Account
 
-        **Context**
-
-        ``mymodel``
-            An instance of :model:`myapp.User`.
-
-        **Template:**
-
-        :template:`register_artist.html`
-        """
-
-        
-        
         if not request.session.has_key('user'):
             return redirect('/')
 
@@ -42,10 +29,10 @@ class DashboardView(View):
         user = User.objects.filter(uuid__exact=uuid).get()
         if user.user_role.role_name == 'Client':
             return redirect('/dashboard/art')
-            
+
         elif user.user_role.role_name == 'Artist':
             return redirect('/dashboard/art')
-            
+
         else:
             return redirect('/')
         # context = {}

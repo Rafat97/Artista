@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render,redirect,reverse
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from django.views import View
 from .forms import ForgotPassUserFrom, ForgotPassNewPassSetUserFrom
@@ -13,29 +13,56 @@ from django.db.models import Q
 
 # Create your views here.
 
+
 class ForgotPassword(View):
+    """
+    User Password reset using email send. 
+
+    **Super Class**
+
+        from django.views import View
+
+    **Method :**
+
+       GET,POST
+
+    **Context**
+
+       "getting email form": forgotPass.form.ForgotPassUserFrom
+
+    **Models that are used by this Class**
+
+        The instance of model register.User.\n
+
+
+    **Template:**
+
+        In get request View Templates directory: forgotPass\\templates\\forgot_password.html
+        In Post request  reditect url name : forgot_password_user
+    """
+
     def get(self, request, *args, **kwargs):
         form = ForgotPassUserFrom(request.POST or None)
         context = {
-            "form" : form
+            "form": form
         }
         return render(request, 'forgot_password.html', context)
-    
+
     def post(self, request, *args, **kwargs):
         form = ForgotPassUserFrom(request.POST or None)
-        if form.is_valid() :
+        if form.is_valid():
 
             user = form.getUser
             # print(user.refresh_token)
-            html_message = render_to_string('email/forgot_password_email.html', 
-            {
-                'user': user,
-                "site_url" : settings.SITE_URL,
-                "pass_recov_url" : settings.SITE_URL+"forgot_password/reset"+"/"+str(user.uuid)+"/"+user.refresh_token
-            })
-            
+            html_message = render_to_string('email/forgot_password_email.html',
+                                            {
+                                                'user': user,
+                                                "site_url": settings.SITE_URL,
+                                                "pass_recov_url": settings.SITE_URL+"forgot_password/reset"+"/"+str(user.uuid)+"/"+user.refresh_token
+                                            })
+            # email sending code
             mail = send_mail(
-                'Password Recovery' ,
+                'Password Recovery',
                 "",
                 'no-reply@artista.com',
                 [user.email],
@@ -52,23 +79,19 @@ class ForgotPassword(View):
         return response
 
 
-
-
-
-
 class ForgotPasswordReset(View):
-    def get(self, request,user_uuid,user_reset_token, *args, **kwargs):
-        user =  get_object_or_404(
-                User,  Q(uuid=user_uuid) , Q(refresh_token=user_reset_token)
-            )
+    def get(self, request, user_uuid, user_reset_token, *args, **kwargs):
+        user = get_object_or_404(
+            User,  Q(uuid=user_uuid), Q(refresh_token=user_reset_token)
+        )
 
         form = ForgotPassNewPassSetUserFrom(None)
         context = {
-            "form" : form
+            "form": form
         }
         return render(request, 'forgot_password_form.html', context)
 
-    def post(self, request,user_uuid,user_reset_token, *args, **kwargs):
+    def post(self, request, user_uuid, user_reset_token, *args, **kwargs):
         print("asdasd")
         pass
         form = ForgotPassNewPassSetUserFrom(request.POST or None)
@@ -76,12 +99,12 @@ class ForgotPasswordReset(View):
         form.setIdUser(user_uuid)
         if form.is_valid():
             form.save(commit=True)
-            messages.success(request , " Your password is changed. Please login with new password ")
+            messages.success(
+                request, " Your password is changed. Please login with new password ")
             response = redirect('login_user')
             return response
 
         context = {
-            "form" : form
+            "form": form
         }
         return render(request, 'forgot_password_form.html', context)
-
