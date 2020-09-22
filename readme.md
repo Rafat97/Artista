@@ -1,6 +1,5 @@
 <p align="center"><img src="https://i.imgur.com/RR7JnZW.png?v=3&s=200" title="artista" alt="artista"></p>
 
-
 ![Build Status](https://img.shields.io/github/issues/Rafat97/Artista?style=for-the-badge)
 ![Build Status](https://img.shields.io/github/languages/count/Rafat97/Artista?style=for-the-badge)
 ![Build Status](https://img.shields.io/github/languages/top/Rafat97/Artista?style=for-the-badge)
