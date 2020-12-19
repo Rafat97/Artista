@@ -56,7 +56,7 @@ How to install. Also how to  run project in your machine
     - ** Clone repository 
     - Create a virtual environment
     - ** Then you install all the package from `requirements.txt` 
-- ### Automatic Process (Easy to use):
+- ### Automatic Process:
     - ** First you must install Anaconda(https://www.anaconda.com/) open-source distribution
     - ** Clone repository 
     - ** Import `conda-env.yml` as environment in anaconda navigator
